@@ -13,6 +13,7 @@ class SwiftResponsiveLabel: UILabel {
 
 	var textKitStack = TextKitStack()
 	var touchHandler: TouchHandler?
+	var patternHighlighter: PatternHighlighter?
 
 	override var frame: CGRect {
 		didSet {
@@ -42,6 +43,7 @@ class SwiftResponsiveLabel: UILabel {
 		didSet {
 			let attributedString = NSAttributedString(string: text ?? "", attributes: self.attributesFromProperties())
 			self.textKitStack.updateTextStorage(attributedString)
+			self.patternHighlighter = PatternHighlighter(attributedText: attributedString)
 		}
 	}
 
@@ -74,7 +76,78 @@ class SwiftResponsiveLabel: UILabel {
 		self.textKitStack.resizeTextContainer(self.bounds.size)
 	}
 
-	// MARK - Private Helpers
+	// MARK: Public methods
+	
+	func enableHashTagDetection(attributes: [String:AnyObject]) {
+		self.patternHighlighter?.highlightPattern(PatternHighlighter.RegexStringForHashTag, dictionary: attributes)
+		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.setNeedsDisplay()
+	}
+
+	func disableHashTagDetection() {
+		self.patternHighlighter?.unhighlightPattern(PatternHighlighter.RegexStringForHashTag)
+		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.setNeedsDisplay()
+	}
+
+	func enableUserHandleDetection(attributes:[String:AnyObject]) {
+		self.patternHighlighter?.highlightPattern(PatternHighlighter.RegexStringForUserHandle, dictionary: attributes)
+		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.setNeedsDisplay()
+	}
+
+	func disableUserHandleDetection() {
+		self.patternHighlighter?.unhighlightPattern(PatternHighlighter.RegexStringForUserHandle)
+		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.setNeedsDisplay()
+	}
+
+	func enableURLDetection(attributes:[String:AnyObject]) {
+		do {
+			let regex = try NSDataDetector(types: NSTextCheckingType.Link.rawValue)
+			let descriptor = PatternDescriptor(regularExpression: regex, searchType: .All, patternAttributes: attributes)
+			self.patternHighlighter?.enablePatternDetection(descriptor)
+			self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+			self.setNeedsDisplay()
+			} catch let error as NSError {
+				print("NSDataDetector Error: \(error.debugDescription)")
+		}
+	}
+
+	func disableURLDetection() {
+		let key = String(NSTextCheckingType.Link.rawValue)
+		self.patternHighlighter?.unhighlightPattern(key)
+		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.setNeedsDisplay()
+	}
+
+	func enableStringDetection(string:String, attributes:[String:AnyObject]) {
+		let pattern = String(format: PatternHighlighter.RegexFormatForSearchWord,string)
+		self.patternHighlighter?.highlightPattern(pattern, dictionary: attributes)
+		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.setNeedsDisplay()
+	}
+
+	func disableStringDetection(string:String) {
+		let pattern = String(format: PatternHighlighter.RegexFormatForSearchWord,string)
+		self.patternHighlighter?.unhighlightPattern(pattern)
+		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.setNeedsDisplay()
+	}
+
+	func enableDetectionForStrings(stringsArray:[String], attributes:[String:AnyObject]) {
+		for string in stringsArray {
+			enableStringDetection(string, attributes: attributes)
+		}
+	}
+
+	func disableDetectionForStrings(stringsArray:[String]) {
+		for string in stringsArray {
+			disableStringDetection(string)
+		}
+	}
+
+	// MARK: Private Helpers
 
 	private func updateTextStorage() {
 		var finalAttributedString = NSAttributedString()
@@ -84,6 +157,7 @@ class SwiftResponsiveLabel: UILabel {
 			finalAttributedString = NSAttributedString(string: text ?? "", attributes: self.attributesFromProperties())
 		}
 		self.textKitStack.updateTextStorage(finalAttributedString)
+		self.patternHighlighter = PatternHighlighter(attributedText: finalAttributedString)
 	}
 
 	private func textOffSet() -> CGPoint {

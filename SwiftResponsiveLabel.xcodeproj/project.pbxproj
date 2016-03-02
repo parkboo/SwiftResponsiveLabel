@@ -18,6 +18,9 @@
 		4ECBA03E1C85710500884FCD /* SwiftResponsiveLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA03D1C85710500884FCD /* SwiftResponsiveLabel.swift */; };
 		4ECBA0401C85913A00884FCD /* NSAttributedString+Processing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA03F1C85913A00884FCD /* NSAttributedString+Processing.swift */; };
 		4ECBA0421C85A14700884FCD /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA0411C85A14700884FCD /* TouchHandler.swift */; };
+		4EF960EB1C86E905007CB596 /* PatternDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF960E91C86E905007CB596 /* PatternDescriptor.swift */; };
+		4EF960EC1C86E905007CB596 /* PatternHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF960EA1C86E905007CB596 /* PatternHighlighter.swift */; };
+		4EF960EE1C86F8A3007CB596 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF960ED1C86F8A3007CB596 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		4ECBA03D1C85710500884FCD /* SwiftResponsiveLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftResponsiveLabel.swift; path = Source/SwiftResponsiveLabel.swift; sourceTree = "<group>"; };
 		4ECBA03F1C85913A00884FCD /* NSAttributedString+Processing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Processing.swift"; path = "Source/NSAttributedString+Processing.swift"; sourceTree = "<group>"; };
 		4ECBA0411C85A14700884FCD /* TouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchHandler.swift; path = Source/TouchHandler.swift; sourceTree = "<group>"; };
+		4EF960E91C86E905007CB596 /* PatternDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PatternDescriptor.swift; path = Source/PatternDescriptor.swift; sourceTree = "<group>"; };
+		4EF960EA1C86E905007CB596 /* PatternHighlighter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PatternHighlighter.swift; path = Source/PatternHighlighter.swift; sourceTree = "<group>"; };
+		4EF960ED1C86F8A3007CB596 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,9 +113,6 @@
 			children = (
 				4ECBA03A1C84351B00884FCD /* Source */,
 				4ECBA0391C84351000884FCD /* Demo Project */,
-				4ECBA00B1C8434EA00884FCD /* AppDelegate.swift */,
-				4ECBA00D1C8434EA00884FCD /* ViewController.swift */,
-				4ECBA00F1C8434EA00884FCD /* Main.storyboard */,
 				4ECBA0121C8434EA00884FCD /* Assets.xcassets */,
 				4ECBA0141C8434EA00884FCD /* LaunchScreen.storyboard */,
 				4ECBA0171C8434EA00884FCD /* Info.plist */,
@@ -138,6 +141,10 @@
 		4ECBA0391C84351000884FCD /* Demo Project */ = {
 			isa = PBXGroup;
 			children = (
+				4ECBA00B1C8434EA00884FCD /* AppDelegate.swift */,
+				4ECBA00D1C8434EA00884FCD /* ViewController.swift */,
+				4ECBA00F1C8434EA00884FCD /* Main.storyboard */,
+				4EF960ED1C86F8A3007CB596 /* MainViewController.swift */,
 			);
 			name = "Demo Project";
 			sourceTree = "<group>";
@@ -145,6 +152,8 @@
 		4ECBA03A1C84351B00884FCD /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				4EF960E91C86E905007CB596 /* PatternDescriptor.swift */,
+				4EF960EA1C86E905007CB596 /* PatternHighlighter.swift */,
 				4ECBA03B1C8570D400884FCD /* TextKitStack.swift */,
 				4ECBA03D1C85710500884FCD /* SwiftResponsiveLabel.swift */,
 				4ECBA03F1C85913A00884FCD /* NSAttributedString+Processing.swift */,
@@ -284,10 +293,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EF960EC1C86E905007CB596 /* PatternHighlighter.swift in Sources */,
+				4EF960EB1C86E905007CB596 /* PatternDescriptor.swift in Sources */,
 				4ECBA0421C85A14700884FCD /* TouchHandler.swift in Sources */,
 				4ECBA0401C85913A00884FCD /* NSAttributedString+Processing.swift in Sources */,
 				4ECBA03E1C85710500884FCD /* SwiftResponsiveLabel.swift in Sources */,
 				4ECBA03C1C8570D400884FCD /* TextKitStack.swift in Sources */,
+				4EF960EE1C86F8A3007CB596 /* MainViewController.swift in Sources */,
 				4ECBA00E1C8434EA00884FCD /* ViewController.swift in Sources */,
 				4ECBA00C1C8434EA00884FCD /* AppDelegate.swift in Sources */,
 			);
