@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="9rW-0Q-av9" customClass="SwiftResponsiveLabel" customModule="SwiftResponsiveLabel" customModuleProvider="target">
+                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="9rW-0Q-av9" customClass="SwiftResponsiveLabel" customModule="SwiftResponsiveLabel" customModuleProvider="target">
                                 <rect key="frame" x="150.5" y="280" width="300" height="40"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Test ">
@@ -48,6 +48,9 @@
                             <constraint firstItem="9rW-0Q-av9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lm6-dD-u97"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="customLabel" destination="9rW-0Q-av9" id="pGZ-pJ-TNI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

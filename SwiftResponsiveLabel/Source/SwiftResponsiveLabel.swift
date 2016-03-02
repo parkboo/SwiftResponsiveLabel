@@ -65,7 +65,7 @@ class SwiftResponsiveLabel: UILabel {
 		super.awakeFromNib()
 		self.initialTextConfiguration()
 		if userInteractionEnabled {
-			self.touchHandler = TouchHandler(responsiveLabel: self, gestureType: .Tap)
+			self.touchHandler = TouchHandler(responsiveLabel: self)
 		}
 	}
 

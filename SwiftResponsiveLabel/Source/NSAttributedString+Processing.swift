@@ -9,6 +9,22 @@
 import Foundation
 import UIKit
 
+let RLTapResponderAttributeName = "TapResponder"
+let RLHighlightedForegroundColorAttributeName = "HighlightedForegroundColor"
+let RLHighlightedBackgroundColorAttributeName = "HighlightedBackgroundColor"
+let RLBackgroundCornerRadius = "HighlightedBackgroundCornerRadius"
+let RLHighlightedAttributesDictionary = "HighlightedAttributes"
+
+public class PatternTapResponder {
+	let action: (String) -> Void
+	init(currentAction:(tappedString:String) -> (Void)) {
+		action = currentAction
+	}
+	public func perform(string:String) {
+		action(string)
+	}
+}
+
 extension NSAttributedString {
 	func isNewLinePresent() -> Bool {
 		let newLineRange = self.string.rangeOfCharacterFromSet(NSCharacterSet.newlineCharacterSet())
@@ -37,5 +53,13 @@ extension NSAttributedString {
 			}
 		}
 		return processedString;
+	}
+
+	func touchRange(index: Int) -> NSRange? {
+		guard index < self.length  else { return nil }
+		var range = NSMakeRange(NSNotFound, 0)
+		let attributes = self.attributesAtIndex(index, effectiveRange: &range)
+		let touchAttributesSet = attributes.keys.contains(RLHighlightedAttributesDictionary)
+		return touchAttributesSet ? range : nil
 	}
 }

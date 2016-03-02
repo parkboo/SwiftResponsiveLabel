@@ -17,6 +17,7 @@
 		4ECBA03C1C8570D400884FCD /* TextKitStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA03B1C8570D400884FCD /* TextKitStack.swift */; };
 		4ECBA03E1C85710500884FCD /* SwiftResponsiveLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA03D1C85710500884FCD /* SwiftResponsiveLabel.swift */; };
 		4ECBA0401C85913A00884FCD /* NSAttributedString+Processing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA03F1C85913A00884FCD /* NSAttributedString+Processing.swift */; };
+		4ECBA0421C85A14700884FCD /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA0411C85A14700884FCD /* TouchHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		4ECBA03B1C8570D400884FCD /* TextKitStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextKitStack.swift; path = Source/TextKitStack.swift; sourceTree = "<group>"; };
 		4ECBA03D1C85710500884FCD /* SwiftResponsiveLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftResponsiveLabel.swift; path = Source/SwiftResponsiveLabel.swift; sourceTree = "<group>"; };
 		4ECBA03F1C85913A00884FCD /* NSAttributedString+Processing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Processing.swift"; path = "Source/NSAttributedString+Processing.swift"; sourceTree = "<group>"; };
+		4ECBA0411C85A14700884FCD /* TouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchHandler.swift; path = Source/TouchHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				4ECBA03B1C8570D400884FCD /* TextKitStack.swift */,
 				4ECBA03D1C85710500884FCD /* SwiftResponsiveLabel.swift */,
 				4ECBA03F1C85913A00884FCD /* NSAttributedString+Processing.swift */,
+				4ECBA0411C85A14700884FCD /* TouchHandler.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ECBA0421C85A14700884FCD /* TouchHandler.swift in Sources */,
 				4ECBA0401C85913A00884FCD /* NSAttributedString+Processing.swift in Sources */,
 				4ECBA03E1C85710500884FCD /* SwiftResponsiveLabel.swift in Sources */,
 				4ECBA03C1C8570D400884FCD /* TextKitStack.swift in Sources */,

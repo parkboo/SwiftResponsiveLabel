@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TextKitStack {
+public class TextKitStack {
 	private var textContainer = NSTextContainer()
 	private var layoutManager = NSLayoutManager()
 	var textStorage = NSTextStorage()
@@ -90,5 +90,4 @@ class TextKitStack {
 		convertedLocation.y -= self.currentTextOffset.y
 		return self.layoutManager.glyphIndexForPoint(location, inTextContainer: self.textContainer, fractionOfDistanceThroughGlyph: nil)
 	}
-
 }
