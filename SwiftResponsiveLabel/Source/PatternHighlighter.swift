@@ -12,13 +12,19 @@ class PatternHighlighter {
 	static let RegexStringForHashTag = "(?<!\\w)#([\\w\\_]+)?"
 	static let RegexStringForUserHandle = "(?<!\\w)@([\\w\\_]+)?"
 	static let RegexFormatForSearchWord = "(%@)"
-	var patternDescriptors = [String:PatternDescriptor]()
-	var attributedText: NSMutableAttributedString?
+	
+	var patternHighlightedText: NSMutableAttributedString?
+	private var patternDescriptors = [String: PatternDescriptor]()
+	private var attributedText: NSMutableAttributedString?
 
-	init(attributedText: NSAttributedString) {
+	func updateAttributeText(attributedText: NSAttributedString) {
 		self.attributedText = NSMutableAttributedString(attributedString: attributedText)
+		self.patternHighlightedText = self.attributedText
+		for descriptor in self.patternDescriptors {
+			self.enablePatternDetection(descriptor.1)
+		}
 	}
-
+	
 	func highlightPattern(pattern: String, dictionary: [String:AnyObject]) {
 		do {
 			let regex = try NSRegularExpression(pattern: pattern, options: .CaseInsensitive)
@@ -75,7 +81,7 @@ class PatternHighlighter {
 	}
 
 	private func addPatternAttributes(patternDescriptor:PatternDescriptor) {
-		guard let attributedText = self.attributedText else {
+		guard let attributedText = self.patternHighlightedText else {
 			return
 		}
 		//Generate ranges for attributed text of the label

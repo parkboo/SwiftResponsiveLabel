@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4EB857BE1C8823CE00431BA9 /* TruncationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB857BD1C8823CE00431BA9 /* TruncationHandler.swift */; };
 		4ECBA00C1C8434EA00884FCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA00B1C8434EA00884FCD /* AppDelegate.swift */; };
-		4ECBA00E1C8434EA00884FCD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA00D1C8434EA00884FCD /* ViewController.swift */; };
 		4ECBA0111C8434EA00884FCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ECBA00F1C8434EA00884FCD /* Main.storyboard */; };
 		4ECBA0131C8434EA00884FCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ECBA0121C8434EA00884FCD /* Assets.xcassets */; };
 		4ECBA0161C8434EA00884FCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ECBA0141C8434EA00884FCD /* LaunchScreen.storyboard */; };
@@ -41,9 +41,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4EB857BD1C8823CE00431BA9 /* TruncationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TruncationHandler.swift; path = Source/TruncationHandler.swift; sourceTree = "<group>"; };
 		4ECBA0081C8434EA00884FCD /* SwiftResponsiveLabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftResponsiveLabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ECBA00B1C8434EA00884FCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4ECBA00D1C8434EA00884FCD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		4ECBA0101C8434EA00884FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4ECBA0121C8434EA00884FCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4ECBA0151C8434EA00884FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -142,7 +142,6 @@
 			isa = PBXGroup;
 			children = (
 				4ECBA00B1C8434EA00884FCD /* AppDelegate.swift */,
-				4ECBA00D1C8434EA00884FCD /* ViewController.swift */,
 				4ECBA00F1C8434EA00884FCD /* Main.storyboard */,
 				4EF960ED1C86F8A3007CB596 /* MainViewController.swift */,
 			);
@@ -152,12 +151,13 @@
 		4ECBA03A1C84351B00884FCD /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				4ECBA03D1C85710500884FCD /* SwiftResponsiveLabel.swift */,
 				4EF960E91C86E905007CB596 /* PatternDescriptor.swift */,
 				4EF960EA1C86E905007CB596 /* PatternHighlighter.swift */,
 				4ECBA03B1C8570D400884FCD /* TextKitStack.swift */,
-				4ECBA03D1C85710500884FCD /* SwiftResponsiveLabel.swift */,
 				4ECBA03F1C85913A00884FCD /* NSAttributedString+Processing.swift */,
 				4ECBA0411C85A14700884FCD /* TouchHandler.swift */,
+				4EB857BD1C8823CE00431BA9 /* TruncationHandler.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -300,7 +300,7 @@
 				4ECBA03E1C85710500884FCD /* SwiftResponsiveLabel.swift in Sources */,
 				4ECBA03C1C8570D400884FCD /* TextKitStack.swift in Sources */,
 				4EF960EE1C86F8A3007CB596 /* MainViewController.swift in Sources */,
-				4ECBA00E1C8434EA00884FCD /* ViewController.swift in Sources */,
+				4EB857BE1C8823CE00431BA9 /* TruncationHandler.swift in Sources */,
 				4ECBA00C1C8434EA00884FCD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

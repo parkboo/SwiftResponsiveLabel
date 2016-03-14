@@ -10,10 +10,19 @@ import Foundation
 import UIKit
 
 class SwiftResponsiveLabel: UILabel {
-
 	var textKitStack = TextKitStack()
 	var touchHandler: TouchHandler?
-	var patternHighlighter: PatternHighlighter?
+	var patternHighlighter = PatternHighlighter()
+
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		self.attributedTruncationToken = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties())
+	}
+
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		self.attributedTruncationToken = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties())
+	}
 
 	override var frame: CGRect {
 		didSet {
@@ -41,16 +50,48 @@ class SwiftResponsiveLabel: UILabel {
 
 	override var text: String? {
 		didSet {
-			let attributedString = NSAttributedString(string: text ?? "", attributes: self.attributesFromProperties())
-			self.textKitStack.updateTextStorage(attributedString)
-			self.patternHighlighter = PatternHighlighter(attributedText: attributedString)
+			updateTextStorage()
+			setNeedsDisplay()
 		}
 	}
 
 	override var attributedText: NSAttributedString? {
 		didSet {
-			self.updateTextStorage()
+			updateTextStorage()
+			setNeedsDisplay()
 		}
+	}
+
+	 var customTruncationEnabled: Bool = false {
+		didSet {
+			self.updateTextStorage()
+			self.setNeedsDisplay()
+		}
+	}
+
+	 var truncationToken: String = "..." {
+		didSet {
+			self.attributedTruncationToken  = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties())
+		}
+	}
+
+	 var attributedTruncationToken: NSAttributedString? {
+		didSet {
+			if customTruncationEnabled, let _ = self.attributedTruncationToken {
+				self.updateTextStorage()
+				self.setNeedsDisplay()
+			}
+		}
+	}
+
+	var attributedTextToDisplay: NSAttributedString {
+		var finalAttributedString = NSAttributedString()
+		if let attributedText = attributedText?.wordWrappedAttributedString() {
+			finalAttributedString = NSAttributedString(attributedString: attributedText)
+		} else {
+			finalAttributedString = NSAttributedString(string: text ?? "", attributes: self.attributesFromProperties())
+		}
+		return finalAttributedString
 	}
 
 	override func drawTextInRect(rect: CGRect) {
@@ -79,26 +120,26 @@ class SwiftResponsiveLabel: UILabel {
 	// MARK: Public methods
 	
 	func enableHashTagDetection(attributes: [String:AnyObject]) {
-		self.patternHighlighter?.highlightPattern(PatternHighlighter.RegexStringForHashTag, dictionary: attributes)
-		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.patternHighlighter.highlightPattern(PatternHighlighter.RegexStringForHashTag, dictionary: attributes)
+		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
 	func disableHashTagDetection() {
-		self.patternHighlighter?.unhighlightPattern(PatternHighlighter.RegexStringForHashTag)
-		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.patternHighlighter.unhighlightPattern(PatternHighlighter.RegexStringForHashTag)
+		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
 	func enableUserHandleDetection(attributes:[String:AnyObject]) {
-		self.patternHighlighter?.highlightPattern(PatternHighlighter.RegexStringForUserHandle, dictionary: attributes)
-		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.patternHighlighter.highlightPattern(PatternHighlighter.RegexStringForUserHandle, dictionary: attributes)
+		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
 	func disableUserHandleDetection() {
-		self.patternHighlighter?.unhighlightPattern(PatternHighlighter.RegexStringForUserHandle)
-		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.patternHighlighter.unhighlightPattern(PatternHighlighter.RegexStringForUserHandle)
+		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
@@ -106,8 +147,8 @@ class SwiftResponsiveLabel: UILabel {
 		do {
 			let regex = try NSDataDetector(types: NSTextCheckingType.Link.rawValue)
 			let descriptor = PatternDescriptor(regularExpression: regex, searchType: .All, patternAttributes: attributes)
-			self.patternHighlighter?.enablePatternDetection(descriptor)
-			self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+			self.patternHighlighter.enablePatternDetection(descriptor)
+			self.updateTextStorage()
 			self.setNeedsDisplay()
 			} catch let error as NSError {
 				print("NSDataDetector Error: \(error.debugDescription)")
@@ -116,22 +157,22 @@ class SwiftResponsiveLabel: UILabel {
 
 	func disableURLDetection() {
 		let key = String(NSTextCheckingType.Link.rawValue)
-		self.patternHighlighter?.unhighlightPattern(key)
-		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.patternHighlighter.unhighlightPattern(key)
+		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
 	func enableStringDetection(string:String, attributes:[String:AnyObject]) {
 		let pattern = String(format: PatternHighlighter.RegexFormatForSearchWord,string)
-		self.patternHighlighter?.highlightPattern(pattern, dictionary: attributes)
-		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.patternHighlighter.highlightPattern(pattern, dictionary: attributes)
+		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
 	func disableStringDetection(string:String) {
 		let pattern = String(format: PatternHighlighter.RegexFormatForSearchWord,string)
-		self.patternHighlighter?.unhighlightPattern(pattern)
-		self.textKitStack.updateTextStorage((self.patternHighlighter?.attributedText)!)
+		self.patternHighlighter.unhighlightPattern(pattern)
+		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
@@ -150,14 +191,20 @@ class SwiftResponsiveLabel: UILabel {
 	// MARK: Private Helpers
 
 	private func updateTextStorage() {
-		var finalAttributedString = NSAttributedString()
-		if let attributedText = attributedText?.wordWrappedAttributedString() {
-			finalAttributedString = NSAttributedString(attributedString: attributedText)
-		} else {
-			finalAttributedString = NSAttributedString(string: text ?? "", attributes: self.attributesFromProperties())
+		var finalString: NSAttributedString = self.attributedTextToDisplay
+		self.textKitStack.updateTextStorage(finalString)
+
+		// Add truncation token if necessary
+		if let _ = self.attributedTruncationToken where customTruncationEnabled {
+			if let string = self.stringWithTruncationToken() where self.truncationTokenAppended() == false {
+				finalString = string
+			}
 		}
-		self.textKitStack.updateTextStorage(finalAttributedString)
-		self.patternHighlighter = PatternHighlighter(attributedText: finalAttributedString)
+
+		// Apply pattern
+		self.patternHighlighter.updateAttributeText(finalString)
+		finalString = self.patternHighlighter.patternHighlightedText!
+		self.textKitStack.updateTextStorage(finalString)
 	}
 
 	private func textOffSet() -> CGPoint {

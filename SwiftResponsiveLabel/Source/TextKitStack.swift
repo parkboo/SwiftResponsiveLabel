@@ -60,7 +60,9 @@ public class TextKitStack {
 	}
 
 	func boundingRectForCompleteText() -> CGRect {
+		self.textContainer.size = CGSizeMake(self.textContainer.size.width, CGFloat.max)
 		let glyphRange = self.layoutManager.glyphRangeForTextContainer(textContainer)
+		self.layoutManager.invalidateDisplayForCharacterRange(NSMakeRange(0, self.textStorage.length - 1))
 		return self.layoutManager.boundingRectForGlyphRange(glyphRange, inTextContainer:self.textContainer)
 	}
 	
@@ -69,17 +71,55 @@ public class TextKitStack {
 		self.textContainer.maximumNumberOfLines = numberOfLines
 		var textBounds = self.layoutManager.boundingRectForGlyphRange(NSMakeRange(0, self.layoutManager.numberOfGlyphs), inTextContainer: self.textContainer)
 		let totalLines = Int(textBounds.size.height / font.lineHeight)
-
-		if (numberOfLines > 0 && (numberOfLines < totalLines)) {
-			textBounds.size.height -= CGFloat(totalLines - numberOfLines) * font.lineHeight
-		}else if (numberOfLines > 0 && (numberOfLines) > totalLines) {
-			textBounds.size.height += CGFloat(numberOfLines - totalLines) * font.lineHeight
+		if numberOfLines > 0 {
+			if numberOfLines < totalLines {
+				textBounds.size.height -= CGFloat(totalLines - numberOfLines) * font.lineHeight
+			} else if numberOfLines > totalLines {
+				textBounds.size.height += CGFloat(numberOfLines - totalLines) * font.lineHeight
+			}
 		}
 		textBounds.size.width = ceil(textBounds.size.width)
 		textBounds.size.height = ceil(textBounds.size.height)
 		self.textContainer.size = textBounds.size
 		return textBounds;
 	}
+
+	func rangeForTokenInsertion(attributedTruncationToken: NSAttributedString) -> NSRange {
+		guard self.textStorage.length > 0 else {
+			return NSMakeRange(NSNotFound, 0)
+		}
+		var rangeOfText = NSMakeRange(NSNotFound, 0)
+		if textStorage.isNewLinePresent() {
+			rangeOfText = self.truncatedRangeForStringWithNewLine()
+		} else {
+			let glyphIndex = self.layoutManager.glyphIndexForCharacterAtIndex(self.textStorage.length - 1)
+			rangeOfText = self.layoutManager.truncatedGlyphRangeInLineFragmentForGlyphAtIndex(glyphIndex)
+			var lineRange = NSMakeRange(NSNotFound, 0)
+			self.layoutManager.lineFragmentRectForGlyphAtIndex(glyphIndex, effectiveRange: &lineRange)
+			rangeOfText = lineRange
+
+		}
+		if rangeOfText.location != NSNotFound {
+			rangeOfText.length += attributedTruncationToken.length
+			rangeOfText.location -= attributedTruncationToken.length
+		}
+		return rangeOfText;
+	}
+
+	func truncatedRangeForStringWithNewLine() -> NSRange {
+		let numberOfGlyphs = self.layoutManager.numberOfGlyphs
+		var lineRange = NSMakeRange(NSNotFound, 0)
+		let font = self.textStorage.attribute(NSFontAttributeName, atIndex: 0, effectiveRange: nil) as! UIFont
+		let approximateNumberOfLines = Int(CGRectGetHeight(self.layoutManager.usedRectForTextContainer(self.textContainer)) / font.lineHeight)
+		for (var numberOfLines = 0, index = 0; index < numberOfGlyphs; numberOfLines++) {
+			self.layoutManager.lineFragmentRectForGlyphAtIndex(index, effectiveRange: &lineRange)
+			if (numberOfLines == approximateNumberOfLines - 1) { break }
+			index = NSMaxRange(lineRange)
+		}
+		let rangeOfText = NSMakeRange(lineRange.location + lineRange.length - 1, self.textStorage.length - lineRange.location - lineRange.length + 1)
+		return rangeOfText
+	}
+
 
 	// MARK: Private Helpers
 

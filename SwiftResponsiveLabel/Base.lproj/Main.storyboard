@@ -6,56 +6,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SwiftResponsiveLabel" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="9rW-0Q-av9" customClass="SwiftResponsiveLabel" customModule="SwiftResponsiveLabel" customModuleProvider="target">
-                                <rect key="frame" x="150.5" y="280" width="300" height="40"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Test ">
-                                        <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content="Data">
-                                        <attributes>
-                                            <color key="NSColor" red="0.9384765625" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment content=" Test Data Test Data Test Data Test Data Test Data">
-                                        <attributes>
-                                            <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="9rW-0Q-av9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ktc-zC-HOy"/>
-                            <constraint firstItem="9rW-0Q-av9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lm6-dD-u97"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="customLabel" destination="9rW-0Q-av9" id="pGZ-pJ-TNI"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
         <!--Main View Controller-->
         <scene sceneID="SJJ-aa-YNs">
             <objects>
@@ -69,22 +19,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pkS-Vz-wNP">
-                                <rect key="frame" x="228.5" y="188.5" width="144" height="30"/>
+                                <rect key="frame" x="228" y="174" width="144" height="30"/>
                                 <state key="normal" title="TableViewCell Usage">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0f-ZY-JHm" userLabel="MessageLabel">
-                                <rect key="frame" x="265.5" y="238.5" width="69" height="20.5"/>
+                                <rect key="frame" x="265" y="224" width="69" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vM1-wy-8EQ">
-                                <rect key="frame" x="20" y="350" width="560" height="250"/>
+                                <rect key="frame" x="20" y="365" width="560" height="235"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x25-8y-1cp">
-                                        <rect key="frame" x="138.5" y="0.0" width="284" height="40"/>
+                                        <rect key="frame" x="138" y="0.0" width="284" height="40"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Truncation Token Format" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3aM-HX-gGv">
                                                 <rect key="frame" x="0.0" y="11" width="171" height="18"/>
@@ -317,12 +267,14 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#Label @username more text #Label @username more text #Label @username more text #Label @username more text hsusmita4@gmail.com" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="dzW-hr-Tkp" customClass="SwiftResponsiveLabel" customModule="SwiftResponsiveLabel" customModuleProvider="target">
-                                <rect key="frame" x="201" y="269" width="199" height="61"/>
+                            <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#Label @username more text #Label @username more text #Label @username more text #Label @username more text hsusmita4@gmail.com" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="dzW-hr-Tkp" customClass="SwiftResponsiveLabel" customModule="SwiftResponsiveLabel" customModuleProvider="target">
+                                <rect key="frame" x="201" y="255" width="199" height="90"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="199" id="I7k-EN-SKA"/>
                                     <constraint firstAttribute="height" constant="50" id="PyX-ct-goH"/>
+                                    <constraint firstAttribute="height" constant="80" id="gIM-9m-1OD"/>
+                                    <constraint firstAttribute="height" constant="90" id="gv0-ZF-aOx"/>
                                     <constraint firstAttribute="width" constant="200" id="koQ-sB-dM3"/>
                                     <constraint firstAttribute="width" constant="100" id="oTM-gR-25N"/>
                                 </constraints>
@@ -332,10 +284,21 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="PyX-ct-goH"/>
+                                        <exclude reference="gIM-9m-1OD"/>
                                         <exclude reference="koQ-sB-dM3"/>
                                         <exclude reference="oTM-gR-25N"/>
                                     </mask>
                                 </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#Label @username more text #Label @username more text #Label @username more text #Label @username more text hsusmita4@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="200" translatesAutoresizingMaskIntoConstraints="NO" id="ice-Ho-WdN">
+                                <rect key="frame" x="202.5" y="20" width="195.5" height="90"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="ETw-X7-0dZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -343,20 +306,16 @@
                             <constraint firstItem="vM1-wy-8EQ" firstAttribute="trailing" secondItem="pb2-nm-Wm3" secondAttribute="trailingMargin" id="1iV-fi-6Jp"/>
                             <constraint firstAttribute="centerX" secondItem="dzW-hr-Tkp" secondAttribute="centerX" id="9Vg-4g-io1"/>
                             <constraint firstItem="vM1-wy-8EQ" firstAttribute="top" secondItem="dzW-hr-Tkp" secondAttribute="bottom" constant="20" id="COa-3q-vZ5"/>
-                            <constraint firstAttribute="centerX" secondItem="vM1-wy-8EQ" secondAttribute="centerX" id="ClP-TF-Oss"/>
                             <constraint firstItem="vM1-wy-8EQ" firstAttribute="leading" secondItem="pb2-nm-Wm3" secondAttribute="leadingMargin" id="DQx-Oa-c3T"/>
                             <constraint firstAttribute="centerY" secondItem="dzW-hr-Tkp" secondAttribute="centerY" id="GCM-uW-mew"/>
                             <constraint firstAttribute="centerX" secondItem="pkS-Vz-wNP" secondAttribute="centerX" id="MZe-iC-TeV"/>
+                            <constraint firstItem="ice-Ho-WdN" firstAttribute="centerX" secondItem="pb2-nm-Wm3" secondAttribute="centerX" id="UAU-my-ZSP"/>
                             <constraint firstAttribute="centerX" secondItem="V0f-ZY-JHm" secondAttribute="centerX" id="cdG-5v-k9q"/>
                             <constraint firstItem="dzW-hr-Tkp" firstAttribute="top" secondItem="V0f-ZY-JHm" secondAttribute="bottom" constant="10" id="e1M-nx-N8z"/>
                             <constraint firstItem="V0f-ZY-JHm" firstAttribute="top" secondItem="pkS-Vz-wNP" secondAttribute="bottom" constant="20" id="e1Z-J1-8eb"/>
+                            <constraint firstItem="ice-Ho-WdN" firstAttribute="top" secondItem="oEJ-HC-xW7" secondAttribute="bottom" id="hgq-oV-0xG"/>
                             <constraint firstAttribute="bottom" secondItem="vM1-wy-8EQ" secondAttribute="bottom" id="ift-b8-nmj"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="ClP-TF-Oss"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="BwH-P0-NVm"/>
                     <connections>
