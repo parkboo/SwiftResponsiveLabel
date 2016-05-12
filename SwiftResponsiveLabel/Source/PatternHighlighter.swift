@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PatternHighlighter {
+public class PatternHighlighter {
 	static let RegexStringForHashTag = "(?<!\\w)#([\\w\\_]+)?"
 	static let RegexStringForUserHandle = "(?<!\\w)@([\\w\\_]+)?"
 	static let RegexFormatForSearchWord = "(%@)"

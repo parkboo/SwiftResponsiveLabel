@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SwiftResponsiveLabel: UILabel {
+public class SwiftResponsiveLabel: UILabel {
 	var textKitStack = TextKitStack()
 	var touchHandler: TouchHandler?
 	var patternHighlighter = PatternHighlighter()
@@ -19,63 +19,57 @@ class SwiftResponsiveLabel: UILabel {
 		self.attributedTruncationToken = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties())
 	}
 
-	required init?(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		self.attributedTruncationToken = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties())
 	}
 
-	override var frame: CGRect {
+	override public var frame: CGRect {
 		didSet {
-			var size = CGSizeZero
-			size.width = min(frame.size.width, self.preferredMaxLayoutWidth)
-			self.textKitStack.resizeTextContainer(size)
+			self.textKitStack.resizeTextContainer(frame.size)
 		}
 	}
 
-	override var bounds: CGRect {
+	override public var bounds: CGRect {
 		didSet {
-			var size = CGSizeZero
-			size.width = min(frame.size.width, self.preferredMaxLayoutWidth)
-			self.textKitStack.resizeTextContainer(size)
+			self.textKitStack.resizeTextContainer(frame.size)
 		}
 	}
 
-	override var preferredMaxLayoutWidth: CGFloat {
+	override public var preferredMaxLayoutWidth: CGFloat {
 		didSet {
-			var size = CGSizeZero
-			size.width = min(frame.size.width, self.preferredMaxLayoutWidth)
-			self.textKitStack.resizeTextContainer(size)
+			self.textKitStack.resizeTextContainer(frame.size)
 		}
 	}
 
-	override var text: String? {
+	override public var text: String? {
 		didSet {
 			updateTextStorage()
 			setNeedsDisplay()
 		}
 	}
 
-	override var attributedText: NSAttributedString? {
+	override public var attributedText: NSAttributedString? {
 		didSet {
 			updateTextStorage()
 			setNeedsDisplay()
 		}
 	}
 
-	 private var customTruncationEnabled: Bool = true {
+	private var customTruncationEnabled: Bool = true {
 		didSet {
 			self.updateTextStorage()
 			self.setNeedsDisplay()
 		}
 	}
 
-	 var truncationToken: String = "..." {
+	public var truncationToken: String = "..." {
 		didSet {
 			self.attributedTruncationToken  = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties())
 		}
 	}
 
-	 var attributedTruncationToken: NSAttributedString? {
+	public var attributedTruncationToken: NSAttributedString? {
 		didSet {
 			if let _ = self.attributedTruncationToken {
 				self.updateTextStorage()
@@ -94,18 +88,18 @@ class SwiftResponsiveLabel: UILabel {
 		return finalAttributedString
 	}
 
-	override func drawTextInRect(rect: CGRect) {
+	override public func drawTextInRect(rect: CGRect) {
 		self.textKitStack.resizeTextContainer(rect.size)
 		self.frame.size = self.textKitStack.rectFittingTextForContainerSize(bounds.size, numberOfLines: self.numberOfLines, font: self.font).size
 		self.textKitStack.drawText(self.textOffSet())
 	}
 
-	override func textRectForBounds(bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
+	override public func textRectForBounds(bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
 		self.updateTextStorage()
 		return self.textKitStack.rectFittingTextForContainerSize(bounds.size, numberOfLines: self.numberOfLines, font: self.font)
 	}
 
-	override func awakeFromNib() {
+	override public func awakeFromNib() {
 		super.awakeFromNib()
 		self.initialTextConfiguration()
 		if userInteractionEnabled {
@@ -113,77 +107,77 @@ class SwiftResponsiveLabel: UILabel {
 		}
 	}
 
-	override func layoutSubviews() {
+	override public func layoutSubviews() {
 		super.layoutSubviews()
 		self.textKitStack.resizeTextContainer(self.bounds.size)
 	}
 
 	// MARK: Public methods
-	
-	func enableHashTagDetection(attributes: [String:AnyObject]) {
+
+	public func enableHashTagDetection(attributes: [String:AnyObject]) {
 		self.patternHighlighter.highlightPattern(PatternHighlighter.RegexStringForHashTag, dictionary: attributes)
 		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
-	func disableHashTagDetection() {
+	public func disableHashTagDetection() {
 		self.patternHighlighter.unhighlightPattern(PatternHighlighter.RegexStringForHashTag)
 		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
-	func enableUserHandleDetection(attributes:[String:AnyObject]) {
+	public func enableUserHandleDetection(attributes:[String:AnyObject]) {
 		self.patternHighlighter.highlightPattern(PatternHighlighter.RegexStringForUserHandle, dictionary: attributes)
 		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
-	func disableUserHandleDetection() {
+	public func disableUserHandleDetection() {
 		self.patternHighlighter.unhighlightPattern(PatternHighlighter.RegexStringForUserHandle)
 		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
-	func enableURLDetection(attributes:[String:AnyObject]) {
+	public func enableURLDetection(attributes:[String:AnyObject]) {
 		do {
 			let regex = try NSDataDetector(types: NSTextCheckingType.Link.rawValue)
 			let descriptor = PatternDescriptor(regularExpression: regex, searchType: .All, patternAttributes: attributes)
 			self.patternHighlighter.enablePatternDetection(descriptor)
 			self.updateTextStorage()
 			self.setNeedsDisplay()
-			} catch let error as NSError {
-				print("NSDataDetector Error: \(error.debugDescription)")
+		} catch let error as NSError {
+			print("NSDataDetector Error: \(error.debugDescription)")
 		}
 	}
 
-	func disableURLDetection() {
+	public func disableURLDetection() {
 		let key = String(NSTextCheckingType.Link.rawValue)
 		self.patternHighlighter.unhighlightPattern(key)
 		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
-	func enableStringDetection(string:String, attributes:[String:AnyObject]) {
+	public func enableStringDetection(string:String, attributes:[String:AnyObject]) {
 		let pattern = String(format: PatternHighlighter.RegexFormatForSearchWord,string)
 		self.patternHighlighter.highlightPattern(pattern, dictionary: attributes)
 		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
-	func disableStringDetection(string:String) {
+	public func disableStringDetection(string:String) {
 		let pattern = String(format: PatternHighlighter.RegexFormatForSearchWord,string)
 		self.patternHighlighter.unhighlightPattern(pattern)
 		self.updateTextStorage()
 		self.setNeedsDisplay()
 	}
 
-	func enableDetectionForStrings(stringsArray:[String], attributes:[String:AnyObject]) {
+	public func enableDetectionForStrings(stringsArray:[String], attributes:[String:AnyObject]) {
 		for string in stringsArray {
 			enableStringDetection(string, attributes: attributes)
 		}
 	}
 
-	func disableDetectionForStrings(stringsArray:[String]) {
+	public func disableDetectionForStrings(stringsArray:[String]) {
 		for string in stringsArray {
 			disableStringDetection(string)
 		}
@@ -261,8 +255,8 @@ class SwiftResponsiveLabel: UILabel {
 
 		// Create the dictionary
 		return [NSFontAttributeName : self.font,
-			NSForegroundColorAttributeName : color,
-			NSShadowAttributeName: shadow,
-			NSParagraphStyleAttributeName: paragraph]
+		        NSForegroundColorAttributeName : color,
+		        NSShadowAttributeName: shadow,
+		        NSParagraphStyleAttributeName: paragraph]
 	}
 }

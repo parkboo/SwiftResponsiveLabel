@@ -9,15 +9,15 @@
 import Foundation
 import UIKit
 
-let RLTapResponderAttributeName = "TapResponder"
-let RLHighlightedForegroundColorAttributeName = "HighlightedForegroundColor"
-let RLHighlightedBackgroundColorAttributeName = "HighlightedBackgroundColor"
-let RLBackgroundCornerRadius = "HighlightedBackgroundCornerRadius"
-let RLHighlightedAttributesDictionary = "HighlightedAttributes"
+public let RLTapResponderAttributeName = "TapResponder"
+public let RLHighlightedForegroundColorAttributeName = "HighlightedForegroundColor"
+public let RLHighlightedBackgroundColorAttributeName = "HighlightedBackgroundColor"
+public let RLBackgroundCornerRadius = "HighlightedBackgroundCornerRadius"
+public let RLHighlightedAttributesDictionary = "HighlightedAttributes"
 
 public class PatternTapResponder {
 	let action: (String) -> Void
-	init(currentAction:(tappedString:String) -> (Void)) {
+	public init(currentAction:(tappedString:String) -> (Void)) {
 		action = currentAction
 	}
 	public func perform(string:String) {
@@ -31,11 +31,11 @@ extension NSAttributedString {
 		return newLineRange?.startIndex != newLineRange?.endIndex
 	}
 
-	/** 
+	/**
 	Setup paragraph alignement properly.
-	Interface builder applies line break style to the attributed string. This makes text container break at first line of text. So we need to set the line break to wrapping. 
+	Interface builder applies line break style to the attributed string. This makes text container break at first line of text. So we need to set the line break to wrapping.
 	IB only allows a single paragraph so getting the style of the first character is fine.
- 	*/
+	*/
 	func wordWrappedAttributedString() -> NSAttributedString {
 		var processedString = self
 		if (self.string.characters.count > 0) {
