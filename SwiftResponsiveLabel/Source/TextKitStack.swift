@@ -45,7 +45,7 @@ public class TextKitStack {
 			let glyphIndex = self.glyphIndexForLocation(location)
 			// If the location is in white space after the last glyph on the line we don't
 			// count it as a hit on the text
-			let rangePointer = NSRangePointer()
+			let rangePointer: NSRangePointer = nil
 			var lineRect = self.layoutManager.lineFragmentUsedRectForGlyphAtIndex(glyphIndex, effectiveRange: rangePointer)
 			lineRect.size.height = 60.0 //Adjustment to increase tap area
 			if CGRectContainsPoint(lineRect, location) {
@@ -65,7 +65,7 @@ public class TextKitStack {
 		self.layoutManager.invalidateDisplayForCharacterRange(NSMakeRange(0, self.textStorage.length - 1))
 		return self.layoutManager.boundingRectForGlyphRange(glyphRange, inTextContainer:self.textContainer)
 	}
-	
+
 	func rectFittingTextForContainerSize(size: CGSize, numberOfLines: Int, font: UIFont) -> CGRect {
 		self.textContainer.size = size
 		self.textContainer.maximumNumberOfLines = numberOfLines
@@ -111,10 +111,15 @@ public class TextKitStack {
 		var lineRange = NSMakeRange(NSNotFound, 0)
 		let font = self.textStorage.attribute(NSFontAttributeName, atIndex: 0, effectiveRange: nil) as! UIFont
 		let approximateNumberOfLines = Int(CGRectGetHeight(self.layoutManager.usedRectForTextContainer(self.textContainer)) / font.lineHeight)
-		for (var numberOfLines = 0, index = 0; index < numberOfGlyphs; numberOfLines++) {
+		var index = 0
+		var numberOfLines = 0
+		while index < numberOfGlyphs {
 			self.layoutManager.lineFragmentRectForGlyphAtIndex(index, effectiveRange: &lineRange)
-			if (numberOfLines == approximateNumberOfLines - 1) { break }
+			if numberOfLines == approximateNumberOfLines - 1 {
+				break
+			}
 			index = NSMaxRange(lineRange)
+			numberOfLines += 1
 		}
 		let rangeOfText = NSMakeRange(lineRange.location + lineRange.length - 1, self.textStorage.length - lineRange.location - lineRange.length + 1)
 		return rangeOfText

@@ -12,7 +12,7 @@ class PatternHighlighter {
 	static let RegexStringForHashTag = "(?<!\\w)#([\\w\\_]+)?"
 	static let RegexStringForUserHandle = "(?<!\\w)@([\\w\\_]+)?"
 	static let RegexFormatForSearchWord = "(%@)"
-	
+
 	var patternHighlightedText: NSMutableAttributedString?
 	private var patternDescriptors = [String: PatternDescriptor]()
 	private var attributedText: NSMutableAttributedString?
@@ -24,7 +24,7 @@ class PatternHighlighter {
 			self.enablePatternDetection(descriptor.1)
 		}
 	}
-	
+
 	func highlightPattern(pattern: String, dictionary: [String:AnyObject]) {
 		do {
 			let regex = try NSRegularExpression(pattern: pattern, options: .CaseInsensitive)

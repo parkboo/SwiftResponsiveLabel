@@ -39,7 +39,7 @@ extension NSAttributedString {
 	func wordWrappedAttributedString() -> NSAttributedString {
 		var processedString = self
 		if (self.string.characters.count > 0) {
-			let rangePointer = NSRangePointer()
+			let rangePointer: NSRangePointer = nil
 			if let paragraphStyle =  self.attribute(NSParagraphStyleAttributeName, atIndex: 0, effectiveRange: rangePointer) {
 
 				// Remove the line breaks

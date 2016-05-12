@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var segmentControl: UISegmentedControl!
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		customLabel.text = "Hello #hashtag @username some more text www.google.com some more text some more text some more text hsusmita4@gmail.com"
+		customLabel.text = "Hello #hashtag @username some more \n text www.google.com some more text some more text some more text hsusmita4@gmail.com"
 		self.customLabel.enableStringDetection("text", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
 	}
 
@@ -26,11 +26,10 @@ class MainViewController: UIViewController {
 				self.messageLabel.text = messageString
 			}
 			let dict = [NSForegroundColorAttributeName : UIColor.redColor(),
-				NSBackgroundColorAttributeName:UIColor.blackColor()]
+			            NSBackgroundColorAttributeName:UIColor.blackColor()]
 			customLabel.enableHashTagDetection([RLHighlightedAttributesDictionary : dict, NSForegroundColorAttributeName: UIColor.cyanColor(),
 				RLTapResponderAttributeName:hashTagTapAction])
-
-		}else {
+		} else {
 			customLabel.disableHashTagDetection()
 		}
 	}
@@ -40,11 +39,11 @@ class MainViewController: UIViewController {
 		sender.selected = !sender.selected
 		if sender.selected {
 			let userHandleTapAction = PatternTapResponder{ (tappedString)-> (Void) in
-				let messageString = "You have tapped user handle:"+tappedString
+				let messageString = "You have tapped user handle:" + tappedString
 				self.messageLabel.text = messageString
 			}
 			let dict = [NSForegroundColorAttributeName : UIColor.greenColor(),
-				NSBackgroundColorAttributeName:UIColor.blackColor()]
+			            NSBackgroundColorAttributeName:UIColor.blackColor()]
 			self.customLabel.enableUserHandleDetection([NSForegroundColorAttributeName:UIColor.grayColor(),
 				RLHighlightedAttributesDictionary: dict,
 				RLTapResponderAttributeName:userHandleTapAction])
@@ -61,7 +60,7 @@ class MainViewController: UIViewController {
 				self.messageLabel.text = messageString
 			}
 			self.customLabel.enableURLDetection([NSForegroundColorAttributeName:UIColor.blueColor(), RLTapResponderAttributeName:URLTapAction])
-		}else {
+		} else {
 			self.customLabel.disableURLDetection()
 		}
 	}
@@ -73,21 +72,16 @@ class MainViewController: UIViewController {
 				let messageString = "You have tapped token string"
 				self.messageLabel.text = messageString}
 			let dict = [RLHighlightedBackgroundColorAttributeName:UIColor.blackColor(),
-			RLHighlightedForegroundColorAttributeName:UIColor.greenColor(),RLTapResponderAttributeName:action]
+			            RLHighlightedForegroundColorAttributeName:UIColor.greenColor(),RLTapResponderAttributeName:action]
 
 			let token = NSAttributedString(string: "...More",
-				attributes: [NSFontAttributeName:self.customLabel.font,
-					NSForegroundColorAttributeName:UIColor.brownColor(),
-					RLHighlightedAttributesDictionary: dict])
-					customLabel.attributedTruncationToken = token
+			                               attributes: [NSFontAttributeName:self.customLabel.font,
+											NSForegroundColorAttributeName:UIColor.brownColor(),
+											RLHighlightedAttributesDictionary: dict])
+			customLabel.attributedTruncationToken = token
 
 		case 1:
-			let action = PatternTapResponder {(tappedString)-> (Void) in
-				let messageString = "You have tapped token string"
-				self.messageLabel.text = messageString}
-			let imageToken = UIImage(named: "Add-Caption-Plus")
 			customLabel.truncationToken = "...Load More"
-			//      customLabel.setTruncationIndicatorImage(imageToken!, size: CGSizeMake(20, 20), action: action)
 
 		default:
 			break
@@ -96,7 +90,6 @@ class MainViewController: UIViewController {
 
 	@IBAction func enableTruncationUIButton(sender:UIButton) {
 		sender.selected = !sender.selected;
-		customLabel.customTruncationEnabled = sender.selected
 		self.handleSegmentChange(self.segmentControl)
 	}
 }

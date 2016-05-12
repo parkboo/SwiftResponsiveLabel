@@ -62,7 +62,7 @@ class SwiftResponsiveLabel: UILabel {
 		}
 	}
 
-	 var customTruncationEnabled: Bool = false {
+	 private var customTruncationEnabled: Bool = true {
 		didSet {
 			self.updateTextStorage()
 			self.setNeedsDisplay()
@@ -77,7 +77,7 @@ class SwiftResponsiveLabel: UILabel {
 
 	 var attributedTruncationToken: NSAttributedString? {
 		didSet {
-			if customTruncationEnabled, let _ = self.attributedTruncationToken {
+			if let _ = self.attributedTruncationToken {
 				self.updateTextStorage()
 				self.setNeedsDisplay()
 			}
@@ -96,6 +96,7 @@ class SwiftResponsiveLabel: UILabel {
 
 	override func drawTextInRect(rect: CGRect) {
 		self.textKitStack.resizeTextContainer(rect.size)
+		self.frame.size = self.textKitStack.rectFittingTextForContainerSize(bounds.size, numberOfLines: self.numberOfLines, font: self.font).size
 		self.textKitStack.drawText(self.textOffSet())
 	}
 
@@ -195,7 +196,7 @@ class SwiftResponsiveLabel: UILabel {
 		self.textKitStack.updateTextStorage(finalString)
 
 		// Add truncation token if necessary
-		if let _ = self.attributedTruncationToken where customTruncationEnabled {
+		if let _ = self.attributedTruncationToken where self.shouldTruncate() {
 			if let string = self.stringWithTruncationToken() where self.truncationTokenAppended() == false {
 				finalString = string
 			}
@@ -205,6 +206,14 @@ class SwiftResponsiveLabel: UILabel {
 		self.patternHighlighter.updateAttributeText(finalString)
 		finalString = self.patternHighlighter.patternHighlightedText!
 		self.textKitStack.updateTextStorage(finalString)
+	}
+
+	private func shouldTruncate() -> Bool {
+		guard numberOfLines > 0 else {
+			return false
+		}
+		let range = self.textKitStack.rangeForTokenInsertion(self.attributedTextToDisplay)
+		return (range.location + range.length <= self.attributedTextToDisplay.length)
 	}
 
 	private func textOffSet() -> CGPoint {

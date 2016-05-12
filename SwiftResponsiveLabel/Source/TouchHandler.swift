@@ -38,7 +38,7 @@ class TouchHandler: NSObject {
 	init(responsiveLabel: SwiftResponsiveLabel) {
 		super.init()
 		self.responsiveLabel = responsiveLabel
-		let gestureRecognizer = TouchGestureRecognizer(target: self, action: "handleTouch:")
+		let gestureRecognizer = TouchGestureRecognizer(target: self, action: #selector(TouchHandler.handleTouch(_:)))
 		self.responsiveLabel?.addGestureRecognizer(gestureRecognizer)
 		gestureRecognizer.delegate = self
 	}
