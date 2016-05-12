@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var segmentControl: UISegmentedControl!
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		customLabel.text = "Hello #hashtag @username some more \n text www.google.com some more text some more text some more text hsusmita4@gmail.com"
+		customLabel.text = "Hello #hashtag @username some email@gmail.com more \n text www.google.com some more text some more text some more text hsusmita4@gmail.com"
 		self.customLabel.enableStringDetection("text", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
 	}
 
