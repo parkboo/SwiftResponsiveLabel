@@ -26,8 +26,8 @@ In interface builder, set the custom class of your UILabel to SwiftResponsiveLab
 
 ```
 let userHandleTapAction = PatternTapResponder{ (tappedString)-> (Void) in
-let messageString = "You have tapped user handle:" + tappedString
-self.messageLabel.text = messageString
+	let messageString = "You have tapped user handle:" + tappedString
+	self.messageLabel.text = messageString
 }
 let dict = [NSForegroundColorAttributeName: UIColor.greenColor(), 
 NSBackgroundColorAttributeName: UIColor.blackColor()]
@@ -39,8 +39,8 @@ RLHighlightedAttributesDictionary: dict, RLTapResponderAttributeName:userHandleT
 
 ```
 let URLTapAction = PatternTapResponder{(tappedString)-> (Void) in
-let messageString = "You have tapped URL: " + tappedString
-self.messageLabel.text = messageString
+	let messageString = "You have tapped URL: " + tappedString
+	self.messageLabel.text = messageString
 }
 self.customLabel.enableURLDetection([NSForegroundColorAttributeName:UIColor.blueColor(), RLTapResponderAttributeName:URLTapAction])
 ```
@@ -50,20 +50,22 @@ self.customLabel.enableURLDetection([NSForegroundColorAttributeName:UIColor.blue
 ```
 let hashTagTapAction = PatternTapResponder { (tappedString)-> (Void) in
 let messageString = "You have tapped hashTag:" + tappedString
-self.messageLabel.text = messageString
+	self.messageLabel.text = messageString
 }
 let dict = [NSForegroundColorAttributeName: UIColor.redColor(), NSBackgroundColorAttributeName: UIColor.blackColor()]
-customLabel.enableHashTagDetection([RLHighlightedAttributesDictionary : dict, NSForegroundColorAttributeName: UIColor.cyanColor(), RLTapResponderAttributeName:hashTagTapAction])
+customLabel.enableHashTagDetection([RLHighlightedAttributesDictionary : dict, NSForegroundColorAttributeName: UIColor.cyanColor(),
+RLTapResponderAttributeName:hashTagTapAction])
 ```
 #### Custom Truncation Token
 ##### Set attributed string as truncation token
 
 ```objc
 let action = PatternTapResponder {(tappedString)-> (Void) in
-print("You have tapped token string")
+	print("You have tapped token string")
 }
 let dict = [RLHighlightedBackgroundColorAttributeName:UIColor.blackColor(),
 RLHighlightedForegroundColorAttributeName:UIColor.greenColor(), RLTapResponderAttributeName:action]
-let token = NSAttributedString(string: "...More", attributes: [NSFontAttributeName: customLabel.font, NSForegroundColorAttributeName:UIColor.brownColor(), RLHighlightedAttributesDictionary: dict])
+let token = NSAttributedString(string: "...More", attributes: [NSFontAttributeName: customLabel.font, 
+NSForegroundColorAttributeName:UIColor.brownColor(), RLHighlightedAttributesDictionary: dict])
 customLabel.attributedTruncationToken = token
 ```
