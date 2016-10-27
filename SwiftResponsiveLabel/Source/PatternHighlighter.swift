@@ -8,26 +8,38 @@
 
 import Foundation
 
+/** This class is reponsible for finding patterns and applying attributes to those patterns
+*/
+
 public class PatternHighlighter {
 	static let RegexStringForHashTag = "(?<!\\w)#([\\w\\_]+)?"
 	static let RegexStringForUserHandle = "(?<!\\w)@([\\w\\_]+)?"
 	static let RegexFormatForSearchWord = "(%@)"
 
 	var patternHighlightedText: NSMutableAttributedString?
-	private var patternDescriptors = [String: PatternDescriptor]()
+	private var patternDescriptors: [String: PatternDescriptor] = [:]
 	private var attributedText: NSMutableAttributedString?
-
-	func updateAttributeText(attributedText: NSAttributedString) {
+	
+	/** Update current attributed text and apply attributes based on current patternDescriptors
+	- parameters:
+		- attributedText: NSAttributedString
+	*/
+	func updateAttributedText(attributedText: NSAttributedString) {
 		self.attributedText = NSMutableAttributedString(attributedString: attributedText)
 		self.patternHighlightedText = self.attributedText
 		for descriptor in self.patternDescriptors {
 			self.enablePatternDetection(descriptor.1)
 		}
 	}
-
-	func highlightPattern(pattern: String, dictionary: [String:AnyObject]) {
+	
+	/** Add attributes to the range of strings matching the given regex string
+	- parameters:
+		- regexString: String
+		- dictionary: [String:AnyObject]
+	*/
+	func highlightPattern(regexString: String, dictionary: [String:AnyObject]) {
 		do {
-			let regex = try NSRegularExpression(pattern: pattern, options: .CaseInsensitive)
+			let regex = try NSRegularExpression(pattern: regexString, options: .CaseInsensitive)
 			let descriptor = PatternDescriptor(regularExpression: regex, searchType: PatternSearchType.All, patternAttributes: dictionary)
 			self.enablePatternDetection(descriptor)
 		} catch let error as NSError {
@@ -35,25 +47,41 @@ public class PatternHighlighter {
 		}
 	}
 
-	func unhighlightPattern(pattern: String) {
-		if let descriptor = self.patternDescriptors[pattern] {
-			removePatternAttributes(descriptor)
-			self.patternDescriptors.removeValueForKey(pattern)
+	/** Removes attributes from the range of strings matching the given regex string
+	- parameters:
+		- regexString: String
+	*/
+	func unhighlightPattern(regexString regexString: String) {
+		if let descriptor = self.patternDescriptors[regexString] {
+			self.removePatternAttributes(descriptor)
+			self.patternDescriptors.removeValueForKey(regexString)
 		}
 	}
-
+	
+	/** Detects patterns, applies attributes defined as per patternDescriptor and handles touch(If RLTapResponderAttributeName key is added in dictionary)
+	- parameters:
+		- patternDescriptor: PatternDescriptor
+	
+		- This object encapsulates the regular expression and attributes to be added to the pattern.
+	*/
 	func enablePatternDetection(patternDescriptor:PatternDescriptor) {
 		let patternKey = patternNameKeyForPatternDescriptor(patternDescriptor)
 		patternDescriptors[patternKey] = patternDescriptor
 		addPatternAttributes(patternDescriptor)
 	}
-
+	
+	/** Removes previously applied attributes from all the occurance of pattern dictated by pattern descriptor
+	- parameters:
+		- patternDescriptor: PatternDescriptor
+	*/
 	func disablePatternDetection(patternDescriptor:PatternDescriptor) {
 		let patternKey = patternNameKeyForPatternDescriptor(patternDescriptor)
 		patternDescriptors.removeValueForKey(patternKey)
 		removePatternAttributes(patternDescriptor)
 	}
-
+	
+	// MARK: - Private Helpers
+	
 	private func patternNameKeyForPatternDescriptor(patternDescriptor:PatternDescriptor)-> String {
 		let key:String
 		if patternDescriptor.patternExpression.isKindOfClass(NSDataDetector) {

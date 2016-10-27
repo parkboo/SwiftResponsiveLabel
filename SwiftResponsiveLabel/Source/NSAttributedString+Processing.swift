@@ -17,10 +17,12 @@ public let RLHighlightedAttributesDictionary = "HighlightedAttributes"
 
 public class PatternTapResponder {
 	let action: (String) -> Void
-	public init(currentAction:(tappedString:String) -> (Void)) {
+	
+	public init(currentAction: (tappedString: String) -> (Void)) {
 		action = currentAction
 	}
-	public func perform(string:String) {
+	
+	public func perform(string: String) {
 		action(string)
 	}
 }
