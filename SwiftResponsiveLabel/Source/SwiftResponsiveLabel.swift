@@ -56,7 +56,7 @@ public class SwiftResponsiveLabel: UILabel {
 		}
 	}
 
-	private var customTruncationEnabled: Bool = true {
+	public var customTruncationEnabled: Bool = true {
 		didSet {
 			self.updateTextStorage()
 			self.setNeedsDisplay()
@@ -184,13 +184,13 @@ public class SwiftResponsiveLabel: UILabel {
 	}
 
 	// MARK: Private Helpers
-
+	
 	private func updateTextStorage() {
 		var finalString: NSAttributedString = self.attributedTextToDisplay
 		self.textKitStack.updateTextStorage(finalString)
 
 		// Add truncation token if necessary
-		if let _ = self.attributedTruncationToken where self.shouldTruncate() {
+		if let _ = self.attributedTruncationToken where self.shouldTruncate() && customTruncationEnabled {
 			if let string = self.stringWithTruncationToken() where self.truncationTokenAppended() == false {
 				finalString = string
 			}

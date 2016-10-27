@@ -1,9 +1,9 @@
 //
-//  ViewController.swift
-//  SHResponsiveLabel
+//  MainViewController.swift
+//  SwiftResponsiveLabel
 //
-//  Created by hsusmita on 27/07/15.
-//  Copyright (c) 2015 hsusmita.com. All rights reserved.
+//  Created by hsusmita on 02/03/16.
+//  Copyright (c) 2016 hsusmita.com. All rights reserved.
 //
 
 import UIKit
@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var segmentControl: UISegmentedControl!
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		customLabel.text = "Hello #hashtag @username some email@gmail.com more \n text www.google.com some more text some more text some more text hsusmita4@gmail.com"
+		customLabel.text = "Hello #hashtag @username some email@gmail.com more text www.google.com some more text some more text some more text hsusmita4@gmail.com"
 		self.customLabel.enableStringDetection("text", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
 	}
 
@@ -89,7 +89,8 @@ class MainViewController: UIViewController {
 	}
 
 	@IBAction func enableTruncationUIButton(sender:UIButton) {
-		sender.selected = !sender.selected;
+		sender.selected = !sender.selected
+		customLabel.customTruncationEnabled = sender.selected
 		self.handleSegmentChange(self.segmentControl)
 	}
 }
