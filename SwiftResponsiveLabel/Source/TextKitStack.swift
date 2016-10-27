@@ -12,8 +12,16 @@ import UIKit
 public class TextKitStack {
 	private var textContainer = NSTextContainer()
 	private var layoutManager = NSLayoutManager()
-	var textStorage = NSTextStorage()
+	private var textStorage = NSTextStorage()
 	private var currentTextOffset = CGPointZero
+	
+	public var textStorageLength: Int {
+		return self.textStorage.length
+	}
+	
+	public var currentAttributedText: NSAttributedString {
+		return textStorage
+	}
 
 	init() {
 		self.textContainer.lineFragmentPadding = 0
@@ -125,7 +133,34 @@ public class TextKitStack {
 		return rangeOfText
 	}
 
-
+	func attributeForKey(attributeKey: String, atIndex index: Int) -> (AnyObject?, NSRange) {
+		var rangeOfTappedText = NSRange()
+		let attribute = self.textStorage.attribute(attributeKey, atIndex: index, effectiveRange: &rangeOfTappedText)
+		return (attribute, rangeOfTappedText)
+	}
+	
+	func attributesAtIndex( index: Int) -> ([String : AnyObject]?, NSRange) {
+		var rangeOfTappedText = NSRange()
+		let attributes = self.textStorage.attributesAtIndex(index, effectiveRange: &rangeOfTappedText)
+		return (attributes, rangeOfTappedText)
+	}
+	
+	func addAttribute(attribute: AnyObject, forkey key: String, atRange range: NSRange) {
+		self.textStorage.addAttribute(key, value: attribute, range: range)
+	}
+	
+	func removeAttribute(forkey key: String, atRange range: NSRange) {
+		self.textStorage.removeAttribute(key, range: range)
+	}
+	
+	func substringForRange(range: NSRange) -> String {
+		return (self.textStorage.string as NSString).substringWithRange(range)
+	}
+	
+	func rangeOfString(string: String) -> NSRange {
+		return (self.textStorage.string as NSString).rangeOfString(string)
+	}
+	
 	// MARK: Private Helpers
 
 	private func glyphIndexForLocation(location: CGPoint) -> Int {

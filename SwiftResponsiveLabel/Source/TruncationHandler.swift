@@ -28,7 +28,7 @@ extension SwiftResponsiveLabel {
 		guard let token = self.attributedTruncationToken else {
 			return false
 		}
-		return self.textKitStack.textStorage.string.rangeOfString(token.string) != nil
+		return self.textKitStack.rangeOfString(token.string).location != NSNotFound
 	}
 }
 

@@ -62,22 +62,23 @@ class TouchHandler: NSObject {
 
 	private func beginSession() {
 		guard let textkitStack = self.responsiveLabel?.textKitStack,
-			  let touchIndex = self.touchIndex where self.touchIndex < textkitStack.textStorage.length  else { return }
+			  let touchIndex = self.touchIndex where self.touchIndex < textkitStack.textStorageLength  else { return }
 
 		var rangeOfTappedText = NSRange()
-		self.highlightAttributes = textkitStack.textStorage.attribute(RLHighlightedAttributesDictionary, atIndex: touchIndex, effectiveRange: &rangeOfTappedText) as? [String : AnyObject]
-
+		let highlightAttributeInfo = textkitStack.attributeForKey(RLHighlightedAttributesDictionary, atIndex: touchIndex)
+		rangeOfTappedText = highlightAttributeInfo.1
+		self.highlightAttributes = highlightAttributeInfo.0 as? [String : AnyObject]
 		if let attributes = self.highlightAttributes {
 			self.selectedRange = rangeOfTappedText
 			self.defaultAttributes = [String : AnyObject]()
 			for (key, value) in attributes {
-				self.defaultAttributes![key] = textkitStack.textStorage.attribute(key, atIndex: touchIndex, effectiveRange: nil)
-				textkitStack.textStorage.addAttribute(key, value: value, range: rangeOfTappedText)
+				self.defaultAttributes![key] = textkitStack.attributeForKey(key, atIndex: touchIndex).0
+				textkitStack.addAttribute(value, forkey: key, atRange: rangeOfTappedText)
 			}
 			self.responsiveLabel?.setNeedsDisplay()
 		}
 		if self.selectedRange == nil {
-			if let _ = textkitStack.textStorage.attribute(RLTapResponderAttributeName, atIndex: touchIndex, effectiveRange: nil) as? PatternTapResponder {
+			if let _ = textkitStack.attributeForKey(RLTapResponderAttributeName, atIndex: touchIndex).0 as? PatternTapResponder {
 				self.selectedRange = rangeOfTappedText
 			}
 		}
@@ -100,9 +101,9 @@ class TouchHandler: NSObject {
 			else { return }
 
 		for (key, _) in highlightAttributes {
-			textkitStack.textStorage.removeAttribute(key, range: selectedRange)
+			textkitStack.removeAttribute(forkey: key, atRange: selectedRange)
 			if let defaultValue = defaultAttributes[key] {
-				textkitStack.textStorage.addAttribute(key, value: defaultValue, range: selectedRange)
+				textkitStack.addAttribute(defaultValue, forkey: key, atRange: selectedRange)
 			}
 		}
 
@@ -115,8 +116,8 @@ class TouchHandler: NSObject {
 
 	private func performActionOnSelection() {
 		guard let textkitStack = self.responsiveLabel?.textKitStack, let selectedRange = self.selectedRange else { return }
-		if let tapResponder = textkitStack.textStorage.attribute(RLTapResponderAttributeName, atIndex: selectedRange.location, effectiveRange: nil) as? PatternTapResponder  {
-		let tappedString = (textkitStack.textStorage.string as NSString).substringWithRange(selectedRange)
+		if let tapResponder = textkitStack.attributeForKey(RLTapResponderAttributeName, atIndex: selectedRange.location).0 as? PatternTapResponder {
+			let tappedString = textkitStack.substringForRange(selectedRange)
 			tapResponder.perform(tappedString)
 		}
 	}
@@ -130,11 +131,11 @@ extension TouchHandler : UIGestureRecognizerDelegate {
 	func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
 		let touchLocation = touch.locationInView(self.responsiveLabel)
 		guard let textkitStack = self.responsiveLabel?.textKitStack,
-			let index = self.responsiveLabel?.textKitStack.characterIndexAtLocation(touchLocation) where index < textkitStack.textStorage.length
+			let index = self.responsiveLabel?.textKitStack.characterIndexAtLocation(touchLocation) where index < textkitStack.textStorageLength,
+			let attributes = textkitStack.attributesAtIndex(index).0
 		 else {
 		 	return false
 		}
-		let attributes = textkitStack.textStorage.attributesAtIndex(index, effectiveRange: nil)
 		return attributes.keys.contains(RLHighlightedAttributesDictionary) || attributes.keys.contains(RLTapResponderAttributeName)
 	}
 }
