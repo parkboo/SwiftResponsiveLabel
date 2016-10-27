@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+@IBDesignable
 public class SwiftResponsiveLabel: UILabel {
 	var textKitStack = TextKitStack()
 	var touchHandler: TouchHandler?
@@ -59,7 +60,7 @@ public class SwiftResponsiveLabel: UILabel {
 	/** This boolean determines if custom truncation token should be added
 	*/
 	
-	public var customTruncationEnabled: Bool = true {
+	@IBInspectable public var customTruncationEnabled: Bool = true {
 		didSet {
 			self.updateTextStorage()
 			self.setNeedsDisplay()
@@ -70,7 +71,7 @@ public class SwiftResponsiveLabel: UILabel {
 	
 	If customTruncationEnabled is true, then this text will be seen while truncation in place of default ellipse
 	*/
-	public var truncationToken: String = "..." {
+	@IBInspectable public var truncationToken: String = "..." {
 		didSet {
 			self.attributedTruncationToken  = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties())
 		}
@@ -80,7 +81,7 @@ public class SwiftResponsiveLabel: UILabel {
 	
 	If customTruncationEnabled is true, then this text will be seen while truncation in place of default ellipse
 	*/
-	public var attributedTruncationToken: NSAttributedString? {
+	@IBInspectable public var attributedTruncationToken: NSAttributedString? {
 		didSet {
 			if let _ = self.attributedTruncationToken {
 				self.updateTextStorage()
