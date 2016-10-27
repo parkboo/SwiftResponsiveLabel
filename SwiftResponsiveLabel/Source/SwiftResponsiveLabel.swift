@@ -73,7 +73,7 @@ public class SwiftResponsiveLabel: UILabel {
 	*/
 	@IBInspectable public var truncationToken: String = "..." {
 		didSet {
-			self.attributedTruncationToken  = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties())
+			self.attributedTruncationToken = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties())
 		}
 	}
 	
@@ -86,6 +86,14 @@ public class SwiftResponsiveLabel: UILabel {
 			if let _ = self.attributedTruncationToken {
 				self.updateTextStorage()
 				self.setNeedsDisplay()
+			}
+		}
+	}
+	
+	@IBInspectable public var truncationIndicatorImage: UIImage? {
+		didSet {
+			if let image = truncationIndicatorImage {
+				self.attributedTruncationToken = self.attributedStringWithImage(image, withSize: CGSize(width: 20.0, height: 20.0), andAction: nil)
 			}
 		}
 	}
@@ -127,6 +135,17 @@ public class SwiftResponsiveLabel: UILabel {
 	}
 
 	// MARK: Public methods
+	
+	/** Method to set an image as truncation indicator
+	- parameters:
+		- image: UIImage
+		- size: CGSize : The height of image size should be approximately equal to or less than the font height. Otherwise the image will not be rendered properly
+		- action: PatternTapResponder action to be performed on tap on the image
+	*/
+	func setTruncationIndicatorImage(image: UIImage, withSize size: CGSize, andAction action: PatternTapResponder?) {
+		let attributedString = self.attributedStringWithImage(image, withSize: size, andAction: action)
+		self.attributedTruncationToken = attributedString
+	}
 	
 	/** Add attributes to all the occurences of pattern dictated by pattern descriptor
 	- parameters:
