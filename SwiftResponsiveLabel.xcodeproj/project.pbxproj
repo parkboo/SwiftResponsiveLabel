@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4EB857BE1C8823CE00431BA9 /* SwiftResponsiveLabel+TruncationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB857BD1C8823CE00431BA9 /* SwiftResponsiveLabel+TruncationHandler.swift */; };
-		4ECBA00C1C8434EA00884FCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA00B1C8434EA00884FCD /* AppDelegate.swift */; };
 		4ECBA0111C8434EA00884FCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ECBA00F1C8434EA00884FCD /* Main.storyboard */; };
 		4ECBA0131C8434EA00884FCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ECBA0121C8434EA00884FCD /* Assets.xcassets */; };
 		4ECBA0161C8434EA00884FCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ECBA0141C8434EA00884FCD /* LaunchScreen.storyboard */; };
@@ -20,7 +19,10 @@
 		4ECBA0421C85A14700884FCD /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA0411C85A14700884FCD /* TouchHandler.swift */; };
 		4EF960EB1C86E905007CB596 /* PatternDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF960E91C86E905007CB596 /* PatternDescriptor.swift */; };
 		4EF960EC1C86E905007CB596 /* PatternHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF960EA1C86E905007CB596 /* PatternHighlighter.swift */; };
-		4EF960EE1C86F8A3007CB596 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF960ED1C86F8A3007CB596 /* MainViewController.swift */; };
+		7808F2501DE2D30D00D7F9DC /* InteractiveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7808F24F1DE2D30D00D7F9DC /* InteractiveTableViewController.swift */; };
+		7808F2531DE2D37500D7F9DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7808F2511DE2D37500D7F9DC /* AppDelegate.swift */; };
+		7808F2541DE2D37500D7F9DC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7808F2521DE2D37500D7F9DC /* MainViewController.swift */; };
+		7808F2561DE2D3B100D7F9DC /* InteractiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7808F2551DE2D3B100D7F9DC /* InteractiveTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +45,6 @@
 /* Begin PBXFileReference section */
 		4EB857BD1C8823CE00431BA9 /* SwiftResponsiveLabel+TruncationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SwiftResponsiveLabel+TruncationHandler.swift"; path = "Source/SwiftResponsiveLabel+TruncationHandler.swift"; sourceTree = "<group>"; };
 		4ECBA0081C8434EA00884FCD /* SwiftResponsiveLabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftResponsiveLabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4ECBA00B1C8434EA00884FCD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4ECBA0101C8434EA00884FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4ECBA0121C8434EA00884FCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4ECBA0151C8434EA00884FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,7 +61,10 @@
 		4ECBA0411C85A14700884FCD /* TouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchHandler.swift; path = Source/TouchHandler.swift; sourceTree = "<group>"; };
 		4EF960E91C86E905007CB596 /* PatternDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PatternDescriptor.swift; path = Source/PatternDescriptor.swift; sourceTree = "<group>"; };
 		4EF960EA1C86E905007CB596 /* PatternHighlighter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PatternHighlighter.swift; path = Source/PatternHighlighter.swift; sourceTree = "<group>"; };
-		4EF960ED1C86F8A3007CB596 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7808F24F1DE2D30D00D7F9DC /* InteractiveTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InteractiveTableViewController.swift; path = "Demo Project/InteractiveTableViewController.swift"; sourceTree = "<group>"; };
+		7808F2511DE2D37500D7F9DC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Demo Project/AppDelegate.swift"; sourceTree = "<group>"; };
+		7808F2521DE2D37500D7F9DC /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "Demo Project/MainViewController.swift"; sourceTree = "<group>"; };
+		7808F2551DE2D3B100D7F9DC /* InteractiveTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InteractiveTableViewCell.swift; path = "Demo Project/InteractiveTableViewCell.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,9 +145,11 @@
 		4ECBA0391C84351000884FCD /* Demo Project */ = {
 			isa = PBXGroup;
 			children = (
-				4ECBA00B1C8434EA00884FCD /* AppDelegate.swift */,
+				7808F2511DE2D37500D7F9DC /* AppDelegate.swift */,
+				7808F2521DE2D37500D7F9DC /* MainViewController.swift */,
 				4ECBA00F1C8434EA00884FCD /* Main.storyboard */,
-				4EF960ED1C86F8A3007CB596 /* MainViewController.swift */,
+				7808F24F1DE2D30D00D7F9DC /* InteractiveTableViewController.swift */,
+				7808F2551DE2D3B100D7F9DC /* InteractiveTableViewCell.swift */,
 			);
 			name = "Demo Project";
 			sourceTree = "<group>";
@@ -296,12 +302,14 @@
 				4EF960EC1C86E905007CB596 /* PatternHighlighter.swift in Sources */,
 				4EF960EB1C86E905007CB596 /* PatternDescriptor.swift in Sources */,
 				4ECBA0421C85A14700884FCD /* TouchHandler.swift in Sources */,
+				7808F2531DE2D37500D7F9DC /* AppDelegate.swift in Sources */,
 				4ECBA0401C85913A00884FCD /* NSAttributedString+Processing.swift in Sources */,
+				7808F2501DE2D30D00D7F9DC /* InteractiveTableViewController.swift in Sources */,
 				4ECBA03E1C85710500884FCD /* SwiftResponsiveLabel.swift in Sources */,
+				7808F2561DE2D3B100D7F9DC /* InteractiveTableViewCell.swift in Sources */,
 				4ECBA03C1C8570D400884FCD /* TextKitStack.swift in Sources */,
-				4EF960EE1C86F8A3007CB596 /* MainViewController.swift in Sources */,
 				4EB857BE1C8823CE00431BA9 /* SwiftResponsiveLabel+TruncationHandler.swift in Sources */,
-				4ECBA00C1C8434EA00884FCD /* AppDelegate.swift in Sources */,
+				7808F2541DE2D37500D7F9DC /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
