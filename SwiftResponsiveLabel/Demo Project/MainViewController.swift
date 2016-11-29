@@ -14,8 +14,10 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var segmentControl: UISegmentedControl!
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		customLabel.text = "Hello #hashtag @username some email@gmail.com more text www.google.com some more text some more text some more text hsusmita4@gmail.com"
+		customLabel.text = "Hello #hashtag @username some more text www.google.com some more text some more text some more text hsusmita4@gmail.com"
 		self.customLabel.enableStringDetection("text", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+		self.segmentControl.selectedSegmentIndex = 0
+		self.handleSegmentChange(segmentControl)
 	}
 
 	@IBAction func enableHashTagButton(sender:UIButton) {
@@ -82,13 +84,15 @@ class MainViewController: UIViewController {
 
 		case 1:
 			customLabel.truncationToken = "...Load More"
+		case 2:
+			customLabel.truncationIndicatorImage = UIImage(named: "check")
 
 		default:
 			break
 		}
 	}
 
-	@IBAction func enableTruncationUIButton(sender:UIButton) {
+	@IBAction func enableTruncationUIButton(sender: UIButton) {
 		sender.selected = !sender.selected
 		customLabel.customTruncationEnabled = sender.selected
 		self.handleSegmentChange(self.segmentControl)
