@@ -97,9 +97,13 @@ class TouchHandler: NSObject {
 		guard let textkitStack = self.responsiveLabel?.textKitStack,
 			let selectedRange = self.selectedRange,
 			let highlightAttributes = self.highlightAttributes,
-			let defaultAttributes = self.defaultAttributes
-			else { return }
-
+			let defaultAttributes = self.defaultAttributes else {
+				//Clear global variables
+				self.selectedRange = nil
+				self.defaultAttributes = nil
+				self.highlightAttributes = nil
+				return
+			}
 		for (key, _) in highlightAttributes {
 			textkitStack.removeAttribute(forkey: key, atRange: selectedRange)
 			if let defaultValue = defaultAttributes[key] {
@@ -107,8 +111,9 @@ class TouchHandler: NSObject {
 			}
 		}
 
-		//Clear global variables
 		self.responsiveLabel?.setNeedsDisplay()
+		
+		//Clear global variables
 		self.selectedRange = nil
 		self.defaultAttributes = nil
 		self.highlightAttributes = nil
