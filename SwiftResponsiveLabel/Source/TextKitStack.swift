@@ -22,14 +22,19 @@ public class TextKitStack {
 	public var currentAttributedText: NSAttributedString {
 		return textStorage
 	}
+	
+	public var numberOflines: Int = 0 {
+		didSet {
+			self.textContainer.maximumNumberOfLines = self.numberOflines
+		}
+	}
 
 	init() {
 		self.textContainer.lineFragmentPadding = 0
 		self.textContainer.widthTracksTextView = true
+		self.textContainer.heightTracksTextView = true
 		self.layoutManager.addTextContainer(self.textContainer)
-		self.textContainer.layoutManager = self.layoutManager
 		self.textStorage.addLayoutManager(self.layoutManager)
-		self.layoutManager.textStorage = self.textStorage
 	}
 
 	func drawText(textOffset: CGPoint) {
@@ -68,13 +73,17 @@ public class TextKitStack {
 	}
 
 	func boundingRectForCompleteText() -> CGRect {
+		let initialSize = self.textContainer.size
 		self.textContainer.size = CGSizeMake(self.textContainer.size.width, CGFloat.max)
 		let glyphRange = self.layoutManager.glyphRangeForTextContainer(textContainer)
 		self.layoutManager.invalidateDisplayForCharacterRange(NSMakeRange(0, self.textStorage.length - 1))
-		return self.layoutManager.boundingRectForGlyphRange(glyphRange, inTextContainer:self.textContainer)
+		let rect = self.layoutManager.boundingRectForGlyphRange(glyphRange, inTextContainer:self.textContainer)
+		self.textContainer.size = initialSize
+		return rect
 	}
 
 	func rectFittingTextForContainerSize(size: CGSize, numberOfLines: Int, font: UIFont) -> CGRect {
+		let initialSize = self.textContainer.size
 		self.textContainer.size = size
 		self.textContainer.maximumNumberOfLines = numberOfLines
 		var textBounds = self.layoutManager.boundingRectForGlyphRange(NSMakeRange(0, self.layoutManager.numberOfGlyphs), inTextContainer: self.textContainer)
@@ -88,7 +97,7 @@ public class TextKitStack {
 		}
 		textBounds.size.width = ceil(textBounds.size.width)
 		textBounds.size.height = ceil(textBounds.size.height)
-		self.textContainer.size = textBounds.size
+		self.textContainer.size = initialSize
 		return textBounds;
 	}
 
@@ -108,8 +117,8 @@ public class TextKitStack {
 
 		}
 		if rangeOfText.location != NSNotFound {
-			rangeOfText.length += attributedTruncationToken.length
-			rangeOfText.location -= attributedTruncationToken.length
+			rangeOfText.length += attributedTruncationToken.length + 5
+			rangeOfText.location -= attributedTruncationToken.length + 5
 		}
 		return rangeOfText;
 	}
