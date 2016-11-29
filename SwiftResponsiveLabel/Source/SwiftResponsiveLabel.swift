@@ -128,8 +128,7 @@ public class SwiftResponsiveLabel: UILabel {
 	
 	override public func drawTextInRect(rect: CGRect) {
 		// Add truncation token if necessary
-		var finalString: NSAttributedString = self.attributedTextToDisplay
-		textKitStack.updateTextStorage(finalString)
+		var finalString: NSAttributedString = textKitStack.currentAttributedText
 		if let _ = self.attributedTruncationToken where self.shouldTruncate() && self.customTruncationEnabled {
 			if let string = self.stringWithTruncationToken() where self.truncationTokenAppended() == false {
 				finalString = string
