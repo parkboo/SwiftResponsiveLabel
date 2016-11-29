@@ -46,14 +46,14 @@ class InteractiveTableViewCell: UITableViewCell {
 		let urlTapAction = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
 			self.delegate?.interactiveTableViewCell(self, didTapOnUrl: tappedString)
 		})
-		responsiveLabel.enableURLDetection([NSForegroundColorAttributeName: UIColor.cyanColor(),
+		responsiveLabel.enableURLDetection([NSForegroundColorAttributeName: UIColor.brownColor(),
 			RLTapResponderAttributeName: urlTapAction])
 		
 		// Handle user handle Detection
 		let userHandleTapAction = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
 			self.delegate?.interactiveTableViewCell(self, didTapOnUserHandle: tappedString)
 		})
-		responsiveLabel.enableUserHandleDetection([NSForegroundColorAttributeName: UIColor.grayColor(),
+		responsiveLabel.enableUserHandleDetection([NSForegroundColorAttributeName: UIColor.greenColor(),
 			RLHighlightedForegroundColorAttributeName: UIColor.greenColor(),
 			RLHighlightedBackgroundColorAttributeName: UIColor.blackColor(),
 			RLTapResponderAttributeName: userHandleTapAction])
