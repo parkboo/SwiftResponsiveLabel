@@ -22,11 +22,11 @@ class MainViewController: UIViewController {
 		sender.selected = !sender.selected
 		if sender.selected {
 			let hashTagTapAction = PatternTapResponder {(tappedString)-> (Void) in
-				let messageString = "You have tapped hashTag:"+tappedString
+				let messageString = "You have tapped hashTag:" + tappedString
 				self.messageLabel.text = messageString
 			}
 			let dict = [NSForegroundColorAttributeName : UIColor.redColor(),
-			            NSBackgroundColorAttributeName:UIColor.blackColor()]
+			            NSBackgroundColorAttributeName : UIColor.blackColor()]
 			customLabel.enableHashTagDetection([RLHighlightedAttributesDictionary : dict, NSForegroundColorAttributeName: UIColor.cyanColor(),
 				RLTapResponderAttributeName:hashTagTapAction])
 		} else {

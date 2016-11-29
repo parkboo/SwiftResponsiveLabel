@@ -57,69 +57,35 @@ class InteractiveTableViewCell: UITableViewCell {
 			RLHighlightedForegroundColorAttributeName: UIColor.greenColor(),
 			RLHighlightedBackgroundColorAttributeName: UIColor.blackColor(),
 			RLTapResponderAttributeName: userHandleTapAction])
-		
-		/*
-  
-		PatternTapResponder action = ^(NSString *tappedString){
-		//Action to be performed
-		};
-  NSMutableAttributedString *attribString = [[NSMutableAttributedString alloc]initWithString:kExpansionToken];
-		
-  PatternTapResponder tapAction = ^(NSString *tappedString) {
-		if ([self.delegate respondsToSelector:@selector(didTapOnMoreButton:)]) {
-		[self.delegate didTapOnMoreButton:self];
-		}
-		};
-		
-  [attribString addAttributes:@{NSForegroundColorAttributeName:[UIColor blueColor],
-		NSFontAttributeName:self.customLabel.font,
-		RLTapResponderAttributeName:tapAction}
-		range:NSMakeRange(3, kExpansionToken.length - 3)];
-		[self.customLabel setAttributedTruncationToken:attribString];
-		
-  PatternTapResponder stringTapAction = ^(NSString *tappedString) {
-		NSLog(@"tapped string = %@",tappedString);
-  };
-  		*/
 	}
 	
 	func configureText(str: String, forExpandedState isExpanded: Bool) {
 		if (isExpanded) {
 			let	finalString = NSMutableAttributedString(string:  str + collapseToken)
 			let tapResponder = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
+				self.configureText(str, forExpandedState: false)
 				self.delegate?.interactiveTableViewCell(self, shouldExpand: false)
 			})
 			let rangeOfToken = NSRange(location: str.characters.count, length: collapseToken.characters.count)
 			finalString.addAttributes([NSForegroundColorAttributeName: UIColor.blueColor(), NSFontAttributeName : responsiveLabel.font, RLTapResponderAttributeName: tapResponder], range: rangeOfToken)
 			finalString.addAttributes([NSFontAttributeName : responsiveLabel.font], range: NSRange(location: 0, length: finalString.length))
 			responsiveLabel.numberOfLines = 0
-//			responsiveLabel.customTruncationEnabled = false
+			responsiveLabel.customTruncationEnabled = false
 			responsiveLabel.attributedText = finalString
 		} else {
 			let truncationToken = NSMutableAttributedString(string: expandToken)
 			let tapResponder = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
+				self.configureText(str, forExpandedState: true)
 				self.delegate?.interactiveTableViewCell(self, shouldExpand: false)
 			})
-			truncationToken.addAttributes([RLTapResponderAttributeName: tapResponder, NSFontAttributeName : responsiveLabel.font], range: NSRange(location: 0, length: truncationToken.length))
-			responsiveLabel.attributedTruncationToken = truncationToken
+			truncationToken.addAttributes([RLTapResponderAttributeName: tapResponder,
+				NSForegroundColorAttributeName: UIColor.blueColor(),
+				NSFontAttributeName : responsiveLabel.font],
+				range: NSRange(location: 0, length: truncationToken.length))
 			responsiveLabel.customTruncationEnabled = true
-			responsiveLabel.numberOfLines = 8
+			responsiveLabel.attributedTruncationToken = truncationToken
+			responsiveLabel.numberOfLines = 5
 			responsiveLabel.text = str
 		}
-//		self.layoutIfNeeded()
-		print("cell = \(self.responsiveLabel.frame)")
 	}
-			
-//			responsiveLabel.
-//	[finalString addAttributes:@{NSForegroundColorAttributeName:[UIColor blueColor],RLTapResponderAttributeName:tap}
-//	range:[expandedString rangeOfString:kCollapseToken]];
-//	[finalString addAttributes:@{NSFontAttributeName:self.customLabel.font} range:NSMakeRange(0, finalString.length)];
-//	self.customLabel.numberOfLines = 0;
-//	[self.customLabel setAttributedText:finalString withTruncation:NO];
-//	
-//	}else {
-//	self.customLabel.numberOfLines = 3;
-//	[self.customLabel setText:str withTruncation:YES];
-//	}
-//	}
 }
