@@ -30,7 +30,6 @@ public class TextKitStack {
 	}
 
 	init() {
-		self.textContainer.lineFragmentPadding = 0
 		self.textContainer.widthTracksTextView = true
 		self.textContainer.heightTracksTextView = true
 		self.layoutManager.addTextContainer(self.textContainer)

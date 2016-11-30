@@ -38,7 +38,7 @@ class InteractiveTableViewCell: UITableViewCell {
 		let hashTagTapAction = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
 			self.delegate?.interactiveTableViewCell(self, didTapOnHashTag: tappedString)
 		})
-		responsiveLabel.enableHashTagDetection([NSForegroundColorAttributeName: UIColor.redColor(),
+		responsiveLabel.enableHashTagDetection(attributes: [NSForegroundColorAttributeName: UIColor.redColor(),
 			RLHighlightedBackgroundColorAttributeName: UIColor.orangeColor(),
 			RLTapResponderAttributeName: hashTagTapAction])
 		
@@ -46,14 +46,14 @@ class InteractiveTableViewCell: UITableViewCell {
 		let urlTapAction = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
 			self.delegate?.interactiveTableViewCell(self, didTapOnUrl: tappedString)
 		})
-		responsiveLabel.enableURLDetection([NSForegroundColorAttributeName: UIColor.brownColor(),
+		responsiveLabel.enableURLDetection(attributes: [NSForegroundColorAttributeName: UIColor.brownColor(),
 			RLTapResponderAttributeName: urlTapAction])
 		
 		// Handle user handle Detection
 		let userHandleTapAction = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
 			self.delegate?.interactiveTableViewCell(self, didTapOnUserHandle: tappedString)
 		})
-		responsiveLabel.enableUserHandleDetection([NSForegroundColorAttributeName: UIColor.greenColor(),
+		responsiveLabel.enableUserHandleDetection(attributes: [NSForegroundColorAttributeName: UIColor.greenColor(),
 			RLHighlightedForegroundColorAttributeName: UIColor.greenColor(),
 			RLHighlightedBackgroundColorAttributeName: UIColor.blackColor(),
 			RLTapResponderAttributeName: userHandleTapAction])

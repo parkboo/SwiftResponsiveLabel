@@ -56,12 +56,4 @@ extension NSAttributedString {
 		}
 		return processedString;
 	}
-
-	func touchRange(index: Int) -> NSRange? {
-		guard index < self.length  else { return nil }
-		var range = NSMakeRange(NSNotFound, 0)
-		let attributes = self.attributesAtIndex(index, effectiveRange: &range)
-		let touchAttributesSet = attributes.keys.contains(RLHighlightedAttributesDictionary)
-		return touchAttributesSet ? range : nil
-	}
 }

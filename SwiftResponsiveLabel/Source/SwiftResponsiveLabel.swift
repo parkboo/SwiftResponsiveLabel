@@ -17,12 +17,12 @@ public class SwiftResponsiveLabel: UILabel {
 
 	override init(frame: CGRect) {
 		super.init(frame: frame)
-		self.attributedTruncationToken = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties())
+		self.attributedTruncationToken = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties)
 	}
 
 	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
-		self.attributedTruncationToken = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties())
+		self.attributedTruncationToken = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties)
 	}
 
 	override public var frame: CGRect {
@@ -81,7 +81,7 @@ public class SwiftResponsiveLabel: UILabel {
 	*/
 	@IBInspectable public var truncationToken: String = "..." {
 		didSet {
-			self.attributedTruncationToken = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties())
+			self.attributedTruncationToken = NSAttributedString(string: truncationToken, attributes: self.attributesFromProperties)
 		}
 	}
 	
@@ -105,13 +105,40 @@ public class SwiftResponsiveLabel: UILabel {
 			}
 		}
 	}
+	
+	private var attributesFromProperties: [String: AnyObject] {
+		let shadow = NSShadow()
+		if let shadowColor = self.shadowColor {
+			shadow.shadowColor = shadowColor
+			shadow.shadowOffset = self.shadowOffset
+		} else {
+			shadow.shadowOffset = CGSizeMake(0, -1)
+			shadow.shadowColor = nil
+		}
+		
+		var color = self.textColor
+		if !self.enabled {
+			color = UIColor.lightGrayColor()
+		} else if let _ = self.highlightedTextColor where self.highlighted == true {
+			color = self.highlightedTextColor;
+		}
+		
+		let paragraph = NSMutableParagraphStyle()
+		paragraph.alignment = self.textAlignment
+		
+		return [NSFontAttributeName : self.font,
+		        NSForegroundColorAttributeName : color,
+		        NSShadowAttributeName: shadow,
+		        NSParagraphStyleAttributeName: paragraph]
+	}
+
 
 	public var attributedTextToDisplay: NSAttributedString {
 		var finalAttributedString = NSAttributedString()
 		if let attributedText = attributedText?.wordWrappedAttributedString() {
 			finalAttributedString = NSAttributedString(attributedString: attributedText)
 		} else {
-			finalAttributedString = NSAttributedString(string: text ?? "", attributes: self.attributesFromProperties())
+			finalAttributedString = NSAttributedString(string: text ?? "", attributes: self.attributesFromProperties)
 		}
 		return finalAttributedString
 	}
@@ -166,7 +193,7 @@ public class SwiftResponsiveLabel: UILabel {
 	- parameters:
 		- patternDescriptor: The descriptor for the pattern to be detected
 	*/
-	public func enablePatternDetection(patternDescriptor: PatternDescriptor) {
+	public func enablePatternDetection(patternDescriptor patternDescriptor: PatternDescriptor) {
 		self.patternHighlighter.enablePatternDetection(patternDescriptor)
 		self.textKitStack.updateTextStorage(self.attributedTextToDisplay)
 		self.setNeedsDisplay()
@@ -176,11 +203,11 @@ public class SwiftResponsiveLabel: UILabel {
 	- parameters:
 		- attributes: [String:AnyObject]
 	*/
-	public func enableURLDetection(attributes:[String: AnyObject]) {
+	public func enableURLDetection(attributes attributes:[String: AnyObject]) {
 		do {
 			let regex = try NSDataDetector(types: NSTextCheckingType.Link.rawValue)
 			let descriptor = PatternDescriptor(regularExpression: regex, searchType: .All, patternAttributes: attributes)
-			self.enablePatternDetection(descriptor)
+			self.enablePatternDetection(patternDescriptor: descriptor)
 		} catch let error as NSError {
 			print("NSDataDetector Error: \(error.debugDescription)")
 		}
@@ -190,7 +217,7 @@ public class SwiftResponsiveLabel: UILabel {
 	- parameters:
 		- attributes: [String:AnyObject]
 	*/
-	public func enableUserHandleDetection(attributes: [String: AnyObject]) {
+	public func enableUserHandleDetection(attributes attributes: [String: AnyObject]) {
 		self.highlightPattern(PatternHighlighter.RegexStringForUserHandle, attributes: attributes)
 	}
 	
@@ -198,7 +225,7 @@ public class SwiftResponsiveLabel: UILabel {
 	- parameters:
 		- attributes: [String:AnyObject]
 	*/
-	public func enableHashTagDetection(attributes: [String: AnyObject]) {
+	public func enableHashTagDetection(attributes attributes: [String: AnyObject]) {
 		self.highlightPattern(PatternHighlighter.RegexStringForHashTag, attributes: attributes)
 	}
 	
@@ -310,34 +337,8 @@ public class SwiftResponsiveLabel: UILabel {
 		if let attributedText = self.attributedText {
 			currentText = attributedText.wordWrappedAttributedString()
 		} else if let text = self.text {
-			currentText = NSAttributedString(string: text, attributes: self.attributesFromProperties())
+			currentText = NSAttributedString(string: text, attributes: self.attributesFromProperties)
 		}
 		self.textKitStack.updateTextStorage(currentText)
-	}
-
-	private func attributesFromProperties() -> [String: AnyObject] {
-		let shadow = NSShadow()
-		if let shadowColor = self.shadowColor {
-			shadow.shadowColor = shadowColor
-			shadow.shadowOffset = self.shadowOffset
-		} else {
-			shadow.shadowOffset = CGSizeMake(0, -1)
-			shadow.shadowColor = nil
-		}
-
-		var color = self.textColor
-		if !self.enabled {
-			color = UIColor.lightGrayColor()
-		} else if let _ = self.highlightedTextColor where self.highlighted == true {
-			color = self.highlightedTextColor;
-		}
-
-		let paragraph = NSMutableParagraphStyle()
-		paragraph.alignment = self.textAlignment
-
-		return [NSFontAttributeName : self.font,
-		        NSForegroundColorAttributeName : color,
-		        NSShadowAttributeName: shadow,
-		        NSParagraphStyleAttributeName: paragraph]
 	}
 }

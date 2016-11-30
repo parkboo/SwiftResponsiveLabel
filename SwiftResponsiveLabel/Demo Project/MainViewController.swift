@@ -14,8 +14,21 @@ class MainViewController: UIViewController {
 	@IBOutlet weak var segmentControl: UISegmentedControl!
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		customLabel.text = "Hello #hashtag @username some more text www.google.com some more text some more text some more text hsusmita4@gmail.com"
+		customLabel.text = "Hello #hashtag @username some aaa more text www.google.com some more text some more text some more text hsusmita4@gmail.com"
 		self.customLabel.enableStringDetection("text", attributes: [NSForegroundColorAttributeName: UIColor.redColor()])
+		
+		let regexString = "([a-z\\d])\\1\\1"
+		do {
+			let regex = try NSRegularExpression(pattern: regexString, options: .CaseInsensitive)
+			let descriptor = PatternDescriptor(regularExpression: regex, searchType: .First, patternAttributes:
+				[NSForegroundColorAttributeName: UIColor.greenColor(),
+					RLHighlightedForegroundColorAttributeName: UIColor.greenColor(),
+					RLHighlightedBackgroundColorAttributeName: UIColor.blackColor()])
+			customLabel.enablePatternDetection(patternDescriptor: descriptor)
+		} catch let error as NSError {
+			print("NSRegularExpression Error: \(error.debugDescription)")
+		}
+		
 		self.segmentControl.selectedSegmentIndex = 0
 		self.handleSegmentChange(segmentControl)
 	}
@@ -27,10 +40,10 @@ class MainViewController: UIViewController {
 				let messageString = "You have tapped hashTag:" + tappedString
 				self.messageLabel.text = messageString
 			}
-			let dict = [NSForegroundColorAttributeName : UIColor.redColor(),
+			let highlightedAttributes = [NSForegroundColorAttributeName : UIColor.redColor(),
 			            NSBackgroundColorAttributeName : UIColor.blackColor()]
-			customLabel.enableHashTagDetection([RLHighlightedAttributesDictionary : dict, NSForegroundColorAttributeName: UIColor.cyanColor(),
-				RLTapResponderAttributeName:hashTagTapAction])
+			let patternAttributes: [String: AnyObject] = [RLHighlightedAttributesDictionary : highlightedAttributes, NSForegroundColorAttributeName: UIColor.cyanColor(), RLTapResponderAttributeName:hashTagTapAction]
+			customLabel.enableHashTagDetection(attributes: patternAttributes)
 		} else {
 			customLabel.disableHashTagDetection()
 		}
@@ -46,7 +59,7 @@ class MainViewController: UIViewController {
 			}
 			let dict = [NSForegroundColorAttributeName : UIColor.greenColor(),
 			            NSBackgroundColorAttributeName:UIColor.blackColor()]
-			self.customLabel.enableUserHandleDetection([NSForegroundColorAttributeName:UIColor.grayColor(),
+			self.customLabel.enableUserHandleDetection(attributes: [NSForegroundColorAttributeName:UIColor.grayColor(),
 				RLHighlightedAttributesDictionary: dict,
 				RLTapResponderAttributeName:userHandleTapAction])
 		}else {
@@ -61,7 +74,7 @@ class MainViewController: UIViewController {
 				let messageString = "You have tapped URL: " + tappedString
 				self.messageLabel.text = messageString
 			}
-			self.customLabel.enableURLDetection([NSForegroundColorAttributeName:UIColor.blueColor(), RLTapResponderAttributeName:URLTapAction])
+			self.customLabel.enableURLDetection(attributes: [NSForegroundColorAttributeName:UIColor.blueColor(), RLTapResponderAttributeName:URLTapAction])
 		} else {
 			self.customLabel.disableURLDetection()
 		}
