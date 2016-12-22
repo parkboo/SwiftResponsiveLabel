@@ -1,3 +1,9 @@
+version 2.0
+
+* Upgrade to Swift 3
+* Optimize drawing method
+* Fix highlighting of text
+
 version 1.2
 
 * customTruncationEnabled is public
