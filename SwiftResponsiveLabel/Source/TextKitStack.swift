@@ -37,22 +37,38 @@ open class TextKitStack {
 		self.layoutManager.addTextContainer(self.textContainer)
 		self.textStorage.addLayoutManager(self.layoutManager)
 	}
-
+	
+	/** Draws text in textStorage starting at point specified by textOffset
+	- parameters:
+		- textOffset: CGPoint
+	*/
 	open func drawText(_ textOffset: CGPoint) {
 		self.currentTextOffset = textOffset
 		let glyphRange = self.layoutManager.glyphRange(for: self.textContainer)
 		self.layoutManager.drawBackground(forGlyphRange: glyphRange, at: textOffset)
 		self.layoutManager.drawGlyphs(forGlyphRange: glyphRange, at: textOffset)
 	}
-
+	
+	/** Resizes textContainer
+	- parameters:
+		- size: CGSize
+	*/
 	open func resizeTextContainer(_ size: CGSize) {
 		self.textContainer.size = size
 	}
-
+	
+	/** Updates textStorage
+	- parameters:
+		- attributedText: NSAttributedString
+	*/
 	open func updateTextStorage(_ attributedText: NSAttributedString) {
 		self.textStorage.setAttributedString(attributedText)
 	}
-
+	
+	/** Returns character index at a particular location
+	- parameters:
+		- location: CGPoint
+	*/
 	open func characterIndexAtLocation(_ location: CGPoint) -> Int {
 		var characterIndex: Int = NSNotFound
 		if self.textStorage.string.characters.count > 0 {
@@ -68,11 +84,17 @@ open class TextKitStack {
 		}
 		return characterIndex
 	}
-
+	
+	/** Returns the range which contains the index
+	- parameters:
+		- index: Int
+	*/
 	open func rangeContainingIndex(_ index: Int) -> NSRange {
 		return self.layoutManager.range(ofNominallySpacedGlyphsContaining: index)
 	}
-
+	
+	/** Returns bounding rectangle which encloses all the glyphs corresponding to textStorage
+	*/
 	open func boundingRectForCompleteText() -> CGRect {
 		let initialSize = self.textContainer.size
 		self.textContainer.size = CGSize(width: self.textContainer.size.width, height: CGFloat.greatestFiniteMagnitude)
@@ -82,7 +104,13 @@ open class TextKitStack {
 		self.textContainer.size = initialSize
 		return rect
 	}
-
+	
+	/** Returns bounding rectangle based on containerSize, number of lines and font of text
+	- parameters:
+		- size: CGSize
+		- numberOfLines: Int
+		- font: UIFont
+	*/
 	open func rectFittingTextForContainerSize(_ size: CGSize, numberOfLines: Int, font: UIFont) -> CGRect {
 		let initialSize = self.textContainer.size
 		self.textContainer.size = size
@@ -101,7 +129,11 @@ open class TextKitStack {
 		self.textContainer.size = initialSize
 		return textBounds;
 	}
-
+	
+	/** Returns range at which given attributedTruncationToken can be appended
+	- parameters:
+		- attributedTruncationToken: NSAttributedString
+	*/
 	open func rangeForTokenInsertion(_ attributedTruncationToken: NSAttributedString) -> NSRange {
 		guard self.textStorage.length > 0 else {
 			return NSMakeRange(NSNotFound, 0)
@@ -115,15 +147,23 @@ open class TextKitStack {
 			var lineRange = NSMakeRange(NSNotFound, 0)
 			self.layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineRange)
 			rangeOfText = lineRange
-
 		}
+		let completeRect = boundingRectForCompleteText()
+		let sizeOfToken = attributedTruncationToken.sizeOfText()
+		var rectOfToken = CGRect.zero
+		rectOfToken.size = sizeOfToken
+		rectOfToken.origin.x = completeRect.maxX - sizeOfToken.width
+		rectOfToken.origin.y = completeRect.maxY - sizeOfToken.height
+		let index = characterIndexAtLocation(rectOfToken.origin)
 		if rangeOfText.location != NSNotFound {
-			rangeOfText.length += attributedTruncationToken.length + 5
-			rangeOfText.location -= attributedTruncationToken.length + 5
+			rangeOfText.length += (rangeOfText.location - index)
+			rangeOfText.location = index
 		}
 		return rangeOfText;
 	}
-
+	
+	/** Returns range at which new line appears
+	*/
 	open func truncatedRangeForStringWithNewLine() -> NSRange {
 		let numberOfGlyphs = self.layoutManager.numberOfGlyphs
 		var lineRange = NSMakeRange(NSNotFound, 0)
@@ -143,13 +183,22 @@ open class TextKitStack {
 		return rangeOfText
 	}
 
-	open func attributeForKey(_ attributeKey: String, atIndex index: Int) -> RangeAttribute {
+	/** Returns the array of RangeAttribute instances for a given index
+	- parameters:
+		- attributeKey: String
+		- index: Int
+	*/
+	open func rangeAttributeForKey(_ attributeKey: String, atIndex index: Int) -> RangeAttribute {
 		var rangeOfTappedText = NSRange()
 		let attribute = self.textStorage.attribute(attributeKey, at: index, effectiveRange: &rangeOfTappedText)
 		return RangeAttribute(attributeKey, attribute as AnyObject?, rangeOfTappedText)
 	}
 	
-	open func attributesAtIndex( _ index: Int) -> [RangeAttribute] {
+	/** Returns the array of RangeAttribute instances for a given index
+		- parameters:
+			- index: Int
+	*/
+	open func rangeAttributesAtIndex( _ index: Int) -> [RangeAttribute] {
 		var rangeOfTappedText = NSRange()
 		var rangeAttributes: [RangeAttribute] = []
 		self.textStorage.attributes(at: index, effectiveRange: &rangeOfTappedText).forEach { key, value in
@@ -158,18 +207,37 @@ open class TextKitStack {
 		return rangeAttributes
 	}
 	
+	/** Adds given attribute to the textStorage for the given key at the given range
+	- parameters:
+		- attribute: AnyObject
+		- key: String
+		- range: NSRange
+	*/
 	open func addAttribute(_ attribute: AnyObject, forkey key: String, atRange range: NSRange) {
 		self.textStorage.addAttribute(key, value: attribute, range: range)
 	}
 	
+	/** Removes attribute from the textStorage for the given key at the given range
+	- parameters:
+		- key: String
+		- range: NSRange
+	*/
 	open func removeAttribute(forkey key: String, atRange range: NSRange) {
 		self.textStorage.removeAttribute(key, range: range)
 	}
 	
+	/** Returns the substring present in given range of the current textStorage
+	- parameters:
+		- range: NSRange
+	*/
 	open func substringForRange(_ range: NSRange) -> String {
 		return (self.textStorage.string as NSString).substring(with: range)
 	}
 	
+	/** Returns the range of string in the current textStorage
+	- parameters:
+		- string: String
+	*/
 	open func rangeOfString(_ string: String) -> NSRange {
 		return (self.textStorage.string as NSString).range(of: string)
 	}

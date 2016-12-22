@@ -28,6 +28,14 @@ open class PatternTapResponder {
 }
 
 extension NSAttributedString {
+	
+	func sizeOfText() -> CGSize {
+		var range = NSMakeRange(NSNotFound, 0)
+		let fontAttributes = self.attributes(at: 0, longestEffectiveRange: &range,
+		in: NSRange(location: 0, length: self.length))
+		return (self.string as NSString).size(attributes: fontAttributes)
+	}
+	
 	func isNewLinePresent() -> Bool {
 		let newLineRange = self.string.rangeOfCharacter(from: CharacterSet.newlines)
 		return newLineRange?.lowerBound != newLineRange?.upperBound
