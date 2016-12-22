@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+public typealias RangeAttribute = (key: String, attribute: AnyObject?, range: NSRange)
+
 open class TextKitStack {
 	fileprivate var textContainer = NSTextContainer()
 	fileprivate var layoutManager = NSLayoutManager()
@@ -141,16 +143,19 @@ open class TextKitStack {
 		return rangeOfText
 	}
 
-	open func attributeForKey(_ attributeKey: String, atIndex index: Int) -> (AnyObject?, NSRange) {
+	open func attributeForKey(_ attributeKey: String, atIndex index: Int) -> RangeAttribute {
 		var rangeOfTappedText = NSRange()
 		let attribute = self.textStorage.attribute(attributeKey, at: index, effectiveRange: &rangeOfTappedText)
-		return (attribute as AnyObject?, rangeOfTappedText)
+		return RangeAttribute(attributeKey, attribute as AnyObject?, rangeOfTappedText)
 	}
 	
-	open func attributesAtIndex( _ index: Int) -> ([String : AnyObject]?, NSRange) {
+	open func attributesAtIndex( _ index: Int) -> [RangeAttribute] {
 		var rangeOfTappedText = NSRange()
-		let attributes = self.textStorage.attributes(at: index, effectiveRange: &rangeOfTappedText)
-		return (attributes as [String : AnyObject]?, rangeOfTappedText)
+		var rangeAttributes: [RangeAttribute] = []
+		self.textStorage.attributes(at: index, effectiveRange: &rangeOfTappedText).forEach { key, value in
+			rangeAttributes.append(RangeAttribute(key, value as AnyObject?, rangeOfTappedText))
+		}
+		return rangeAttributes
 	}
 	
 	open func addAttribute(_ attribute: AnyObject, forkey key: String, atRange range: NSRange) {

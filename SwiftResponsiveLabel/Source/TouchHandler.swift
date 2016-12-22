@@ -79,19 +79,19 @@ class TouchHandler: NSObject {
 
 		var rangeOfTappedText = NSRange()
 		let highlightAttributeInfo = textkitStack.attributeForKey(RLHighlightedAttributesDictionary, atIndex: touchIndex)
-		rangeOfTappedText = highlightAttributeInfo.1
-		self.highlightAttributes = highlightAttributeInfo.0 as? [String : AnyObject]
+		rangeOfTappedText = highlightAttributeInfo.range
+		self.highlightAttributes = highlightAttributeInfo.attribute as? [String : AnyObject]
 		if let attributes = self.highlightAttributes {
 			self.selectedRange = rangeOfTappedText
 			self.defaultAttributes = [String : AnyObject]()
 			for (key, value) in attributes {
-				self.defaultAttributes![key] = textkitStack.attributeForKey(key, atIndex: touchIndex).0
+				self.defaultAttributes![key] = textkitStack.attributeForKey(key, atIndex: touchIndex).attribute
 				textkitStack.addAttribute(value, forkey: key, atRange: rangeOfTappedText)
 			}
 			self.responsiveLabel?.setNeedsDisplay()
 		}
 		if self.selectedRange == nil {
-			if let _ = textkitStack.attributeForKey(RLTapResponderAttributeName, atIndex: touchIndex).0 as? PatternTapResponder {
+			if let _ = textkitStack.attributeForKey(RLTapResponderAttributeName, atIndex: touchIndex).attribute as? PatternTapResponder {
 				self.selectedRange = rangeOfTappedText
 			}
 		}
@@ -133,7 +133,7 @@ class TouchHandler: NSObject {
 	
 	fileprivate func performActionOnSelection() {
 		guard let textkitStack = self.responsiveLabel?.textKitStack, let selectedRange = self.selectedRange else { return }
-		if let tapResponder = textkitStack.attributeForKey(RLTapResponderAttributeName, atIndex: selectedRange.location).0 as? PatternTapResponder {
+		if let tapResponder = textkitStack.attributeForKey(RLTapResponderAttributeName, atIndex: selectedRange.location).attribute as? PatternTapResponder {
 			let tappedString = textkitStack.substringForRange(selectedRange)
 			tapResponder.perform(tappedString)
 		}
@@ -148,11 +148,11 @@ extension TouchHandler : UIGestureRecognizerDelegate {
 	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
 		let touchLocation = touch.location(in: self.responsiveLabel)
 		guard let textkitStack = self.responsiveLabel?.textKitStack,
-			let index = self.responsiveLabel?.textKitStack.characterIndexAtLocation(touchLocation), index < textkitStack.textStorageLength,
-			let attributes = textkitStack.attributesAtIndex(index).0
+			let index = self.responsiveLabel?.textKitStack.characterIndexAtLocation(touchLocation), index < textkitStack.textStorageLength
 		 else {
 		 	return false
 		}
-		return attributes.keys.contains(RLHighlightedAttributesDictionary) || attributes.keys.contains(RLTapResponderAttributeName)
+		let keys = textkitStack.attributesAtIndex(index).map { $0.key }
+		return keys.contains(RLHighlightedAttributesDictionary) || keys.contains(RLTapResponderAttributeName)
 	}
 }
