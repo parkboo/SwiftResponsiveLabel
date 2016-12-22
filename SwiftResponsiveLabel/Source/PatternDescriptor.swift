@@ -18,7 +18,7 @@ First: First matching pattern
 Last: Last matching pattern
 */
 public enum PatternSearchType:Int {
-	case All, First, Last
+	case all, first, last
 }
 
 /**
@@ -79,25 +79,25 @@ public struct PatternDescriptor {
 	- returns:
 		An array of NSRange
 	*/
-	public func patternRangesForString(string:String) -> [NSRange] {
+	public func patternRangesForString(_ string:String) -> [NSRange] {
 		switch(self.searchType) {
 
-		case .All:
+		case .all:
 			return allMatchingPattern(string)
 
-		case .First:
+		case .first:
 			return [firstMatchingPattern(string)]
 
-		case .Last:
+		case .last:
 			return [allMatchingPattern(string)].last!
 		}
 	}
 	
 	// MARK: - Private Helpers
 
-	private func allMatchingPattern(string:String) -> [NSRange] {
+	fileprivate func allMatchingPattern(_ string:String) -> [NSRange] {
 		var generatedRanges = [NSRange]()
-		self.patternExpression.enumerateMatchesInString(string, options: .ReportCompletion, range: NSMakeRange(0, string.characters.count)){
+		self.patternExpression.enumerateMatches(in: string, options: .reportCompletion, range: NSMakeRange(0, string.characters.count)){
 		 (result, flag, stop) -> Void in
 			if let result = result {
 				generatedRanges.append(result.range)
@@ -107,7 +107,7 @@ public struct PatternDescriptor {
 		return generatedRanges
 	}
 	
-	private func firstMatchingPattern(string:String) -> NSRange {
-		return self.patternExpression.rangeOfFirstMatchInString(string, options: .ReportProgress, range: NSMakeRange(0, string.characters.count))
+	fileprivate func firstMatchingPattern(_ string:String) -> NSRange {
+		return self.patternExpression.rangeOfFirstMatch(in: string, options: .reportProgress, range: NSMakeRange(0, string.characters.count))
 	}
 }

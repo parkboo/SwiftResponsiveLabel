@@ -11,20 +11,20 @@ import Foundation
 /** This class is reponsible for finding patterns and applying attributes to those patterns
 */
 
-public class PatternHighlighter {
+open class PatternHighlighter {
 	static let RegexStringForHashTag = "(?<!\\w)#([\\w\\_]+)?"
 	static let RegexStringForUserHandle = "(?<!\\w)@([\\w\\_]+)?"
 	static let RegexFormatForSearchWord = "(%@)"
 
 	var patternHighlightedText: NSMutableAttributedString?
-	private var patternDescriptors: [String: PatternDescriptor] = [:]
-	private var attributedText: NSMutableAttributedString?
+	fileprivate var patternDescriptors: [String: PatternDescriptor] = [:]
+	fileprivate var attributedText: NSMutableAttributedString?
 	
 	/** Update current attributed text and apply attributes based on current patternDescriptors
 	- parameters:
 		- attributedText: NSAttributedString
 	*/
-	func updateAttributedText(attributedText: NSAttributedString) {
+	func updateAttributedText(_ attributedText: NSAttributedString) {
 		self.attributedText = NSMutableAttributedString(attributedString: attributedText)
 		self.patternHighlightedText = self.attributedText
 		for descriptor in self.patternDescriptors {
@@ -37,10 +37,10 @@ public class PatternHighlighter {
 		- regexString: String
 		- dictionary: [String:AnyObject]
 	*/
-	func highlightPattern(regexString: String, dictionary: [String:AnyObject]) {
+	func highlightPattern(_ regexString: String, dictionary: [String:AnyObject]) {
 		do {
-			let regex = try NSRegularExpression(pattern: regexString, options: .CaseInsensitive)
-			let descriptor = PatternDescriptor(regularExpression: regex, searchType: PatternSearchType.All, patternAttributes: dictionary)
+			let regex = try NSRegularExpression(pattern: regexString, options: .caseInsensitive)
+			let descriptor = PatternDescriptor(regularExpression: regex, searchType: PatternSearchType.all, patternAttributes: dictionary)
 			self.enablePatternDetection(descriptor)
 		} catch let error as NSError {
 			print("NSRegularExpression Error: \(error.debugDescription)")
@@ -51,10 +51,10 @@ public class PatternHighlighter {
 	- parameters:
 		- regexString: String
 	*/
-	func unhighlightPattern(regexString regexString: String) {
+	func unhighlightPattern(regexString: String) {
 		if let descriptor = self.patternDescriptors[regexString] {
 			self.removePatternAttributes(descriptor)
-			self.patternDescriptors.removeValueForKey(regexString)
+			self.patternDescriptors.removeValue(forKey: regexString)
 		}
 	}
 	
@@ -64,7 +64,7 @@ public class PatternHighlighter {
 	
 		- This object encapsulates the regular expression and attributes to be added to the pattern.
 	*/
-	func enablePatternDetection(patternDescriptor:PatternDescriptor) {
+	func enablePatternDetection(_ patternDescriptor:PatternDescriptor) {
 		let patternKey = patternNameKeyForPatternDescriptor(patternDescriptor)
 		patternDescriptors[patternKey] = patternDescriptor
 		addPatternAttributes(patternDescriptor)
@@ -74,17 +74,17 @@ public class PatternHighlighter {
 	- parameters:
 		- patternDescriptor: PatternDescriptor
 	*/
-	func disablePatternDetection(patternDescriptor:PatternDescriptor) {
+	func disablePatternDetection(_ patternDescriptor:PatternDescriptor) {
 		let patternKey = patternNameKeyForPatternDescriptor(patternDescriptor)
-		patternDescriptors.removeValueForKey(patternKey)
+		patternDescriptors.removeValue(forKey: patternKey)
 		removePatternAttributes(patternDescriptor)
 	}
 	
 	// MARK: - Private Helpers
 	
-	private func patternNameKeyForPatternDescriptor(patternDescriptor:PatternDescriptor)-> String {
+	fileprivate func patternNameKeyForPatternDescriptor(_ patternDescriptor:PatternDescriptor)-> String {
 		let key:String
-		if patternDescriptor.patternExpression.isKindOfClass(NSDataDetector) {
+		if patternDescriptor.patternExpression.isKind(of: NSDataDetector.self) {
 			let types = (patternDescriptor.patternExpression as! NSDataDetector).checkingTypes
 			key = String(types)
 		}else {
@@ -93,7 +93,7 @@ public class PatternHighlighter {
 		return key
 	}
 
-	private func removePatternAttributes(patternDescriptor:PatternDescriptor) {
+	fileprivate func removePatternAttributes(_ patternDescriptor:PatternDescriptor) {
 		guard let attributedText = self.attributedText else {
 			return
 		}
@@ -108,7 +108,7 @@ public class PatternHighlighter {
 		}
 	}
 
-	private func addPatternAttributes(patternDescriptor:PatternDescriptor) {
+	fileprivate func addPatternAttributes(_ patternDescriptor:PatternDescriptor) {
 		guard let attributedText = self.patternHighlightedText else {
 			return
 		}

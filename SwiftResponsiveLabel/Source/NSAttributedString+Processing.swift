@@ -15,22 +15,22 @@ public let RLHighlightedBackgroundColorAttributeName = "HighlightedBackgroundCol
 public let RLBackgroundCornerRadius = "HighlightedBackgroundCornerRadius"
 public let RLHighlightedAttributesDictionary = "HighlightedAttributes"
 
-public class PatternTapResponder {
+open class PatternTapResponder {
 	let action: (String) -> Void
 	
-	public init(currentAction: (tappedString: String) -> (Void)) {
+	public init(currentAction: @escaping (_ tappedString: String) -> (Void)) {
 		action = currentAction
 	}
 	
-	public func perform(string: String) {
+	open func perform(_ string: String) {
 		action(string)
 	}
 }
 
 extension NSAttributedString {
 	func isNewLinePresent() -> Bool {
-		let newLineRange = self.string.rangeOfCharacterFromSet(NSCharacterSet.newlineCharacterSet())
-		return newLineRange?.startIndex != newLineRange?.endIndex
+		let newLineRange = self.string.rangeOfCharacter(from: CharacterSet.newlines)
+		return newLineRange?.lowerBound != newLineRange?.upperBound
 	}
 
 	/**
@@ -41,19 +41,19 @@ extension NSAttributedString {
 	func wordWrappedAttributedString() -> NSAttributedString {
 		var processedString = self
 		if (self.string.characters.count > 0) {
-			let rangePointer: NSRangePointer = nil
-			if let paragraphStyle =  self.attribute(NSParagraphStyleAttributeName, atIndex: 0, effectiveRange: rangePointer) {
+			let rangePointer: NSRangePointer? = nil
+			if let paragraphStyle =  self.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: rangePointer) {
 
 				// Remove the line breaks
-				let mutableParagraphStyle = paragraphStyle.mutableCopy() as! NSMutableParagraphStyle
-				mutableParagraphStyle.lineBreakMode = .ByWordWrapping
+				let mutableParagraphStyle = paragraphStyle as! NSMutableParagraphStyle
+				mutableParagraphStyle.lineBreakMode = .byWordWrapping
 
 				// Apply new style
 				let restyled = NSMutableAttributedString(attributedString: self)
 				restyled.addAttribute(NSParagraphStyleAttributeName, value: mutableParagraphStyle, range: NSMakeRange(0, restyled.length))
-				processedString = restyled;
+				processedString = restyled
 			}
 		}
-		return processedString;
+		return processedString
 	}
 }

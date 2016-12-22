@@ -9,16 +9,16 @@
 import UIKit
 
 protocol InteractiveTableViewCellDelegate {
-	func interactiveTableViewCell(cell: InteractiveTableViewCell, didTapOnHashTag string: String)
-	func interactiveTableViewCell(cell: InteractiveTableViewCell, didTapOnUrl string: String)
-	func interactiveTableViewCell(cell: InteractiveTableViewCell, didTapOnUserHandle string: String)
-	func interactiveTableViewCell(cell: InteractiveTableViewCell, shouldExpand expand: Bool)
+	func interactiveTableViewCell(_ cell: InteractiveTableViewCell, didTapOnHashTag string: String)
+	func interactiveTableViewCell(_ cell: InteractiveTableViewCell, didTapOnUrl string: String)
+	func interactiveTableViewCell(_ cell: InteractiveTableViewCell, didTapOnUserHandle string: String)
+	func interactiveTableViewCell(_ cell: InteractiveTableViewCell, shouldExpand expand: Bool)
 }
 
 extension InteractiveTableViewCellDelegate {
-	func interactiveTableViewCell(cell: InteractiveTableViewCell, didTapOnHashTag string: String){}
-	func interactiveTableViewCell(cell: InteractiveTableViewCell, didTapOnUrl string: String){}
-	func interactiveTableViewCell(cell: InteractiveTableViewCell, didTapOnUserHandle string: String){}
+	func interactiveTableViewCell(_ cell: InteractiveTableViewCell, didTapOnHashTag string: String){}
+	func interactiveTableViewCell(_ cell: InteractiveTableViewCell, didTapOnUrl string: String){}
+	func interactiveTableViewCell(_ cell: InteractiveTableViewCell, didTapOnUserHandle string: String){}
 }
 
 class InteractiveTableViewCell: UITableViewCell {
@@ -32,34 +32,34 @@ class InteractiveTableViewCell: UITableViewCell {
 		super.awakeFromNib()
 		
 		responsiveLabel.truncationToken = expandToken
-		responsiveLabel.userInteractionEnabled = true
+		responsiveLabel.isUserInteractionEnabled = true
 
 		// Handle Hashtag Detection
 		let hashTagTapAction = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
 			self.delegate?.interactiveTableViewCell(self, didTapOnHashTag: tappedString)
 		})
-		responsiveLabel.enableHashTagDetection(attributes: [NSForegroundColorAttributeName: UIColor.redColor(),
-			RLHighlightedBackgroundColorAttributeName: UIColor.orangeColor(),
+		responsiveLabel.enableHashTagDetection(attributes: [NSForegroundColorAttributeName: UIColor.red,
+			RLHighlightedBackgroundColorAttributeName: UIColor.orange,
 			RLTapResponderAttributeName: hashTagTapAction])
 		
 		// Handle URL Detection
 		let urlTapAction = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
 			self.delegate?.interactiveTableViewCell(self, didTapOnUrl: tappedString)
 		})
-		responsiveLabel.enableURLDetection(attributes: [NSForegroundColorAttributeName: UIColor.brownColor(),
+		responsiveLabel.enableURLDetection(attributes: [NSForegroundColorAttributeName: UIColor.brown,
 			RLTapResponderAttributeName: urlTapAction])
 		
 		// Handle user handle Detection
 		let userHandleTapAction = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
 			self.delegate?.interactiveTableViewCell(self, didTapOnUserHandle: tappedString)
 		})
-		responsiveLabel.enableUserHandleDetection(attributes: [NSForegroundColorAttributeName: UIColor.greenColor(),
-			RLHighlightedForegroundColorAttributeName: UIColor.greenColor(),
-			RLHighlightedBackgroundColorAttributeName: UIColor.blackColor(),
+		responsiveLabel.enableUserHandleDetection(attributes: [NSForegroundColorAttributeName: UIColor.green,
+			RLHighlightedForegroundColorAttributeName: UIColor.green,
+			RLHighlightedBackgroundColorAttributeName: UIColor.black,
 			RLTapResponderAttributeName: userHandleTapAction])
 	}
 	
-	func configureText(str: String, forExpandedState isExpanded: Bool) {
+	func configureText(_ str: String, forExpandedState isExpanded: Bool) {
 		if (isExpanded) {
 			let	finalString = NSMutableAttributedString(string:  str + collapseToken)
 			let tapResponder = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
@@ -67,7 +67,7 @@ class InteractiveTableViewCell: UITableViewCell {
 				self.delegate?.interactiveTableViewCell(self, shouldExpand: false)
 			})
 			let rangeOfToken = NSRange(location: str.characters.count, length: collapseToken.characters.count)
-			finalString.addAttributes([NSForegroundColorAttributeName: UIColor.blueColor(), NSFontAttributeName : responsiveLabel.font, RLTapResponderAttributeName: tapResponder], range: rangeOfToken)
+			finalString.addAttributes([NSForegroundColorAttributeName: UIColor.blue, NSFontAttributeName : responsiveLabel.font, RLTapResponderAttributeName: tapResponder], range: rangeOfToken)
 			finalString.addAttributes([NSFontAttributeName : responsiveLabel.font], range: NSRange(location: 0, length: finalString.length))
 			responsiveLabel.numberOfLines = 0
 			responsiveLabel.customTruncationEnabled = false
@@ -79,7 +79,7 @@ class InteractiveTableViewCell: UITableViewCell {
 				self.delegate?.interactiveTableViewCell(self, shouldExpand: false)
 			})
 			truncationToken.addAttributes([RLTapResponderAttributeName: tapResponder,
-				NSForegroundColorAttributeName: UIColor.blueColor(),
+				NSForegroundColorAttributeName: UIColor.blue,
 				NSFontAttributeName : responsiveLabel.font],
 				range: NSRange(location: 0, length: truncationToken.length))
 			responsiveLabel.customTruncationEnabled = true

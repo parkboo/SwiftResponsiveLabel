@@ -8,32 +8,45 @@
 
 import Foundation
 import UIKit.UIGestureRecognizerSubclass
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class TouchGestureRecognizer: UIGestureRecognizer {
 
-	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent) {
-		super.touchesBegan(touches, withEvent: event)
-		self.state = .Began
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
+		super.touchesBegan(touches, with: event)
+		self.state = .began
 	}
 
-	override func touchesCancelled(touches: Set<UITouch>, withEvent event: UIEvent) {
-		super.touchesCancelled(touches, withEvent: event)
-		self.state = .Cancelled
+	override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent) {
+		super.touchesCancelled(touches, with: event)
+		self.state = .cancelled
 	}
 
-	override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent) {
-		super.touchesEnded(touches, withEvent: event)
-		self.state = .Ended
+	override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+		super.touchesEnded(touches, with: event)
+		self.state = .ended
 	}
 }
 
 class TouchHandler: NSObject {
-	private var responsiveLabel: SwiftResponsiveLabel?
+	fileprivate var responsiveLabel: SwiftResponsiveLabel?
 
 	var touchIndex: Int?
 	var selectedRange: NSRange?
-	private var defaultAttributes: [String: AnyObject]?
-	private var highlightAttributes: [String: AnyObject]?
+	fileprivate var defaultAttributes: [String: AnyObject]?
+	fileprivate var highlightAttributes: [String: AnyObject]?
 	
 	init(responsiveLabel: SwiftResponsiveLabel) {
 		super.init()
@@ -43,26 +56,26 @@ class TouchHandler: NSObject {
 		gestureRecognizer.delegate = self
 	}
 
-	@objc private func handleTouch(gesture: UIGestureRecognizer) {
-		let touchLocation = gesture.locationInView(self.responsiveLabel)
+	@objc fileprivate func handleTouch(_ gesture: UIGestureRecognizer) {
+		let touchLocation = gesture.location(in: self.responsiveLabel)
 		let index = self.responsiveLabel?.textKitStack.characterIndexAtLocation(touchLocation)
 		self.touchIndex = index
 
 		switch gesture.state {
-		case .Began:
+		case .began:
 			self.beginSession()
-		case .Cancelled:
+		case .cancelled:
 			self.cancelSession()
-		case .Ended:
+		case .ended:
 			self.endSession()
 		default:
 			return
 		}
 	}
 
-	private func beginSession() {
+	fileprivate func beginSession() {
 		guard let textkitStack = self.responsiveLabel?.textKitStack,
-			  let touchIndex = self.touchIndex where self.touchIndex < textkitStack.textStorageLength  else { return }
+			  let touchIndex = self.touchIndex, self.touchIndex < textkitStack.textStorageLength  else { return }
 
 		var rangeOfTappedText = NSRange()
 		let highlightAttributeInfo = textkitStack.attributeForKey(RLHighlightedAttributesDictionary, atIndex: touchIndex)
@@ -84,24 +97,21 @@ class TouchHandler: NSObject {
 		}
 	}
 
-	private func cancelSession() {
+	fileprivate func cancelSession() {
 		self.removeHighlight()
 	}
 
-	private func endSession() {
+	fileprivate func endSession() {
 		self.performActionOnSelection()
 		self.removeHighlight()
 	}
 
-	private func removeHighlight() {
+	fileprivate func removeHighlight() {
 		guard let textkitStack = self.responsiveLabel?.textKitStack,
 			let selectedRange = self.selectedRange,
 			let highlightAttributes = self.highlightAttributes,
 			let defaultAttributes = self.defaultAttributes else {
-				//Clear global variables
-				self.selectedRange = nil
-				self.defaultAttributes = nil
-				self.highlightAttributes = nil
+				self.resetGlobalVariables()
 				return
 			}
 		for (key, _) in highlightAttributes {
@@ -112,14 +122,16 @@ class TouchHandler: NSObject {
 		}
 
 		self.responsiveLabel?.setNeedsDisplay()
-		
-		//Clear global variables
+		self.resetGlobalVariables()
+	}
+	
+	private func resetGlobalVariables() {
 		self.selectedRange = nil
 		self.defaultAttributes = nil
 		self.highlightAttributes = nil
 	}
-
-	private func performActionOnSelection() {
+	
+	fileprivate func performActionOnSelection() {
 		guard let textkitStack = self.responsiveLabel?.textKitStack, let selectedRange = self.selectedRange else { return }
 		if let tapResponder = textkitStack.attributeForKey(RLTapResponderAttributeName, atIndex: selectedRange.location).0 as? PatternTapResponder {
 			let tappedString = textkitStack.substringForRange(selectedRange)
@@ -129,14 +141,14 @@ class TouchHandler: NSObject {
 }
 
 extension TouchHandler : UIGestureRecognizerDelegate {
-	func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
 		return true
 	}
 
-	func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-		let touchLocation = touch.locationInView(self.responsiveLabel)
+	func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+		let touchLocation = touch.location(in: self.responsiveLabel)
 		guard let textkitStack = self.responsiveLabel?.textKitStack,
-			let index = self.responsiveLabel?.textKitStack.characterIndexAtLocation(touchLocation) where index < textkitStack.textStorageLength,
+			let index = self.responsiveLabel?.textKitStack.characterIndexAtLocation(touchLocation), index < textkitStack.textStorageLength,
 			let attributes = textkitStack.attributesAtIndex(index).0
 		 else {
 		 	return false

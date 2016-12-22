@@ -9,21 +9,21 @@
 import Foundation
 import UIKit
 
-public class TextKitStack {
-	private var textContainer = NSTextContainer()
-	private var layoutManager = NSLayoutManager()
-	private var textStorage = NSTextStorage()
-	private var currentTextOffset = CGPointZero
+open class TextKitStack {
+	fileprivate var textContainer = NSTextContainer()
+	fileprivate var layoutManager = NSLayoutManager()
+	fileprivate var textStorage = NSTextStorage()
+	fileprivate var currentTextOffset = CGPoint.zero
 	
-	public var textStorageLength: Int {
+	open var textStorageLength: Int {
 		return self.textStorage.length
 	}
 	
-	public var currentAttributedText: NSAttributedString {
+	open var currentAttributedText: NSAttributedString {
 		return textStorage
 	}
 	
-	public var numberOflines: Int = 0 {
+	open var numberOflines: Int = 0 {
 		didSet {
 			self.textContainer.maximumNumberOfLines = self.numberOflines
 		}
@@ -36,56 +36,56 @@ public class TextKitStack {
 		self.textStorage.addLayoutManager(self.layoutManager)
 	}
 
-	func drawText(textOffset: CGPoint) {
+	open func drawText(_ textOffset: CGPoint) {
 		self.currentTextOffset = textOffset
-		let glyphRange = self.layoutManager.glyphRangeForTextContainer(self.textContainer)
-		self.layoutManager.drawBackgroundForGlyphRange(glyphRange, atPoint: textOffset)
-		self.layoutManager.drawGlyphsForGlyphRange(glyphRange, atPoint: textOffset)
+		let glyphRange = self.layoutManager.glyphRange(for: self.textContainer)
+		self.layoutManager.drawBackground(forGlyphRange: glyphRange, at: textOffset)
+		self.layoutManager.drawGlyphs(forGlyphRange: glyphRange, at: textOffset)
 	}
 
-	func resizeTextContainer(size: CGSize) {
+	open func resizeTextContainer(_ size: CGSize) {
 		self.textContainer.size = size
 	}
 
-	func updateTextStorage(attributedText: NSAttributedString) {
+	open func updateTextStorage(_ attributedText: NSAttributedString) {
 		self.textStorage.setAttributedString(attributedText)
 	}
 
-	func characterIndexAtLocation(location: CGPoint) -> Int {
+	open func characterIndexAtLocation(_ location: CGPoint) -> Int {
 		var characterIndex: Int = NSNotFound
 		if self.textStorage.string.characters.count > 0 {
 			let glyphIndex = self.glyphIndexForLocation(location)
 			// If the location is in white space after the last glyph on the line we don't
 			// count it as a hit on the text
-			let rangePointer: NSRangePointer = nil
-			var lineRect = self.layoutManager.lineFragmentUsedRectForGlyphAtIndex(glyphIndex, effectiveRange: rangePointer)
+			let rangePointer: NSRangePointer? = nil
+			var lineRect = self.layoutManager.lineFragmentUsedRect(forGlyphAt: glyphIndex, effectiveRange: rangePointer)
 			lineRect.size.height = 60.0 //Adjustment to increase tap area
-			if CGRectContainsPoint(lineRect, location) {
-				characterIndex = self.layoutManager.characterIndexForGlyphAtIndex(glyphIndex)
+			if lineRect.contains(location) {
+				characterIndex = self.layoutManager.characterIndexForGlyph(at: glyphIndex)
 			}
 		}
 		return characterIndex
 	}
 
-	func rangeContainingIndex(index: Int) -> NSRange {
-		return self.layoutManager.rangeOfNominallySpacedGlyphsContainingIndex(index)
+	open func rangeContainingIndex(_ index: Int) -> NSRange {
+		return self.layoutManager.range(ofNominallySpacedGlyphsContaining: index)
 	}
 
-	func boundingRectForCompleteText() -> CGRect {
+	open func boundingRectForCompleteText() -> CGRect {
 		let initialSize = self.textContainer.size
-		self.textContainer.size = CGSizeMake(self.textContainer.size.width, CGFloat.max)
-		let glyphRange = self.layoutManager.glyphRangeForTextContainer(textContainer)
-		self.layoutManager.invalidateDisplayForCharacterRange(NSMakeRange(0, self.textStorage.length - 1))
-		let rect = self.layoutManager.boundingRectForGlyphRange(glyphRange, inTextContainer:self.textContainer)
+		self.textContainer.size = CGSize(width: self.textContainer.size.width, height: CGFloat.greatestFiniteMagnitude)
+		let glyphRange = self.layoutManager.glyphRange(for: textContainer)
+		self.layoutManager.invalidateDisplay(forCharacterRange: NSMakeRange(0, self.textStorage.length - 1))
+		let rect = self.layoutManager.boundingRect(forGlyphRange: glyphRange, in:self.textContainer)
 		self.textContainer.size = initialSize
 		return rect
 	}
 
-	func rectFittingTextForContainerSize(size: CGSize, numberOfLines: Int, font: UIFont) -> CGRect {
+	open func rectFittingTextForContainerSize(_ size: CGSize, numberOfLines: Int, font: UIFont) -> CGRect {
 		let initialSize = self.textContainer.size
 		self.textContainer.size = size
 		self.textContainer.maximumNumberOfLines = numberOfLines
-		var textBounds = self.layoutManager.boundingRectForGlyphRange(NSMakeRange(0, self.layoutManager.numberOfGlyphs), inTextContainer: self.textContainer)
+		var textBounds = self.layoutManager.boundingRect(forGlyphRange: NSMakeRange(0, self.layoutManager.numberOfGlyphs), in: self.textContainer)
 		let totalLines = Int(textBounds.size.height / font.lineHeight)
 		if numberOfLines > 0 {
 			if numberOfLines < totalLines {
@@ -100,7 +100,7 @@ public class TextKitStack {
 		return textBounds;
 	}
 
-	func rangeForTokenInsertion(attributedTruncationToken: NSAttributedString) -> NSRange {
+	open func rangeForTokenInsertion(_ attributedTruncationToken: NSAttributedString) -> NSRange {
 		guard self.textStorage.length > 0 else {
 			return NSMakeRange(NSNotFound, 0)
 		}
@@ -108,10 +108,10 @@ public class TextKitStack {
 		if textStorage.isNewLinePresent() {
 			rangeOfText = self.truncatedRangeForStringWithNewLine()
 		} else {
-			let glyphIndex = self.layoutManager.glyphIndexForCharacterAtIndex(self.textStorage.length - 1)
-			rangeOfText = self.layoutManager.truncatedGlyphRangeInLineFragmentForGlyphAtIndex(glyphIndex)
+			let glyphIndex = self.layoutManager.glyphIndexForCharacter(at: self.textStorage.length - 1)
+			rangeOfText = self.layoutManager.truncatedGlyphRange(inLineFragmentForGlyphAt: glyphIndex)
 			var lineRange = NSMakeRange(NSNotFound, 0)
-			self.layoutManager.lineFragmentRectForGlyphAtIndex(glyphIndex, effectiveRange: &lineRange)
+			self.layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineRange)
 			rangeOfText = lineRange
 
 		}
@@ -122,15 +122,15 @@ public class TextKitStack {
 		return rangeOfText;
 	}
 
-	func truncatedRangeForStringWithNewLine() -> NSRange {
+	open func truncatedRangeForStringWithNewLine() -> NSRange {
 		let numberOfGlyphs = self.layoutManager.numberOfGlyphs
 		var lineRange = NSMakeRange(NSNotFound, 0)
-		let font = self.textStorage.attribute(NSFontAttributeName, atIndex: 0, effectiveRange: nil) as! UIFont
-		let approximateNumberOfLines = Int(CGRectGetHeight(self.layoutManager.usedRectForTextContainer(self.textContainer)) / font.lineHeight)
+		let font = self.textStorage.attribute(NSFontAttributeName, at: 0, effectiveRange: nil) as! UIFont
+		let approximateNumberOfLines = Int(self.layoutManager.usedRect(for: self.textContainer).height / font.lineHeight)
 		var index = 0
 		var numberOfLines = 0
 		while index < numberOfGlyphs {
-			self.layoutManager.lineFragmentRectForGlyphAtIndex(index, effectiveRange: &lineRange)
+			self.layoutManager.lineFragmentRect(forGlyphAt: index, effectiveRange: &lineRange)
 			if numberOfLines == approximateNumberOfLines - 1 {
 				break
 			}
@@ -141,41 +141,41 @@ public class TextKitStack {
 		return rangeOfText
 	}
 
-	func attributeForKey(attributeKey: String, atIndex index: Int) -> (AnyObject?, NSRange) {
+	open func attributeForKey(_ attributeKey: String, atIndex index: Int) -> (AnyObject?, NSRange) {
 		var rangeOfTappedText = NSRange()
-		let attribute = self.textStorage.attribute(attributeKey, atIndex: index, effectiveRange: &rangeOfTappedText)
-		return (attribute, rangeOfTappedText)
+		let attribute = self.textStorage.attribute(attributeKey, at: index, effectiveRange: &rangeOfTappedText)
+		return (attribute as AnyObject?, rangeOfTappedText)
 	}
 	
-	func attributesAtIndex( index: Int) -> ([String : AnyObject]?, NSRange) {
+	open func attributesAtIndex( _ index: Int) -> ([String : AnyObject]?, NSRange) {
 		var rangeOfTappedText = NSRange()
-		let attributes = self.textStorage.attributesAtIndex(index, effectiveRange: &rangeOfTappedText)
-		return (attributes, rangeOfTappedText)
+		let attributes = self.textStorage.attributes(at: index, effectiveRange: &rangeOfTappedText)
+		return (attributes as [String : AnyObject]?, rangeOfTappedText)
 	}
 	
-	func addAttribute(attribute: AnyObject, forkey key: String, atRange range: NSRange) {
+	open func addAttribute(_ attribute: AnyObject, forkey key: String, atRange range: NSRange) {
 		self.textStorage.addAttribute(key, value: attribute, range: range)
 	}
 	
-	func removeAttribute(forkey key: String, atRange range: NSRange) {
+	open func removeAttribute(forkey key: String, atRange range: NSRange) {
 		self.textStorage.removeAttribute(key, range: range)
 	}
 	
-	func substringForRange(range: NSRange) -> String {
-		return (self.textStorage.string as NSString).substringWithRange(range)
+	open func substringForRange(_ range: NSRange) -> String {
+		return (self.textStorage.string as NSString).substring(with: range)
 	}
 	
-	func rangeOfString(string: String) -> NSRange {
-		return (self.textStorage.string as NSString).rangeOfString(string)
+	open func rangeOfString(_ string: String) -> NSRange {
+		return (self.textStorage.string as NSString).range(of: string)
 	}
 	
 	// MARK: Private Helpers
 
-	private func glyphIndexForLocation(location: CGPoint) -> Int {
+	fileprivate func glyphIndexForLocation(_ location: CGPoint) -> Int {
 		// Use text offset to convert to text cotainer coordinates
 		var convertedLocation = location
 		convertedLocation.x -= self.currentTextOffset.x
 		convertedLocation.y -= self.currentTextOffset.y
-		return self.layoutManager.glyphIndexForPoint(location, inTextContainer: self.textContainer, fractionOfDistanceThroughGlyph: nil)
+		return self.layoutManager.glyphIndex(for: location, in: self.textContainer, fractionOfDistanceThroughGlyph: nil)
 	}
 }
