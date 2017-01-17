@@ -50,10 +50,10 @@ extension NSAttributedString {
 		var processedString = self
 		if (self.string.characters.count > 0) {
 			let rangePointer: NSRangePointer? = nil
-			if let paragraphStyle =  self.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: rangePointer) {
+			if let paragraphStyle: NSParagraphStyle =  self.attribute(NSParagraphStyleAttributeName, at: 0, effectiveRange: rangePointer) as? NSParagraphStyle,
+				let mutableParagraphStyle = paragraphStyle.mutableCopy() as? NSMutableParagraphStyle {
 
 				// Remove the line breaks
-				let mutableParagraphStyle = paragraphStyle as! NSMutableParagraphStyle
 				mutableParagraphStyle.lineBreakMode = .byWordWrapping
 
 				// Apply new style
