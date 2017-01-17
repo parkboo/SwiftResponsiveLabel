@@ -1,3 +1,7 @@
+version 2.1
+
+* Fix crash at wordWrappedAttributedString calculation
+
 version 2.0
 
 * Upgrade to Swift 3

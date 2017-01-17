@@ -10,7 +10,7 @@ A UILabel subclass which responds to touch on specified patterns. It has the fol
 
 Add following lines in your pod file  
 ```
-pod 'SwiftResponsiveLabel', '2.0'
+pod 'SwiftResponsiveLabel', '2.1'
 ```
 
 #Usage
