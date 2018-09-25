@@ -201,7 +201,7 @@ open class SwiftResponsiveLabel: UILabel {
 	
 	/** Add given attributes to urls
 	- parameters:
-		- attributes: [String:AnyObject]
+		- attributes: AttributesDictionary
 	*/
 	open func enableURLDetection(attributes: AttributesDictionary) {
 		do {
@@ -215,7 +215,7 @@ open class SwiftResponsiveLabel: UILabel {
 	
 	/** Add given attributes to user handles
 	- parameters:
-		- attributes: [String:AnyObject]
+		- attributes: AttributesDictionary
 	*/
 	open func enableUserHandleDetection(attributes: AttributesDictionary) {
 		self.highlightPattern(PatternHighlighter.RegexStringForUserHandle, attributes: attributes)
@@ -223,7 +223,7 @@ open class SwiftResponsiveLabel: UILabel {
 	
 	/** Add given attributes to hastags
 	- parameters:
-		- attributes: [String:AnyObject]
+		- attributes: AttributesDictionary
 	*/
 	open func enableHashTagDetection(attributes: AttributesDictionary) {
 		self.highlightPattern(PatternHighlighter.RegexStringForHashTag, attributes: attributes)
@@ -232,7 +232,7 @@ open class SwiftResponsiveLabel: UILabel {
 	/** Add given attributes to the occurrences of given string
 	- parameters:
 		- string: String
-		- attributes: [String:AnyObject]
+		- attributes: AttributesDictionary
 	*/
 	open func enableStringDetection(_ string: String, attributes: AttributesDictionary) {
 		let pattern = String(format: PatternHighlighter.RegexFormatForSearchWord, string)
@@ -242,7 +242,7 @@ open class SwiftResponsiveLabel: UILabel {
 	/** Add given attributes to the occurrences of all the strings of given array
 	- parameters:
 		- stringsArray: [String]
-		- attributes: [String:AnyObject]
+		- attributes: AttributesDictionary
 	*/
 	open func enableDetectionForStrings(_ stringsArray: [String], attributes: AttributesDictionary) {
 		for string in stringsArray {

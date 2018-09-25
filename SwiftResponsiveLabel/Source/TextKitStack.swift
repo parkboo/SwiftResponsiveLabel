@@ -189,7 +189,7 @@ open class TextKitStack {
 
 	/** Returns the array of RangeAttribute instances for a given index
 	- parameters:
-		- attributeKey: String
+		- attributeKey: NSAttributedStringKey
 		- index: Int
 	*/
 	open func rangeAttributeForKey(_ attributeKey: NSAttributedStringKey, atIndex index: Int) -> RangeAttribute {
@@ -215,8 +215,8 @@ open class TextKitStack {
 	
 	/** Adds given attribute to the textStorage for the given key at the given range
 	- parameters:
-		- attribute: AnyObject
-		- key: String
+		- attribute: Any
+		- key: NSAttributedStringKey
 		- range: NSRange
 	*/
 	open func addAttribute(_ attribute: Any, forkey key: NSAttributedStringKey, atRange range: NSRange) {
@@ -225,7 +225,7 @@ open class TextKitStack {
 	
 	/** Removes attribute from the textStorage for the given key at the given range
 	- parameters:
-		- key: String
+		- key: NSAttributedStringKey
 		- range: NSRange
 	*/
 	open func removeAttribute(forkey key: NSAttributedStringKey, atRange range: NSRange) {

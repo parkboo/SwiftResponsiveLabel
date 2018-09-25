@@ -58,7 +58,7 @@ public struct PatternDescriptor {
 	- parameters:
 		- dataDetector: NSDataDetector
 		- searchType: PatternSearchType
-		- patternAttributes: [String: AnyObject]
+		- patternAttributes: AttributesDictionary
 	- returns:
 		An instance of pattern descriptor
 	*/
