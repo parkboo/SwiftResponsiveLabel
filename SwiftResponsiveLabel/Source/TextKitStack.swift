@@ -9,7 +9,11 @@
 import Foundation
 import UIKit
 
-public typealias RangeAttribute = (key: NSAttributedStringKey, attribute: Any?, range: NSRange)
+public struct RangeAttribute {
+	let key: NSAttributedStringKey
+	let attribute: Any?
+	let range: NSRange
+}
 
 open class TextKitStack {
 	fileprivate var textContainer = NSTextContainer()
@@ -191,7 +195,7 @@ open class TextKitStack {
 	open func rangeAttributeForKey(_ attributeKey: NSAttributedStringKey, atIndex index: Int) -> RangeAttribute {
 		var rangeOfTappedText = NSRange()
 		let attribute = self.textStorage.attribute(attributeKey, at: index, effectiveRange: &rangeOfTappedText)
-		return RangeAttribute(attributeKey, attribute as AnyObject?, rangeOfTappedText)
+		return RangeAttribute(key: attributeKey, attribute: attribute, range: rangeOfTappedText)
 	}
 	
 	/** Returns the array of RangeAttribute instances for a given index
@@ -204,7 +208,7 @@ open class TextKitStack {
 		self.textStorage.attributes(at: index, effectiveRange: &rangeOfTappedText).forEach { (arg) in
 			
 			let (key, value) = arg
-			rangeAttributes.append(RangeAttribute(key, value, rangeOfTappedText))
+			rangeAttributes.append(RangeAttribute(key: key, attribute: value, range: rangeOfTappedText))
 		}
 		return rangeAttributes
 	}
