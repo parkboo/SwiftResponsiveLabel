@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public typealias RangeAttribute = (key: String, attribute: AnyObject?, range: NSRange)
+public typealias RangeAttribute = (key: NSAttributedStringKey, attribute: Any?, range: NSRange)
 
 open class TextKitStack {
 	fileprivate var textContainer = NSTextContainer()
@@ -71,7 +71,7 @@ open class TextKitStack {
 	*/
 	open func characterIndexAtLocation(_ location: CGPoint) -> Int {
 		var characterIndex: Int = NSNotFound
-		if self.textStorage.string.characters.count > 0 {
+		if self.textStorage.string.count > 0 {
 			let glyphIndex = self.glyphIndexForLocation(location)
 			// If the location is in white space after the last glyph on the line we don't
 			// count it as a hit on the text
@@ -167,7 +167,7 @@ open class TextKitStack {
 	open func truncatedRangeForStringWithNewLine() -> NSRange {
 		let numberOfGlyphs = self.layoutManager.numberOfGlyphs
 		var lineRange = NSMakeRange(NSNotFound, 0)
-		let font = self.textStorage.attribute(NSFontAttributeName, at: 0, effectiveRange: nil) as! UIFont
+		let font = self.textStorage.attribute(NSAttributedStringKey.font, at: 0, effectiveRange: nil) as! UIFont
 		let approximateNumberOfLines = Int(self.layoutManager.usedRect(for: self.textContainer).height / font.lineHeight)
 		var index = 0
 		var numberOfLines = 0
@@ -188,7 +188,7 @@ open class TextKitStack {
 		- attributeKey: String
 		- index: Int
 	*/
-	open func rangeAttributeForKey(_ attributeKey: String, atIndex index: Int) -> RangeAttribute {
+	open func rangeAttributeForKey(_ attributeKey: NSAttributedStringKey, atIndex index: Int) -> RangeAttribute {
 		var rangeOfTappedText = NSRange()
 		let attribute = self.textStorage.attribute(attributeKey, at: index, effectiveRange: &rangeOfTappedText)
 		return RangeAttribute(attributeKey, attribute as AnyObject?, rangeOfTappedText)
@@ -201,8 +201,10 @@ open class TextKitStack {
 	open func rangeAttributesAtIndex( _ index: Int) -> [RangeAttribute] {
 		var rangeOfTappedText = NSRange()
 		var rangeAttributes: [RangeAttribute] = []
-		self.textStorage.attributes(at: index, effectiveRange: &rangeOfTappedText).forEach { key, value in
-			rangeAttributes.append(RangeAttribute(key, value as AnyObject?, rangeOfTappedText))
+		self.textStorage.attributes(at: index, effectiveRange: &rangeOfTappedText).forEach { (arg) in
+			
+			let (key, value) = arg
+			rangeAttributes.append(RangeAttribute(key, value, rangeOfTappedText))
 		}
 		return rangeAttributes
 	}
@@ -213,7 +215,7 @@ open class TextKitStack {
 		- key: String
 		- range: NSRange
 	*/
-	open func addAttribute(_ attribute: AnyObject, forkey key: String, atRange range: NSRange) {
+	open func addAttribute(_ attribute: Any, forkey key: NSAttributedStringKey, atRange range: NSRange) {
 		self.textStorage.addAttribute(key, value: attribute, range: range)
 	}
 	
@@ -222,7 +224,7 @@ open class TextKitStack {
 		- key: String
 		- range: NSRange
 	*/
-	open func removeAttribute(forkey key: String, atRange range: NSRange) {
+	open func removeAttribute(forkey key: NSAttributedStringKey, atRange range: NSRange) {
 		self.textStorage.removeAttribute(key, range: range)
 	}
 	

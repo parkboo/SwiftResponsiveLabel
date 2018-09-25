@@ -30,21 +30,24 @@ Type of pattern search : PatternSearchType
 
 Attributes for the pattern : [String: NSObject]
 */
+public typealias AttributesDictionary = [NSAttributedStringKey: Any]
 
 public struct PatternDescriptor {
 	let searchType : PatternSearchType
-	let patternAttributes : [String:AnyObject]?
+	let patternAttributes : AttributesDictionary
 	let patternExpression : NSRegularExpression
 	
 	/**
 	- parameters:
 		- regularExpression: An NSRegularExpression which describes the pattern
 		- searchType: PatternSearchType
-		- patternAttributes: [String: AnyObject] 
+		- patternAttributes: AttributesDictionary
 	- returns:
 		An instance of pattern descriptor
    */
-	public init(regularExpression: NSRegularExpression, searchType: PatternSearchType, patternAttributes: [String:AnyObject]?) {
+	public init(regularExpression: NSRegularExpression,
+				searchType: PatternSearchType,
+				patternAttributes: AttributesDictionary) {
 		self.patternExpression = regularExpression
 		self.searchType = searchType
 		self.patternAttributes = patternAttributes
@@ -59,7 +62,9 @@ public struct PatternDescriptor {
 	- returns:
 		An instance of pattern descriptor
 	*/
-	public init(dataDetector: NSDataDetector, searchType: PatternSearchType, patternAttributes: [String:AnyObject]?) {
+	public init(dataDetector: NSDataDetector,
+				searchType: PatternSearchType,
+				patternAttributes: AttributesDictionary) {
 		self.patternExpression = dataDetector
 		self.searchType = searchType
 		self.patternAttributes = patternAttributes
@@ -97,7 +102,7 @@ public struct PatternDescriptor {
 
 	fileprivate func allMatchingPattern(_ string:String) -> [NSRange] {
 		var generatedRanges = [NSRange]()
-		self.patternExpression.enumerateMatches(in: string, options: .reportCompletion, range: NSMakeRange(0, string.characters.count)){
+		self.patternExpression.enumerateMatches(in: string, options: .reportCompletion, range: NSMakeRange(0, string.count)){
 		 (result, flag, stop) -> Void in
 			if let result = result {
 				generatedRanges.append(result.range)
@@ -108,6 +113,6 @@ public struct PatternDescriptor {
 	}
 	
 	fileprivate func firstMatchingPattern(_ string:String) -> NSRange {
-		return self.patternExpression.rangeOfFirstMatch(in: string, options: .reportProgress, range: NSMakeRange(0, string.characters.count))
+		return self.patternExpression.rangeOfFirstMatch(in: string, options: .reportProgress, range: NSMakeRange(0, string.count))
 	}
 }

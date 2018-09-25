@@ -53,7 +53,7 @@ extension SwiftResponsiveLabel {
 		finalString.append(imageAttributedString)
 		finalString.append(paddingString)
 		if let action = action {
-			finalString.addAttribute(RLTapResponderAttributeName, value: action, range: NSMakeRange(0, finalString.length))
+			finalString.addAttribute(NSAttributedStringKey.RLTapResponder, value: action, range: NSMakeRange(0, finalString.length))
 		}
 		return finalString
 	}

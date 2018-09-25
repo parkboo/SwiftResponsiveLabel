@@ -106,7 +106,7 @@ open class SwiftResponsiveLabel: UILabel {
 		}
 	}
 	
-	fileprivate var attributesFromProperties: [String: AnyObject] {
+	fileprivate var attributesFromProperties: AttributesDictionary {
 		let shadow = NSShadow()
 		if let shadowColor = self.shadowColor {
 			shadow.shadowColor = shadowColor
@@ -126,10 +126,10 @@ open class SwiftResponsiveLabel: UILabel {
 		let paragraph = NSMutableParagraphStyle()
 		paragraph.alignment = self.textAlignment
 		
-		return [NSFontAttributeName : self.font,
-		        NSForegroundColorAttributeName : color!,
-		        NSShadowAttributeName: shadow,
-		        NSParagraphStyleAttributeName: paragraph]
+		return [NSAttributedStringKey.font : self.font,
+		        NSAttributedStringKey.foregroundColor : color!,
+		        NSAttributedStringKey.shadow: shadow,
+		        NSAttributedStringKey.paragraphStyle: paragraph]
 	}
 
 
@@ -203,7 +203,7 @@ open class SwiftResponsiveLabel: UILabel {
 	- parameters:
 		- attributes: [String:AnyObject]
 	*/
-	open func enableURLDetection(attributes:[String: AnyObject]) {
+	open func enableURLDetection(attributes: AttributesDictionary) {
 		do {
 			let regex = try NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
 			let descriptor = PatternDescriptor(regularExpression: regex, searchType: .all, patternAttributes: attributes)
@@ -217,7 +217,7 @@ open class SwiftResponsiveLabel: UILabel {
 	- parameters:
 		- attributes: [String:AnyObject]
 	*/
-	open func enableUserHandleDetection(attributes: [String: AnyObject]) {
+	open func enableUserHandleDetection(attributes: AttributesDictionary) {
 		self.highlightPattern(PatternHighlighter.RegexStringForUserHandle, attributes: attributes)
 	}
 	
@@ -225,7 +225,7 @@ open class SwiftResponsiveLabel: UILabel {
 	- parameters:
 		- attributes: [String:AnyObject]
 	*/
-	open func enableHashTagDetection(attributes: [String: AnyObject]) {
+	open func enableHashTagDetection(attributes: AttributesDictionary) {
 		self.highlightPattern(PatternHighlighter.RegexStringForHashTag, attributes: attributes)
 	}
 	
@@ -234,7 +234,7 @@ open class SwiftResponsiveLabel: UILabel {
 		- string: String
 		- attributes: [String:AnyObject]
 	*/
-	open func enableStringDetection(_ string: String, attributes: [String: AnyObject]) {
+	open func enableStringDetection(_ string: String, attributes: AttributesDictionary) {
 		let pattern = String(format: PatternHighlighter.RegexFormatForSearchWord, string)
 		self.highlightPattern(pattern, attributes: attributes)
 	}
@@ -244,7 +244,7 @@ open class SwiftResponsiveLabel: UILabel {
 		- stringsArray: [String]
 		- attributes: [String:AnyObject]
 	*/
-	open func enableDetectionForStrings(_ stringsArray: [String], attributes:[String: AnyObject]) {
+	open func enableDetectionForStrings(_ stringsArray: [String], attributes: AttributesDictionary) {
 		for string in stringsArray {
 			enableStringDetection(string, attributes: attributes)
 		}
@@ -300,7 +300,7 @@ open class SwiftResponsiveLabel: UILabel {
 
 	// MARK: Private Helpers
 	
-	fileprivate func highlightPattern(_ pattern: String, attributes:[String:AnyObject]) {
+	fileprivate func highlightPattern(_ pattern: String, attributes: AttributesDictionary) {
 		patternHighlighter.highlightPattern(pattern, dictionary: attributes)
 		self.textKitStack.updateTextStorage(self.attributedTextToDisplay)
 		self.setNeedsDisplay()

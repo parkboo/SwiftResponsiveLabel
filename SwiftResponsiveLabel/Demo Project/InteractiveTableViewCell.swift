@@ -38,25 +38,30 @@ class InteractiveTableViewCell: UITableViewCell {
 		let hashTagTapAction = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
 			self.delegate?.interactiveTableViewCell(self, didTapOnHashTag: tappedString)
 		})
-		responsiveLabel.enableHashTagDetection(attributes: [NSForegroundColorAttributeName: UIColor.red,
-			RLHighlightedBackgroundColorAttributeName: UIColor.orange,
-			RLTapResponderAttributeName: hashTagTapAction])
+		responsiveLabel.enableHashTagDetection(attributes: [
+			NSAttributedStringKey.foregroundColor: UIColor.red,
+			NSAttributedStringKey.RLHighlightedBackgroundColor: UIColor.orange,
+			NSAttributedStringKey.RLTapResponder: hashTagTapAction
+		])
 		
 		// Handle URL Detection
 		let urlTapAction = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
 			self.delegate?.interactiveTableViewCell(self, didTapOnUrl: tappedString)
 		})
-		responsiveLabel.enableURLDetection(attributes: [NSForegroundColorAttributeName: UIColor.brown,
-			RLTapResponderAttributeName: urlTapAction])
+		responsiveLabel.enableURLDetection(attributes: [
+			NSAttributedStringKey.foregroundColor: UIColor.brown,
+			NSAttributedStringKey.RLTapResponder: urlTapAction
+		])
 		
 		// Handle user handle Detection
 		let userHandleTapAction = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
 			self.delegate?.interactiveTableViewCell(self, didTapOnUserHandle: tappedString)
 		})
-		responsiveLabel.enableUserHandleDetection(attributes: [NSForegroundColorAttributeName: UIColor.green,
-			RLHighlightedForegroundColorAttributeName: UIColor.green,
-			RLHighlightedBackgroundColorAttributeName: UIColor.black,
-			RLTapResponderAttributeName: userHandleTapAction])
+		responsiveLabel.enableUserHandleDetection(attributes: [
+			NSAttributedStringKey.foregroundColor: UIColor.green,
+			NSAttributedStringKey.RLHighlightedForegroundColor: UIColor.green,
+			NSAttributedStringKey.RLHighlightedBackgroundColor: UIColor.black,
+			NSAttributedStringKey.RLTapResponder: userHandleTapAction])
 	}
 	
 	func configureText(_ str: String, forExpandedState isExpanded: Bool) {
@@ -66,9 +71,9 @@ class InteractiveTableViewCell: UITableViewCell {
 				self.configureText(str, forExpandedState: false)
 				self.delegate?.interactiveTableViewCell(self, shouldExpand: false)
 			})
-			let rangeOfToken = NSRange(location: str.characters.count, length: collapseToken.characters.count)
-			finalString.addAttributes([NSForegroundColorAttributeName: UIColor.blue, NSFontAttributeName : responsiveLabel.font, RLTapResponderAttributeName: tapResponder], range: rangeOfToken)
-			finalString.addAttributes([NSFontAttributeName : responsiveLabel.font], range: NSRange(location: 0, length: finalString.length))
+			let rangeOfToken = NSRange(location: str.count, length: collapseToken.count)
+			finalString.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.blue, NSAttributedStringKey.font : responsiveLabel.font, NSAttributedStringKey.RLTapResponder: tapResponder], range: rangeOfToken)
+			finalString.addAttributes([NSAttributedStringKey.font : responsiveLabel.font], range: NSRange(location: 0, length: finalString.length))
 			responsiveLabel.numberOfLines = 0
 			responsiveLabel.customTruncationEnabled = false
 			responsiveLabel.attributedText = finalString
@@ -78,9 +83,11 @@ class InteractiveTableViewCell: UITableViewCell {
 				self.configureText(str, forExpandedState: true)
 				self.delegate?.interactiveTableViewCell(self, shouldExpand: false)
 			})
-			truncationToken.addAttributes([RLTapResponderAttributeName: tapResponder,
-				NSForegroundColorAttributeName: UIColor.blue,
-				NSFontAttributeName : responsiveLabel.font],
+			truncationToken.addAttributes([
+				NSAttributedStringKey.RLTapResponder: tapResponder,
+				NSAttributedStringKey.foregroundColor: UIColor.blue,
+				NSAttributedStringKey.font : responsiveLabel.font
+			],
 				range: NSRange(location: 0, length: truncationToken.length))
 			responsiveLabel.customTruncationEnabled = true
 			responsiveLabel.attributedTruncationToken = truncationToken

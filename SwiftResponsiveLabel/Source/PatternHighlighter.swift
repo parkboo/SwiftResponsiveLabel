@@ -22,7 +22,7 @@ open class PatternHighlighter {
 	
 	/** Update current attributed text and apply attributes based on current patternDescriptors
 	- parameters:
-		- attributedText: NSAttributedString
+	- attributedText: NSAttributedString
 	*/
 	func updateAttributedText(_ attributedText: NSAttributedString) {
 		self.attributedText = NSMutableAttributedString(attributedString: attributedText)
@@ -34,10 +34,10 @@ open class PatternHighlighter {
 	
 	/** Add attributes to the range of strings matching the given regex string
 	- parameters:
-		- regexString: String
-		- dictionary: [String:AnyObject]
+	- regexString: String
+	- dictionary: [String:AnyObject]
 	*/
-	func highlightPattern(_ regexString: String, dictionary: [String:AnyObject]) {
+	func highlightPattern(_ regexString: String, dictionary: AttributesDictionary) {
 		do {
 			let regex = try NSRegularExpression(pattern: regexString, options: .caseInsensitive)
 			let descriptor = PatternDescriptor(regularExpression: regex, searchType: PatternSearchType.all, patternAttributes: dictionary)
@@ -49,7 +49,7 @@ open class PatternHighlighter {
 
 	/** Removes attributes from the range of strings matching the given regex string
 	- parameters:
-		- regexString: String
+	- regexString: String
 	*/
 	func unhighlightPattern(regexString: String) {
 		if let descriptor = self.patternDescriptors[regexString] {
@@ -60,9 +60,9 @@ open class PatternHighlighter {
 	
 	/** Detects patterns, applies attributes defined as per patternDescriptor and handles touch(If RLTapResponderAttributeName key is added in dictionary)
 	- parameters:
-		- patternDescriptor: PatternDescriptor
+	- patternDescriptor: PatternDescriptor
 	
-		- This object encapsulates the regular expression and attributes to be added to the pattern.
+	- This object encapsulates the regular expression and attributes to be added to the pattern.
 	*/
 	func enablePatternDetection(_ patternDescriptor:PatternDescriptor) {
 		let patternKey = patternNameKeyForPatternDescriptor(patternDescriptor)
@@ -72,7 +72,7 @@ open class PatternHighlighter {
 	
 	/** Removes previously applied attributes from all the occurance of pattern dictated by pattern descriptor
 	- parameters:
-		- patternDescriptor: PatternDescriptor
+	- patternDescriptor: PatternDescriptor
 	*/
 	func disablePatternDetection(_ patternDescriptor:PatternDescriptor) {
 		let patternKey = patternNameKeyForPatternDescriptor(patternDescriptor)
@@ -100,22 +100,20 @@ open class PatternHighlighter {
 		//Generate ranges for current text of textStorage
 		let patternRanges = patternDescriptor.patternRangesForString(attributedText.string)
 		for range in patternRanges { //Remove attributes from the ranges conditionally
-			if let attributes = patternDescriptor.patternAttributes {
-				for (name, _) in attributes {
-					attributedText.removeAttribute(name, range: range)
-				}
+			for (name, _) in patternDescriptor.patternAttributes {
+				attributedText.removeAttribute(name, range: range)
 			}
 		}
 	}
 
-	fileprivate func addPatternAttributes(_ patternDescriptor:PatternDescriptor) {
+	fileprivate func addPatternAttributes(_ patternDescriptor: PatternDescriptor) {
 		guard let attributedText = self.patternHighlightedText else {
 			return
 		}
 		//Generate ranges for attributed text of the label
 		let patternRanges = patternDescriptor.patternRangesForString(attributedText.string)
 		for range in patternRanges { //Apply attributes to the ranges conditionally
-			attributedText.addAttributes(patternDescriptor.patternAttributes!, range: range)
+			attributedText.addAttributes(patternDescriptor.patternAttributes, range: range)
 		}
 	}
 }
