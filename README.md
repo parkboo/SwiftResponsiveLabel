@@ -1,3 +1,7 @@
+[![Version](https://img.shields.io/badge/pod-2.2-green.svg)](https://cocoapods.org/pods/SwiftResponsiveLabel)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/hsusmita/SwiftResponsiveLabel/blob/master/LICENSE)
+[![Documentation](https://img.shields.io/badge/platform-iOS-orange.svg?style=flat)](http://cocoadocs.org/docsets/SwiftResponsiveLabel)
+
 # SwiftResponsiveLabel
 
 A UILabel subclass which responds to touch on specified patterns. It has the following features:
@@ -10,7 +14,7 @@ A UILabel subclass which responds to touch on specified patterns. It has the fol
 
 Add following lines in your pod file  
 ```
-pod 'SwiftResponsiveLabel', '2.1'
+pod 'SwiftResponsiveLabel', '2.2'
 ```
 
 #Usage

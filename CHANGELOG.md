@@ -1,3 +1,10 @@
+version 2.2
+
+* Add support for Swift 4
+* Refactoring of RangeAttribute. Now it is a struct instead of tuple
+* Typealias `AttributesDictionary` added for `[String: Any]`
+* Fix the issue of truncation token not visible for texts with newline characters
+
 version 2.1
 
 * Fix crash at wordWrappedAttributedString calculation
