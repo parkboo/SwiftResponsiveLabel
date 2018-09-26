@@ -12,6 +12,7 @@ class InteractiveTableViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	var expandedPaths: [IndexPath] = []
 	var arrayOfTexts: [String] = ["An example of very long text having #hashtags with @username and URL http://www.google.com. Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."]
+//	var arrayOfTexts: [String] = ["a\nb\nc\nd\n\\e\n\\f\n"]
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -49,7 +50,8 @@ extension InteractiveTableViewController: InteractiveTableViewCellDelegate {
 		} else {
 			expandedPaths.append(indexPath)
 		}
-		self.tableView.reloadRows(at: [indexPath], with: .none)
+//		self.tableView.reloadRows(at: [indexPath], with: .none)
+		self.tableView.reloadData()
 	}
 	
 	func interactiveTableViewCell(_ cell: InteractiveTableViewCell, didTapOnHashTag string: String) {

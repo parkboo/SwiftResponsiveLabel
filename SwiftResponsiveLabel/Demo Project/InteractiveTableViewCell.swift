@@ -21,13 +21,15 @@ extension InteractiveTableViewCellDelegate {
 	func interactiveTableViewCell(_ cell: InteractiveTableViewCell, didTapOnUserHandle string: String){}
 }
 
-class InteractiveTableViewCell: UITableViewCell {
+final class InteractiveTableViewCell: UITableViewCell {
 	@IBOutlet weak var responsiveLabel: SwiftResponsiveLabel!
 	static let cellIdentifier = "InteractiveTableViewCellIdentifier"
 	var delegate: InteractiveTableViewCellDelegate?
 	var collapseToken = "...Read Less"
 	var expandToken = "...Read More"
-	
+	private var expandAttributedToken = NSMutableAttributedString(string: "")
+	private var collapseAttributedToken = NSMutableAttributedString(string: "")
+
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		
@@ -62,35 +64,40 @@ class InteractiveTableViewCell: UITableViewCell {
 			NSAttributedStringKey.RLHighlightedForegroundColor: UIColor.green,
 			NSAttributedStringKey.RLHighlightedBackgroundColor: UIColor.black,
 			NSAttributedStringKey.RLTapResponder: userHandleTapAction])
+
+		let tapResponder = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
+			self.delegate?.interactiveTableViewCell(self, shouldExpand: true)
+		})
+		self.expandAttributedToken = NSMutableAttributedString(string: self.expandToken)
+		self.expandAttributedToken.addAttributes([
+			NSAttributedStringKey.RLTapResponder: tapResponder,
+			NSAttributedStringKey.foregroundColor: UIColor.blue,
+			NSAttributedStringKey.font : responsiveLabel.font
+			],range: NSRange(location: 0, length: self.expandAttributedToken.length))
+
+		self.collapseAttributedToken = NSMutableAttributedString(string: self.collapseToken)
+		let collapseTapResponder = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
+			self.delegate?.interactiveTableViewCell(self, shouldExpand: false)
+		})
+
+		self.collapseAttributedToken.addAttributes([
+			NSAttributedStringKey.foregroundColor: UIColor.blue,
+			NSAttributedStringKey.font : responsiveLabel.font,
+			NSAttributedStringKey.RLTapResponder: collapseTapResponder
+			], range: NSRange(location: 0, length: self.collapseAttributedToken.length))
 	}
 	
 	func configureText(_ str: String, forExpandedState isExpanded: Bool) {
 		if (isExpanded) {
-			let	finalString = NSMutableAttributedString(string:  str + collapseToken)
-			let tapResponder = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
-				self.configureText(str, forExpandedState: false)
-				self.delegate?.interactiveTableViewCell(self, shouldExpand: false)
-			})
-			let rangeOfToken = NSRange(location: str.count, length: collapseToken.count)
-			finalString.addAttributes([NSAttributedStringKey.foregroundColor: UIColor.blue, NSAttributedStringKey.font : responsiveLabel.font, NSAttributedStringKey.RLTapResponder: tapResponder], range: rangeOfToken)
+			let	finalString = NSMutableAttributedString(string: str)
+			finalString.append(self.collapseAttributedToken)
 			finalString.addAttributes([NSAttributedStringKey.font : responsiveLabel.font], range: NSRange(location: 0, length: finalString.length))
 			responsiveLabel.numberOfLines = 0
 			responsiveLabel.customTruncationEnabled = false
 			responsiveLabel.attributedText = finalString
 		} else {
-			let truncationToken = NSMutableAttributedString(string: expandToken)
-			let tapResponder = PatternTapResponder(currentAction: { (tappedString) -> (Void) in
-				self.configureText(str, forExpandedState: true)
-				self.delegate?.interactiveTableViewCell(self, shouldExpand: false)
-			})
-			truncationToken.addAttributes([
-				NSAttributedStringKey.RLTapResponder: tapResponder,
-				NSAttributedStringKey.foregroundColor: UIColor.blue,
-				NSAttributedStringKey.font : responsiveLabel.font
-			],
-				range: NSRange(location: 0, length: truncationToken.length))
 			responsiveLabel.customTruncationEnabled = true
-			responsiveLabel.attributedTruncationToken = truncationToken
+			responsiveLabel.attributedTruncationToken = self.expandAttributedToken
 			responsiveLabel.numberOfLines = 5
 			responsiveLabel.text = str
 		}

@@ -158,8 +158,8 @@ open class TextKitStack {
 		rectOfToken.size = sizeOfToken
 		rectOfToken.origin.x = completeRect.maxX - sizeOfToken.width
 		rectOfToken.origin.y = completeRect.maxY - sizeOfToken.height
-		let index = characterIndexAtLocation(rectOfToken.origin)
-		if rangeOfText.location != NSNotFound {
+		let index = self.characterIndexAtLocation(rectOfToken.origin)
+		if rangeOfText.location != NSNotFound && index != NSNotFound {
 			rangeOfText.length += (rangeOfText.location - index)
 			rangeOfText.location = index
 		}
