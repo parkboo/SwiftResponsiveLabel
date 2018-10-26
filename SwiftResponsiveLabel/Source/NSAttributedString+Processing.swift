@@ -35,7 +35,15 @@ extension NSAttributedString {
 		var range = NSMakeRange(NSNotFound, 0)
 		let fontAttributes = self.attributes(at: 0, longestEffectiveRange: &range,
 		in: NSRange(location: 0, length: self.length))
-		return (self.string as NSString).size(withAttributes: fontAttributes)
+		var size = (self.string as NSString).size(withAttributes: fontAttributes)
+		self.enumerateAttribute(NSAttributedStringKey.attachment,
+								in: NSRange(location: 0, length: self.length),
+								options: []) { (value, range, stop) in
+									if let attachment = value as? NSTextAttachment {
+										size.width += attachment.bounds.width
+									}
+		}
+		return size
 	}
 	
 	func isNewLinePresent() -> Bool {

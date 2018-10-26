@@ -14,7 +14,7 @@ A UILabel subclass which responds to touch on specified patterns. It has the fol
 
 Add following lines in your pod file  
 ```
-pod 'SwiftResponsiveLabel', '2.2'
+pod 'SwiftResponsiveLabel', '2.3'
 ```
 
 #Usage

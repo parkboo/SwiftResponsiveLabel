@@ -1,3 +1,7 @@
+version 2.3
+
+* Fix the issue of `truncationIndicatorImage` not visible
+
 version 2.2
 
 * Add support for Swift 4
