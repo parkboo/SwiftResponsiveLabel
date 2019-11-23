@@ -126,10 +126,10 @@ open class SwiftResponsiveLabel: UILabel {
 		let paragraph = NSMutableParagraphStyle()
 		paragraph.alignment = self.textAlignment
 		
-		return [NSAttributedStringKey.font : self.font,
-		        NSAttributedStringKey.foregroundColor : color!,
-		        NSAttributedStringKey.shadow: shadow,
-		        NSAttributedStringKey.paragraphStyle: paragraph]
+        return [NSAttributedString.Key.font : self.font ?? UIFont.systemFont(ofSize: 10),
+		        NSAttributedString.Key.foregroundColor : color!,
+		        NSAttributedString.Key.shadow: shadow,
+		        NSAttributedString.Key.paragraphStyle: paragraph]
 	}
 
 

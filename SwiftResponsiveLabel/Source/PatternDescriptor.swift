@@ -30,7 +30,7 @@ Type of pattern search : PatternSearchType
 
 Attributes for the pattern : [String: NSObject]
 */
-public typealias AttributesDictionary = [NSAttributedStringKey: Any]
+public typealias AttributesDictionary = [NSAttributedString.Key: Any]
 
 public struct PatternDescriptor {
 	let searchType : PatternSearchType

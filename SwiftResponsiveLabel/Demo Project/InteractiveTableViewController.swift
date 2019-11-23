@@ -17,7 +17,7 @@ class InteractiveTableViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.estimatedRowHeight = 200.0
-		tableView.rowHeight = UITableViewAutomaticDimension
+		tableView.rowHeight = UITableView.automaticDimension
 	}
 }
 
@@ -36,7 +36,7 @@ extension InteractiveTableViewController: UITableViewDataSource {
 
 extension InteractiveTableViewController: UITableViewDelegate {
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return UITableViewAutomaticDimension
+		return UITableView.automaticDimension
 	}
 }
 

@@ -15,15 +15,15 @@ class MainViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		customLabel.text = "Hello #hashtag @username some aaa more text www.google.com some more text some more text some more text hsusmita4@gmail.com"
-		self.customLabel.enableStringDetection("text", attributes: [NSAttributedStringKey.foregroundColor: UIColor.red])
+		self.customLabel.enableStringDetection("text", attributes: [NSAttributedString.Key.foregroundColor: UIColor.red])
 		
 		let regexString = "([a-z\\d])\\1\\1"
 		do {
 			let regex = try NSRegularExpression(pattern: regexString, options: .caseInsensitive)
 			let descriptor = PatternDescriptor(regularExpression: regex, searchType: .first, patternAttributes:
-				[NSAttributedStringKey.foregroundColor: UIColor.green,
-				 NSAttributedStringKey.RLHighlightedForegroundColor: UIColor.green,
-				 NSAttributedStringKey.RLHighlightedBackgroundColor: UIColor.black
+				[NSAttributedString.Key.foregroundColor: UIColor.green,
+				 NSAttributedString.Key.RLHighlightedForegroundColor: UIColor.green,
+				 NSAttributedString.Key.RLHighlightedBackgroundColor: UIColor.black
 				])
 			customLabel.enablePatternDetection(patternDescriptor: descriptor)
 		} catch let error as NSError {
@@ -41,12 +41,12 @@ class MainViewController: UIViewController {
 				let messageString = "You have tapped hashTag:" + tappedString
 				self.messageLabel.text = messageString
 			}
-			let highlightedAttributes = [NSAttributedStringKey.foregroundColor : UIColor.red,
-			            NSAttributedStringKey.backgroundColor : UIColor.black]
+			let highlightedAttributes = [NSAttributedString.Key.foregroundColor : UIColor.red,
+			            NSAttributedString.Key.backgroundColor : UIColor.black]
 			let patternAttributes: AttributesDictionary = [
-				NSAttributedStringKey.RLHighlightedAttributesDictionary : highlightedAttributes,
-				NSAttributedStringKey.foregroundColor: UIColor.cyan,
-				NSAttributedStringKey.RLTapResponder: hashTagTapAction]
+                NSAttributedString.Key.RLHighlightedAttributesDictionary : highlightedAttributes,
+				NSAttributedString.Key.foregroundColor: UIColor.cyan,
+				NSAttributedString.Key.RLTapResponder: hashTagTapAction]
 			customLabel.enableHashTagDetection(attributes: patternAttributes)
 		} else {
 			customLabel.disableHashTagDetection()
@@ -61,12 +61,12 @@ class MainViewController: UIViewController {
 				let messageString = "You have tapped user handle:" + tappedString
 				self.messageLabel.text = messageString
 			}
-			let dict = [NSAttributedStringKey.foregroundColor : UIColor.green,
-			            NSAttributedStringKey.backgroundColor:UIColor.black]
+			let dict = [NSAttributedString.Key.foregroundColor : UIColor.green,
+			            NSAttributedString.Key.backgroundColor:UIColor.black]
 			self.customLabel.enableUserHandleDetection(attributes: [
-				NSAttributedStringKey.foregroundColor: UIColor.gray,
-				NSAttributedStringKey.RLHighlightedAttributesDictionary: dict,
-				NSAttributedStringKey.RLTapResponder:userHandleTapAction
+				NSAttributedString.Key.foregroundColor: UIColor.gray,
+				NSAttributedString.Key.RLHighlightedAttributesDictionary: dict,
+				NSAttributedString.Key.RLTapResponder:userHandleTapAction
 			])
 		}else {
 			customLabel.disableUserHandleDetection()
@@ -81,8 +81,8 @@ class MainViewController: UIViewController {
 				self.messageLabel.text = messageString
 			}
 			self.customLabel.enableURLDetection(attributes: [
-				NSAttributedStringKey.foregroundColor: UIColor.blue,
-				NSAttributedStringKey.RLTapResponder: URLTapAction
+				NSAttributedString.Key.foregroundColor: UIColor.blue,
+				NSAttributedString.Key.RLTapResponder: URLTapAction
 			])
 		} else {
 			self.customLabel.disableURLDetection()
@@ -96,14 +96,14 @@ class MainViewController: UIViewController {
 				let messageString = "You have tapped token string"
 				self.messageLabel.text = messageString}
 			let dict: AttributesDictionary = [
-				NSAttributedStringKey.RLHighlightedBackgroundColor:UIColor.black,
-				NSAttributedStringKey.RLHighlightedForegroundColor:UIColor.green,
-				NSAttributedStringKey.RLTapResponder:action
+                NSAttributedString.Key.RLHighlightedBackgroundColor:UIColor.black,
+				NSAttributedString.Key.RLHighlightedForegroundColor:UIColor.green,
+				NSAttributedString.Key.RLTapResponder:action
 			]
 			let token = NSAttributedString(string: "...More",
-			                               attributes: [NSAttributedStringKey.font:self.customLabel.font,
-											NSAttributedStringKey.foregroundColor:UIColor.brown,
-											NSAttributedStringKey.RLHighlightedAttributesDictionary: dict])
+                                           attributes: [NSAttributedString.Key.font:self.customLabel.font ?? UIFont.systemFont(ofSize: 10),
+											NSAttributedString.Key.foregroundColor:UIColor.brown,
+											NSAttributedString.Key.RLHighlightedAttributesDictionary: dict])
 			customLabel.attributedTruncationToken = token
 
 		case 1:

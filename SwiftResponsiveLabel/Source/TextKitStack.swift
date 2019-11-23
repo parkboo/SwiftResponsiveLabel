@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public struct RangeAttribute {
-	let key: NSAttributedStringKey
+	let key: NSAttributedString.Key
 	let attribute: Any?
 	let range: NSRange
 }
@@ -171,7 +171,7 @@ open class TextKitStack {
 	open func truncatedRangeForStringWithNewLine() -> NSRange {
 		let numberOfGlyphs = self.layoutManager.numberOfGlyphs
 		var lineRange = NSMakeRange(NSNotFound, 0)
-		let font = self.textStorage.attribute(NSAttributedStringKey.font, at: 0, effectiveRange: nil) as! UIFont
+		let font = self.textStorage.attribute(NSAttributedString.Key.font, at: 0, effectiveRange: nil) as! UIFont
 		let approximateNumberOfLines = Int(self.layoutManager.usedRect(for: self.textContainer).height / font.lineHeight)
 		var index = 0
 		var numberOfLines = 0
@@ -192,7 +192,7 @@ open class TextKitStack {
 		- attributeKey: NSAttributedStringKey
 		- index: Int
 	*/
-	open func rangeAttributeForKey(_ attributeKey: NSAttributedStringKey, atIndex index: Int) -> RangeAttribute {
+	open func rangeAttributeForKey(_ attributeKey: NSAttributedString.Key, atIndex index: Int) -> RangeAttribute {
 		var rangeOfTappedText = NSRange()
 		let attribute = self.textStorage.attribute(attributeKey, at: index, effectiveRange: &rangeOfTappedText)
 		return RangeAttribute(key: attributeKey, attribute: attribute, range: rangeOfTappedText)
@@ -219,7 +219,7 @@ open class TextKitStack {
 		- key: NSAttributedStringKey
 		- range: NSRange
 	*/
-	open func addAttribute(_ attribute: Any, forkey key: NSAttributedStringKey, atRange range: NSRange) {
+	open func addAttribute(_ attribute: Any, forkey key: NSAttributedString.Key, atRange range: NSRange) {
 		self.textStorage.addAttribute(key, value: attribute, range: range)
 	}
 	
@@ -228,7 +228,7 @@ open class TextKitStack {
 		- key: NSAttributedStringKey
 		- range: NSRange
 	*/
-	open func removeAttribute(forkey key: NSAttributedStringKey, atRange range: NSRange) {
+	open func removeAttribute(forkey key: NSAttributedString.Key, atRange range: NSRange) {
 		self.textStorage.removeAttribute(key, range: range)
 	}
 	

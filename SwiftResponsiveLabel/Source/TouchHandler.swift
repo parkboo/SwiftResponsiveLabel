@@ -64,12 +64,12 @@ class TouchHandler: NSObject {
 		guard let textkitStack = self.responsiveLabel?.textKitStack,
 			  let touchIndex = self.touchIndex, self.touchIndex! < textkitStack.textStorageLength  else { return }
 		var rangeOfTappedText = NSRange()
-		let highlightAttributeInfo = textkitStack.rangeAttributeForKey(NSAttributedStringKey.RLHighlightedAttributesDictionary, atIndex: touchIndex)
+		let highlightAttributeInfo = textkitStack.rangeAttributeForKey(NSAttributedString.Key.RLHighlightedAttributesDictionary, atIndex: touchIndex)
 		rangeOfTappedText = highlightAttributeInfo.range
 		self.highlightAttributes = highlightAttributeInfo.attribute as? AttributesDictionary
 		if let attributes = self.highlightAttributes {
 			self.selectedRange = rangeOfTappedText
-			self.defaultAttributes = [NSAttributedStringKey : Any]()
+			self.defaultAttributes = [NSAttributedString.Key : Any]()
 			for (key, value) in attributes {
 				self.defaultAttributes![key] = textkitStack.rangeAttributeForKey(key, atIndex: touchIndex).attribute
 				textkitStack.addAttribute(value, forkey: key, atRange: rangeOfTappedText)
@@ -77,7 +77,7 @@ class TouchHandler: NSObject {
 			self.responsiveLabel?.setNeedsDisplay()
 		}
 		if self.selectedRange == nil {
-			if let _ = textkitStack.rangeAttributeForKey(NSAttributedStringKey.RLTapResponder, atIndex: touchIndex).attribute as? PatternTapResponder {
+			if let _ = textkitStack.rangeAttributeForKey(NSAttributedString.Key.RLTapResponder, atIndex: touchIndex).attribute as? PatternTapResponder {
 				self.selectedRange = rangeOfTappedText
 			}
 		}
@@ -119,7 +119,7 @@ class TouchHandler: NSObject {
 	
 	fileprivate func performActionOnSelection() {
 		guard let textkitStack = self.responsiveLabel?.textKitStack, let selectedRange = self.selectedRange else { return }
-		if let tapResponder = textkitStack.rangeAttributeForKey(NSAttributedStringKey.RLTapResponder, atIndex: selectedRange.location).attribute as? PatternTapResponder {
+		if let tapResponder = textkitStack.rangeAttributeForKey(NSAttributedString.Key.RLTapResponder, atIndex: selectedRange.location).attribute as? PatternTapResponder {
 			let tappedString = textkitStack.substringForRange(selectedRange)
 			tapResponder.perform(tappedString)
 		}
@@ -139,6 +139,6 @@ extension TouchHandler : UIGestureRecognizerDelegate {
 		 	return false
 		}
 		let keys = textkitStack.rangeAttributesAtIndex(index).map { $0.key }
-		return keys.contains(NSAttributedStringKey.RLHighlightedAttributesDictionary) || keys.contains(NSAttributedStringKey.RLTapResponder)
+        return keys.contains(NSAttributedString.Key.RLHighlightedAttributesDictionary) || keys.contains(NSAttributedString.Key.RLTapResponder)
 	}
 }

@@ -9,12 +9,12 @@
 import Foundation
 import UIKit
 
-extension NSAttributedStringKey {
-	public static let RLTapResponder = NSAttributedStringKey("TapResponder")
-	public static let RLHighlightedForegroundColor = NSAttributedStringKey("HighlightedForegroundColor")
-	public static let RLHighlightedBackgroundColor = NSAttributedStringKey("HighlightedBackgroundColor")
-	public static let RLBackgroundCornerRadius = NSAttributedStringKey("HighlightedBackgroundCornerRadius")
-	public static let RLHighlightedAttributesDictionary = NSAttributedStringKey("HighlightedAttributes")
+extension NSAttributedString.Key {
+	public static let RLTapResponder = NSAttributedString.Key("TapResponder")
+	public static let RLHighlightedForegroundColor = NSAttributedString.Key("HighlightedForegroundColor")
+	public static let RLHighlightedBackgroundColor = NSAttributedString.Key("HighlightedBackgroundColor")
+	public static let RLBackgroundCornerRadius = NSAttributedString.Key("HighlightedBackgroundCornerRadius")
+	public static let RLHighlightedAttributesDictionary = NSAttributedString.Key("HighlightedAttributes")
 }
 
 open class PatternTapResponder {
@@ -36,7 +36,7 @@ extension NSAttributedString {
 		let fontAttributes = self.attributes(at: 0, longestEffectiveRange: &range,
 		in: NSRange(location: 0, length: self.length))
 		var size = (self.string as NSString).size(withAttributes: fontAttributes)
-		self.enumerateAttribute(NSAttributedStringKey.attachment,
+		self.enumerateAttribute(NSAttributedString.Key.attachment,
 								in: NSRange(location: 0, length: self.length),
 								options: []) { (value, range, stop) in
 									if let attachment = value as? NSTextAttachment {
@@ -60,7 +60,7 @@ extension NSAttributedString {
 		var processedString = self
 		if (self.string.count > 0) {
 			let rangePointer: NSRangePointer? = nil
-			if let paragraphStyle: NSParagraphStyle =  self.attribute(NSAttributedStringKey.paragraphStyle, at: 0, effectiveRange: rangePointer) as? NSParagraphStyle,
+			if let paragraphStyle: NSParagraphStyle =  self.attribute(NSAttributedString.Key.paragraphStyle, at: 0, effectiveRange: rangePointer) as? NSParagraphStyle,
 				let mutableParagraphStyle = paragraphStyle.mutableCopy() as? NSMutableParagraphStyle {
 
 				// Remove the line breaks
@@ -68,7 +68,7 @@ extension NSAttributedString {
 
 				// Apply new style
 				let restyled = NSMutableAttributedString(attributedString: self)
-				restyled.addAttribute(NSAttributedStringKey.paragraphStyle, value: mutableParagraphStyle, range: NSMakeRange(0, restyled.length))
+				restyled.addAttribute(NSAttributedString.Key.paragraphStyle, value: mutableParagraphStyle, range: NSMakeRange(0, restyled.length))
 				processedString = restyled
 			}
 		}
