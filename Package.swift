@@ -21,10 +21,10 @@ let package = Package(
         .target(
             name: "SwiftResponsiveLabel",
             dependencies: [],
-            path: "Sources"),
+            path: "SwiftResponsiveLabel"),
         .testTarget(
             name: "SwiftResponsiveLabelTests",
             dependencies: ["SwiftResponsiveLabel"],
-            path: "Tests"),
+            path: "SwiftResponsiveLabelTests"),
     ]
 )
