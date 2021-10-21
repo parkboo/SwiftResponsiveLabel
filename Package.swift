@@ -20,11 +20,11 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "SwiftResponsiveLabel",
-            path: "Sources",
-            dependencies: []),
+            dependencies: [],
+            path: "Sources"),
         .testTarget(
             name: "SwiftResponsiveLabelTests",
-            path: "Tests",
-            dependencies: ["SwiftResponsiveLabel"]),
+            dependencies: ["SwiftResponsiveLabel"],
+            path: "Tests"),
     ]
 )
