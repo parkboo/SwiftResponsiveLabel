@@ -1,601 +1,592 @@
 // !$*UTF8*$!
 {
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		4EB857BE1C8823CE00431BA9 /* SwiftResponsiveLabel+TruncationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB857BD1C8823CE00431BA9 /* SwiftResponsiveLabel+TruncationHandler.swift */; };
-		4ECBA0111C8434EA00884FCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ECBA00F1C8434EA00884FCD /* Main.storyboard */; };
-		4ECBA0131C8434EA00884FCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ECBA0121C8434EA00884FCD /* Assets.xcassets */; };
-		4ECBA0161C8434EA00884FCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ECBA0141C8434EA00884FCD /* LaunchScreen.storyboard */; };
-		4ECBA0211C8434EA00884FCD /* SwiftResponsiveLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA0201C8434EA00884FCD /* SwiftResponsiveLabelTests.swift */; };
-		4ECBA02C1C8434EA00884FCD /* SwiftResponsiveLabelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA02B1C8434EA00884FCD /* SwiftResponsiveLabelUITests.swift */; };
-		4ECBA03C1C8570D400884FCD /* TextKitStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA03B1C8570D400884FCD /* TextKitStack.swift */; };
-		4ECBA03E1C85710500884FCD /* SwiftResponsiveLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA03D1C85710500884FCD /* SwiftResponsiveLabel.swift */; };
-		4ECBA0401C85913A00884FCD /* NSAttributedString+Processing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA03F1C85913A00884FCD /* NSAttributedString+Processing.swift */; };
-		4ECBA0421C85A14700884FCD /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECBA0411C85A14700884FCD /* TouchHandler.swift */; };
-		4EF960EB1C86E905007CB596 /* PatternDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF960E91C86E905007CB596 /* PatternDescriptor.swift */; };
-		4EF960EC1C86E905007CB596 /* PatternHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF960EA1C86E905007CB596 /* PatternHighlighter.swift */; };
-		7808F2501DE2D30D00D7F9DC /* InteractiveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7808F24F1DE2D30D00D7F9DC /* InteractiveTableViewController.swift */; };
-		7808F2531DE2D37500D7F9DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7808F2511DE2D37500D7F9DC /* AppDelegate.swift */; };
-		7808F2541DE2D37500D7F9DC /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7808F2521DE2D37500D7F9DC /* MainViewController.swift */; };
-		7808F2561DE2D3B100D7F9DC /* InteractiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7808F2551DE2D3B100D7F9DC /* InteractiveTableViewCell.swift */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		4ECBA01D1C8434EA00884FCD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4ECBA0001C8434EA00884FCD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4ECBA0071C8434EA00884FCD;
-			remoteInfo = SwiftResponsiveLabel;
-		};
-		4ECBA0281C8434EA00884FCD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4ECBA0001C8434EA00884FCD /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4ECBA0071C8434EA00884FCD;
-			remoteInfo = SwiftResponsiveLabel;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		4EB857BD1C8823CE00431BA9 /* SwiftResponsiveLabel+TruncationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SwiftResponsiveLabel+TruncationHandler.swift"; path = "Source/SwiftResponsiveLabel+TruncationHandler.swift"; sourceTree = "<group>"; };
-		4ECBA0081C8434EA00884FCD /* SwiftResponsiveLabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftResponsiveLabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4ECBA0101C8434EA00884FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		4ECBA0121C8434EA00884FCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		4ECBA0151C8434EA00884FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		4ECBA0171C8434EA00884FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4ECBA01C1C8434EA00884FCD /* SwiftResponsiveLabelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftResponsiveLabelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4ECBA0201C8434EA00884FCD /* SwiftResponsiveLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftResponsiveLabelTests.swift; sourceTree = "<group>"; };
-		4ECBA0221C8434EA00884FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4ECBA0271C8434EA00884FCD /* SwiftResponsiveLabelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftResponsiveLabelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4ECBA02B1C8434EA00884FCD /* SwiftResponsiveLabelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftResponsiveLabelUITests.swift; sourceTree = "<group>"; };
-		4ECBA02D1C8434EA00884FCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4ECBA03B1C8570D400884FCD /* TextKitStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextKitStack.swift; path = Source/TextKitStack.swift; sourceTree = "<group>"; };
-		4ECBA03D1C85710500884FCD /* SwiftResponsiveLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftResponsiveLabel.swift; path = Source/SwiftResponsiveLabel.swift; sourceTree = "<group>"; };
-		4ECBA03F1C85913A00884FCD /* NSAttributedString+Processing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSAttributedString+Processing.swift"; path = "Source/NSAttributedString+Processing.swift"; sourceTree = "<group>"; };
-		4ECBA0411C85A14700884FCD /* TouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchHandler.swift; path = Source/TouchHandler.swift; sourceTree = "<group>"; };
-		4EF960E91C86E905007CB596 /* PatternDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PatternDescriptor.swift; path = Source/PatternDescriptor.swift; sourceTree = "<group>"; };
-		4EF960EA1C86E905007CB596 /* PatternHighlighter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PatternHighlighter.swift; path = Source/PatternHighlighter.swift; sourceTree = "<group>"; };
-		7808F24F1DE2D30D00D7F9DC /* InteractiveTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InteractiveTableViewController.swift; path = "Demo Project/InteractiveTableViewController.swift"; sourceTree = "<group>"; };
-		7808F2511DE2D37500D7F9DC /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Demo Project/AppDelegate.swift"; sourceTree = "<group>"; };
-		7808F2521DE2D37500D7F9DC /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "Demo Project/MainViewController.swift"; sourceTree = "<group>"; };
-		7808F2551DE2D3B100D7F9DC /* InteractiveTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InteractiveTableViewCell.swift; path = "Demo Project/InteractiveTableViewCell.swift"; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		4ECBA0051C8434EA00884FCD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4ECBA0191C8434EA00884FCD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4ECBA0241C8434EA00884FCD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		4ECB9FFF1C8434EA00884FCD = {
-			isa = PBXGroup;
-			children = (
-				4ECBA00A1C8434EA00884FCD /* SwiftResponsiveLabel */,
-				4ECBA01F1C8434EA00884FCD /* SwiftResponsiveLabelTests */,
-				4ECBA02A1C8434EA00884FCD /* SwiftResponsiveLabelUITests */,
-				4ECBA0091C8434EA00884FCD /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		4ECBA0091C8434EA00884FCD /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4ECBA0081C8434EA00884FCD /* SwiftResponsiveLabel.app */,
-				4ECBA01C1C8434EA00884FCD /* SwiftResponsiveLabelTests.xctest */,
-				4ECBA0271C8434EA00884FCD /* SwiftResponsiveLabelUITests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		4ECBA00A1C8434EA00884FCD /* SwiftResponsiveLabel */ = {
-			isa = PBXGroup;
-			children = (
-				4ECBA03A1C84351B00884FCD /* Source */,
-				4ECBA0391C84351000884FCD /* Demo Project */,
-				4ECBA0121C8434EA00884FCD /* Assets.xcassets */,
-				4ECBA0141C8434EA00884FCD /* LaunchScreen.storyboard */,
-				4ECBA0171C8434EA00884FCD /* Info.plist */,
-			);
-			path = SwiftResponsiveLabel;
-			sourceTree = "<group>";
-		};
-		4ECBA01F1C8434EA00884FCD /* SwiftResponsiveLabelTests */ = {
-			isa = PBXGroup;
-			children = (
-				4ECBA0201C8434EA00884FCD /* SwiftResponsiveLabelTests.swift */,
-				4ECBA0221C8434EA00884FCD /* Info.plist */,
-			);
-			path = SwiftResponsiveLabelTests;
-			sourceTree = "<group>";
-		};
-		4ECBA02A1C8434EA00884FCD /* SwiftResponsiveLabelUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4ECBA02B1C8434EA00884FCD /* SwiftResponsiveLabelUITests.swift */,
-				4ECBA02D1C8434EA00884FCD /* Info.plist */,
-			);
-			path = SwiftResponsiveLabelUITests;
-			sourceTree = "<group>";
-		};
-		4ECBA0391C84351000884FCD /* Demo Project */ = {
-			isa = PBXGroup;
-			children = (
-				7808F2511DE2D37500D7F9DC /* AppDelegate.swift */,
-				7808F2521DE2D37500D7F9DC /* MainViewController.swift */,
-				4ECBA00F1C8434EA00884FCD /* Main.storyboard */,
-				7808F24F1DE2D30D00D7F9DC /* InteractiveTableViewController.swift */,
-				7808F2551DE2D3B100D7F9DC /* InteractiveTableViewCell.swift */,
-			);
-			name = "Demo Project";
-			sourceTree = "<group>";
-		};
-		4ECBA03A1C84351B00884FCD /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				4ECBA03D1C85710500884FCD /* SwiftResponsiveLabel.swift */,
-				4EF960E91C86E905007CB596 /* PatternDescriptor.swift */,
-				4EF960EA1C86E905007CB596 /* PatternHighlighter.swift */,
-				4ECBA03B1C8570D400884FCD /* TextKitStack.swift */,
-				4ECBA03F1C85913A00884FCD /* NSAttributedString+Processing.swift */,
-				4ECBA0411C85A14700884FCD /* TouchHandler.swift */,
-				4EB857BD1C8823CE00431BA9 /* SwiftResponsiveLabel+TruncationHandler.swift */,
-			);
-			name = Source;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		4ECBA0071C8434EA00884FCD /* SwiftResponsiveLabel */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4ECBA0301C8434EA00884FCD /* Build configuration list for PBXNativeTarget "SwiftResponsiveLabel" */;
-			buildPhases = (
-				4ECBA0041C8434EA00884FCD /* Sources */,
-				4ECBA0051C8434EA00884FCD /* Frameworks */,
-				4ECBA0061C8434EA00884FCD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = SwiftResponsiveLabel;
-			productName = SwiftResponsiveLabel;
-			productReference = 4ECBA0081C8434EA00884FCD /* SwiftResponsiveLabel.app */;
-			productType = "com.apple.product-type.application";
-		};
-		4ECBA01B1C8434EA00884FCD /* SwiftResponsiveLabelTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4ECBA0331C8434EA00884FCD /* Build configuration list for PBXNativeTarget "SwiftResponsiveLabelTests" */;
-			buildPhases = (
-				4ECBA0181C8434EA00884FCD /* Sources */,
-				4ECBA0191C8434EA00884FCD /* Frameworks */,
-				4ECBA01A1C8434EA00884FCD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4ECBA01E1C8434EA00884FCD /* PBXTargetDependency */,
-			);
-			name = SwiftResponsiveLabelTests;
-			productName = SwiftResponsiveLabelTests;
-			productReference = 4ECBA01C1C8434EA00884FCD /* SwiftResponsiveLabelTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		4ECBA0261C8434EA00884FCD /* SwiftResponsiveLabelUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4ECBA0361C8434EA00884FCD /* Build configuration list for PBXNativeTarget "SwiftResponsiveLabelUITests" */;
-			buildPhases = (
-				4ECBA0231C8434EA00884FCD /* Sources */,
-				4ECBA0241C8434EA00884FCD /* Frameworks */,
-				4ECBA0251C8434EA00884FCD /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4ECBA0291C8434EA00884FCD /* PBXTargetDependency */,
-			);
-			name = SwiftResponsiveLabelUITests;
-			productName = SwiftResponsiveLabelUITests;
-			productReference = 4ECBA0271C8434EA00884FCD /* SwiftResponsiveLabelUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		4ECBA0001C8434EA00884FCD /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = hsusmita.com;
-				TargetAttributes = {
-					4ECBA0071C8434EA00884FCD = {
-						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = HP3Q6K3LF3;
-						LastSwiftMigration = 1020;
-					};
-					4ECBA01B1C8434EA00884FCD = {
-						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 1020;
-						TestTargetID = 4ECBA0071C8434EA00884FCD;
-					};
-					4ECBA0261C8434EA00884FCD = {
-						CreatedOnToolsVersion = 7.2;
-						LastSwiftMigration = 1020;
-						TestTargetID = 4ECBA0071C8434EA00884FCD;
-					};
-				};
-			};
-			buildConfigurationList = 4ECBA0031C8434EA00884FCD /* Build configuration list for PBXProject "SwiftResponsiveLabel" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = en;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = 4ECB9FFF1C8434EA00884FCD;
-			productRefGroup = 4ECBA0091C8434EA00884FCD /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				4ECBA0071C8434EA00884FCD /* SwiftResponsiveLabel */,
-				4ECBA01B1C8434EA00884FCD /* SwiftResponsiveLabelTests */,
-				4ECBA0261C8434EA00884FCD /* SwiftResponsiveLabelUITests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		4ECBA0061C8434EA00884FCD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4ECBA0161C8434EA00884FCD /* LaunchScreen.storyboard in Resources */,
-				4ECBA0131C8434EA00884FCD /* Assets.xcassets in Resources */,
-				4ECBA0111C8434EA00884FCD /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4ECBA01A1C8434EA00884FCD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4ECBA0251C8434EA00884FCD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		4ECBA0041C8434EA00884FCD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4EF960EC1C86E905007CB596 /* PatternHighlighter.swift in Sources */,
-				4EF960EB1C86E905007CB596 /* PatternDescriptor.swift in Sources */,
-				4ECBA0421C85A14700884FCD /* TouchHandler.swift in Sources */,
-				7808F2531DE2D37500D7F9DC /* AppDelegate.swift in Sources */,
-				4ECBA0401C85913A00884FCD /* NSAttributedString+Processing.swift in Sources */,
-				7808F2501DE2D30D00D7F9DC /* InteractiveTableViewController.swift in Sources */,
-				4ECBA03E1C85710500884FCD /* SwiftResponsiveLabel.swift in Sources */,
-				7808F2561DE2D3B100D7F9DC /* InteractiveTableViewCell.swift in Sources */,
-				4ECBA03C1C8570D400884FCD /* TextKitStack.swift in Sources */,
-				4EB857BE1C8823CE00431BA9 /* SwiftResponsiveLabel+TruncationHandler.swift in Sources */,
-				7808F2541DE2D37500D7F9DC /* MainViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4ECBA0181C8434EA00884FCD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4ECBA0211C8434EA00884FCD /* SwiftResponsiveLabelTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4ECBA0231C8434EA00884FCD /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4ECBA02C1C8434EA00884FCD /* SwiftResponsiveLabelUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4ECBA01E1C8434EA00884FCD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4ECBA0071C8434EA00884FCD /* SwiftResponsiveLabel */;
-			targetProxy = 4ECBA01D1C8434EA00884FCD /* PBXContainerItemProxy */;
-		};
-		4ECBA0291C8434EA00884FCD /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4ECBA0071C8434EA00884FCD /* SwiftResponsiveLabel */;
-			targetProxy = 4ECBA0281C8434EA00884FCD /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		4ECBA00F1C8434EA00884FCD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4ECBA0101C8434EA00884FCD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		4ECBA0141C8434EA00884FCD /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4ECBA0151C8434EA00884FCD /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		4ECBA02E1C8434EA00884FCD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		4ECBA02F1C8434EA00884FCD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		4ECBA0311C8434EA00884FCD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HP3Q6K3LF3;
-				INFOPLIST_FILE = SwiftResponsiveLabel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hsusmita.SwiftResponsiveLabel;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		4ECBA0321C8434EA00884FCD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HP3Q6K3LF3;
-				INFOPLIST_FILE = SwiftResponsiveLabel/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hsusmita.SwiftResponsiveLabel;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		4ECBA0341C8434EA00884FCD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = SwiftResponsiveLabelTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hsusmita.SwiftResponsiveLabelTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftResponsiveLabel.app/SwiftResponsiveLabel";
-			};
-			name = Debug;
-		};
-		4ECBA0351C8434EA00884FCD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = SwiftResponsiveLabelTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hsusmita.SwiftResponsiveLabelTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftResponsiveLabel.app/SwiftResponsiveLabel";
-			};
-			name = Release;
-		};
-		4ECBA0371C8434EA00884FCD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = SwiftResponsiveLabelUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hsusmita.SwiftResponsiveLabelUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = SwiftResponsiveLabel;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		4ECBA0381C8434EA00884FCD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = SwiftResponsiveLabelUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hsusmita.SwiftResponsiveLabelUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = SwiftResponsiveLabel;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		4ECBA0031C8434EA00884FCD /* Build configuration list for PBXProject "SwiftResponsiveLabel" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4ECBA02E1C8434EA00884FCD /* Debug */,
-				4ECBA02F1C8434EA00884FCD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4ECBA0301C8434EA00884FCD /* Build configuration list for PBXNativeTarget "SwiftResponsiveLabel" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4ECBA0311C8434EA00884FCD /* Debug */,
-				4ECBA0321C8434EA00884FCD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4ECBA0331C8434EA00884FCD /* Build configuration list for PBXNativeTarget "SwiftResponsiveLabelTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4ECBA0341C8434EA00884FCD /* Debug */,
-				4ECBA0351C8434EA00884FCD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4ECBA0361C8434EA00884FCD /* Build configuration list for PBXNativeTarget "SwiftResponsiveLabelUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4ECBA0371C8434EA00884FCD /* Debug */,
-				4ECBA0381C8434EA00884FCD /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = 4ECBA0001C8434EA00884FCD /* Project object */;
+   archiveVersion = "1";
+   objectVersion = "46";
+   objects = {
+      "OBJ_1" = {
+         isa = "PBXProject";
+         attributes = {
+            LastSwiftMigration = "9999";
+            LastUpgradeCheck = "9999";
+         };
+         buildConfigurationList = "OBJ_2";
+         compatibilityVersion = "Xcode 3.2";
+         developmentRegion = "en";
+         hasScannedForEncodings = "0";
+         knownRegions = (
+            "en"
+         );
+         mainGroup = "OBJ_5";
+         productRefGroup = "OBJ_13";
+         projectDirPath = ".";
+         targets = (
+            "SwiftResponsiveLabel::SwiftResponsiveLabel",
+            "SwiftResponsiveLabel::SwiftPMPackageDescription",
+            "SwiftResponsiveLabel::SwiftResponsiveLabelPackageTests::ProductTarget",
+            "SwiftResponsiveLabel::SwiftResponsiveLabelTests"
+         );
+      };
+      "OBJ_10" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_11"
+         );
+         name = "Tests";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_11" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_12"
+         );
+         name = "SwiftResponsiveLabelTests";
+         path = "Tests/SwiftResponsiveLabelTests";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_12" = {
+         isa = "PBXFileReference";
+         path = "SwiftResponsiveLabelTests.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_13" = {
+         isa = "PBXGroup";
+         children = (
+            "SwiftResponsiveLabel::SwiftResponsiveLabel::Product",
+            "SwiftResponsiveLabel::SwiftResponsiveLabelTests::Product"
+         );
+         name = "Products";
+         path = "";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "OBJ_16" = {
+         isa = "PBXFileReference";
+         path = "SwiftResponsiveLabelTests";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_17" = {
+         isa = "PBXFileReference";
+         path = "SwiftResponsiveLabelUITests";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_18" = {
+         isa = "PBXFileReference";
+         path = "SwiftResponsiveLabel";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_19" = {
+         isa = "PBXFileReference";
+         path = "LICENSE";
+         sourceTree = "<group>";
+      };
+      "OBJ_2" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_3",
+            "OBJ_4"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_20" = {
+         isa = "PBXFileReference";
+         path = "CHANGELOG.md";
+         sourceTree = "<group>";
+      };
+      "OBJ_21" = {
+         isa = "PBXFileReference";
+         path = "README.md";
+         sourceTree = "<group>";
+      };
+      "OBJ_22" = {
+         isa = "PBXFileReference";
+         path = "SwiftResponsiveLabel.podspec";
+         sourceTree = "<group>";
+      };
+      "OBJ_24" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_25",
+            "OBJ_26"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_25" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CURRENT_PROJECT_VERSION = "1";
+            DRIVERKIT_DEPLOYMENT_TARGET = "19.0";
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "SwiftResponsiveLabel.xcodeproj/SwiftResponsiveLabel_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "9.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "SwiftResponsiveLabel";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "SwiftResponsiveLabel";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_26" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CURRENT_PROJECT_VERSION = "1";
+            DRIVERKIT_DEPLOYMENT_TARGET = "19.0";
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "SwiftResponsiveLabel.xcodeproj/SwiftResponsiveLabel_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "9.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "SwiftResponsiveLabel";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "SwiftResponsiveLabel";
+            TVOS_DEPLOYMENT_TARGET = "9.0";
+            WATCHOS_DEPLOYMENT_TARGET = "2.0";
+         };
+         name = "Release";
+      };
+      "OBJ_27" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_28"
+         );
+      };
+      "OBJ_28" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_9";
+      };
+      "OBJ_29" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+         );
+      };
+      "OBJ_3" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_OBJC_ARC = "YES";
+            COMBINE_HIDPI_IMAGES = "YES";
+            COPY_PHASE_STRIP = "NO";
+            DEBUG_INFORMATION_FORMAT = "dwarf";
+            DYLIB_INSTALL_NAME_BASE = "@rpath";
+            ENABLE_NS_ASSERTIONS = "YES";
+            GCC_OPTIMIZATION_LEVEL = "0";
+            GCC_PREPROCESSOR_DEFINITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE=1",
+               "DEBUG=1"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            ONLY_ACTIVE_ARCH = "YES";
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+               "-DXcode"
+            );
+            PRODUCT_NAME = "$(TARGET_NAME)";
+            SDKROOT = "macosx";
+            SUPPORTED_PLATFORMS = (
+               "$(AVAILABLE_PLATFORMS)"
+            );
+            SUPPORTS_MACCATALYST = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE",
+               "DEBUG"
+            );
+            SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+            USE_HEADERMAP = "NO";
+         };
+         name = "Debug";
+      };
+      "OBJ_31" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_32",
+            "OBJ_33"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_32" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "5",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/ManifestAPI",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk",
+               "-package-description-version",
+               "5.3.0"
+            );
+            SWIFT_VERSION = "5.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_33" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "5",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/ManifestAPI",
+               "-sdk",
+               "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk",
+               "-package-description-version",
+               "5.3.0"
+            );
+            SWIFT_VERSION = "5.0";
+         };
+         name = "Release";
+      };
+      "OBJ_34" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_35"
+         );
+      };
+      "OBJ_35" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_6";
+      };
+      "OBJ_37" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_38",
+            "OBJ_39"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_38" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Debug";
+      };
+      "OBJ_39" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Release";
+      };
+      "OBJ_4" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_OBJC_ARC = "YES";
+            COMBINE_HIDPI_IMAGES = "YES";
+            COPY_PHASE_STRIP = "YES";
+            DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+            DYLIB_INSTALL_NAME_BASE = "@rpath";
+            GCC_OPTIMIZATION_LEVEL = "s";
+            GCC_PREPROCESSOR_DEFINITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE=1"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "10.10";
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)",
+               "-DXcode"
+            );
+            PRODUCT_NAME = "$(TARGET_NAME)";
+            SDKROOT = "macosx";
+            SUPPORTED_PLATFORMS = (
+               "$(AVAILABLE_PLATFORMS)"
+            );
+            SUPPORTS_MACCATALYST = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)",
+               "SWIFT_PACKAGE"
+            );
+            SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+            USE_HEADERMAP = "NO";
+         };
+         name = "Release";
+      };
+      "OBJ_40" = {
+         isa = "PBXTargetDependency";
+         target = "SwiftResponsiveLabel::SwiftResponsiveLabelTests";
+      };
+      "OBJ_42" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_43",
+            "OBJ_44"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_43" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            CURRENT_PROJECT_VERSION = "1";
+            DRIVERKIT_DEPLOYMENT_TARGET = "19.0";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "SwiftResponsiveLabel.xcodeproj/SwiftResponsiveLabelTests_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "14.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "11.0";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "SwiftResponsiveLabelTests";
+            TVOS_DEPLOYMENT_TARGET = "14.0";
+            WATCHOS_DEPLOYMENT_TARGET = "7.0";
+         };
+         name = "Debug";
+      };
+      "OBJ_44" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            CURRENT_PROJECT_VERSION = "1";
+            DRIVERKIT_DEPLOYMENT_TARGET = "19.0";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "SwiftResponsiveLabel.xcodeproj/SwiftResponsiveLabelTests_Info.plist";
+            IPHONEOS_DEPLOYMENT_TARGET = "14.0";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            MACOSX_DEPLOYMENT_TARGET = "11.0";
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "5.0";
+            TARGET_NAME = "SwiftResponsiveLabelTests";
+            TVOS_DEPLOYMENT_TARGET = "14.0";
+            WATCHOS_DEPLOYMENT_TARGET = "7.0";
+         };
+         name = "Release";
+      };
+      "OBJ_45" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_46"
+         );
+      };
+      "OBJ_46" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_12";
+      };
+      "OBJ_47" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_48"
+         );
+      };
+      "OBJ_48" = {
+         isa = "PBXBuildFile";
+         fileRef = "SwiftResponsiveLabel::SwiftResponsiveLabel::Product";
+      };
+      "OBJ_49" = {
+         isa = "PBXTargetDependency";
+         target = "SwiftResponsiveLabel::SwiftResponsiveLabel";
+      };
+      "OBJ_5" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_6",
+            "OBJ_7",
+            "OBJ_10",
+            "OBJ_13",
+            "OBJ_16",
+            "OBJ_17",
+            "OBJ_18",
+            "OBJ_19",
+            "OBJ_20",
+            "OBJ_21",
+            "OBJ_22"
+         );
+         path = "";
+         sourceTree = "<group>";
+      };
+      "OBJ_6" = {
+         isa = "PBXFileReference";
+         explicitFileType = "sourcecode.swift";
+         path = "Package.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_7" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_8"
+         );
+         name = "Sources";
+         path = "";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_8" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_9"
+         );
+         name = "SwiftResponsiveLabel";
+         path = "Sources/SwiftResponsiveLabel";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_9" = {
+         isa = "PBXFileReference";
+         path = "SwiftResponsiveLabel.swift";
+         sourceTree = "<group>";
+      };
+      "SwiftResponsiveLabel::SwiftPMPackageDescription" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_31";
+         buildPhases = (
+            "OBJ_34"
+         );
+         dependencies = (
+         );
+         name = "SwiftResponsiveLabelPackageDescription";
+         productName = "SwiftResponsiveLabelPackageDescription";
+         productType = "com.apple.product-type.framework";
+      };
+      "SwiftResponsiveLabel::SwiftResponsiveLabel" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_24";
+         buildPhases = (
+            "OBJ_27",
+            "OBJ_29"
+         );
+         dependencies = (
+         );
+         name = "SwiftResponsiveLabel";
+         productName = "SwiftResponsiveLabel";
+         productReference = "SwiftResponsiveLabel::SwiftResponsiveLabel::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "SwiftResponsiveLabel::SwiftResponsiveLabel::Product" = {
+         isa = "PBXFileReference";
+         path = "SwiftResponsiveLabel.framework";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "SwiftResponsiveLabel::SwiftResponsiveLabelPackageTests::ProductTarget" = {
+         isa = "PBXAggregateTarget";
+         buildConfigurationList = "OBJ_37";
+         buildPhases = (
+         );
+         dependencies = (
+            "OBJ_40"
+         );
+         name = "SwiftResponsiveLabelPackageTests";
+         productName = "SwiftResponsiveLabelPackageTests";
+      };
+      "SwiftResponsiveLabel::SwiftResponsiveLabelTests" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_42";
+         buildPhases = (
+            "OBJ_45",
+            "OBJ_47"
+         );
+         dependencies = (
+            "OBJ_49"
+         );
+         name = "SwiftResponsiveLabelTests";
+         productName = "SwiftResponsiveLabelTests";
+         productReference = "SwiftResponsiveLabel::SwiftResponsiveLabelTests::Product";
+         productType = "com.apple.product-type.bundle.unit-test";
+      };
+      "SwiftResponsiveLabel::SwiftResponsiveLabelTests::Product" = {
+         isa = "PBXFileReference";
+         path = "SwiftResponsiveLabelTests.xctest";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+   };
+   rootObject = "OBJ_1";
 }
