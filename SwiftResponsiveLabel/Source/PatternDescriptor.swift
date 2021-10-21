@@ -102,7 +102,7 @@ public struct PatternDescriptor {
 
 	fileprivate func allMatchingPattern(_ string:String) -> [NSRange] {
 		var generatedRanges = [NSRange]()
-		self.patternExpression.enumerateMatches(in: string, options: .reportCompletion, range: NSMakeRange(0, string.count)){
+        self.patternExpression.enumerateMatches(in: string, options: .reportCompletion, range: NSMakeRange(0, string.utf16.count)){
 		 (result, flag, stop) -> Void in
 			if let result = result {
 				generatedRanges.append(result.range)
@@ -113,6 +113,6 @@ public struct PatternDescriptor {
 	}
 	
 	fileprivate func firstMatchingPattern(_ string:String) -> NSRange {
-		return self.patternExpression.rangeOfFirstMatch(in: string, options: .reportProgress, range: NSMakeRange(0, string.count))
+        return self.patternExpression.rangeOfFirstMatch(in: string, options: .reportProgress, range: NSMakeRange(0, string.utf16.count))
 	}
 }
