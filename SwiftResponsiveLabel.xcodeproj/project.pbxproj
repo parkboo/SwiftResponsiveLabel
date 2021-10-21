@@ -21,6 +21,17 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		C12564372721913C00EAD662 /* InteractiveTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12564252721913C00EAD662 /* InteractiveTableViewController.swift */; };
+		C12564382721913C00EAD662 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12564262721913C00EAD662 /* MainViewController.swift */; };
+		C12564392721913C00EAD662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12564272721913C00EAD662 /* AppDelegate.swift */; };
+		C125643A2721913C00EAD662 /* InteractiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12564282721913C00EAD662 /* InteractiveTableViewCell.swift */; };
+		C125643B2721913C00EAD662 /* TextKitStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125642A2721913C00EAD662 /* TextKitStack.swift */; };
+		C125643C2721913C00EAD662 /* SwiftResponsiveLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125642B2721913C00EAD662 /* SwiftResponsiveLabel.swift */; };
+		C125643D2721913C00EAD662 /* NSAttributedString+Processing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125642C2721913C00EAD662 /* NSAttributedString+Processing.swift */; };
+		C125643E2721913C00EAD662 /* PatternDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125642D2721913C00EAD662 /* PatternDescriptor.swift */; };
+		C125643F2721913C00EAD662 /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125642E2721913C00EAD662 /* TouchHandler.swift */; };
+		C12564402721913C00EAD662 /* PatternHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C125642F2721913C00EAD662 /* PatternHighlighter.swift */; };
+		C12564412721913C00EAD662 /* SwiftResponsiveLabel+TruncationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12564302721913C00EAD662 /* SwiftResponsiveLabel+TruncationHandler.swift */; };
 		OBJ_35 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_46 /* SwiftResponsiveLabelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* SwiftResponsiveLabelTests.swift */; };
 		OBJ_48 /* SwiftResponsiveLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "SwiftResponsiveLabel::SwiftResponsiveLabel::Product" /* SwiftResponsiveLabel.framework */; };
@@ -44,10 +55,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C12564252721913C00EAD662 /* InteractiveTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveTableViewController.swift; sourceTree = "<group>"; };
+		C12564262721913C00EAD662 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C12564272721913C00EAD662 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C12564282721913C00EAD662 /* InteractiveTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractiveTableViewCell.swift; sourceTree = "<group>"; };
+		C125642A2721913C00EAD662 /* TextKitStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextKitStack.swift; sourceTree = "<group>"; };
+		C125642B2721913C00EAD662 /* SwiftResponsiveLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftResponsiveLabel.swift; sourceTree = "<group>"; };
+		C125642C2721913C00EAD662 /* NSAttributedString+Processing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Processing.swift"; sourceTree = "<group>"; };
+		C125642D2721913C00EAD662 /* PatternDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternDescriptor.swift; sourceTree = "<group>"; };
+		C125642E2721913C00EAD662 /* TouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandler.swift; sourceTree = "<group>"; };
+		C125642F2721913C00EAD662 /* PatternHighlighter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatternHighlighter.swift; sourceTree = "<group>"; };
+		C12564302721913C00EAD662 /* SwiftResponsiveLabel+TruncationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SwiftResponsiveLabel+TruncationHandler.swift"; sourceTree = "<group>"; };
+		C12564312721913C00EAD662 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C12564332721913C00EAD662 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C12564352721913C00EAD662 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C12564362721913C00EAD662 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		OBJ_12 /* SwiftResponsiveLabelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftResponsiveLabelTests.swift; sourceTree = "<group>"; };
 		OBJ_16 /* SwiftResponsiveLabelTests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwiftResponsiveLabelTests; sourceTree = SOURCE_ROOT; };
 		OBJ_17 /* SwiftResponsiveLabelUITests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwiftResponsiveLabelUITests; sourceTree = SOURCE_ROOT; };
-		OBJ_18 /* SwiftResponsiveLabel */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwiftResponsiveLabel; sourceTree = SOURCE_ROOT; };
 		OBJ_19 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		OBJ_20 /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		OBJ_21 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -76,6 +101,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C12564232721913C00EAD662 /* SwiftResponsiveLabel */ = {
+			isa = PBXGroup;
+			children = (
+				C12564242721913C00EAD662 /* Demo Project */,
+				C12564292721913C00EAD662 /* Source */,
+				C12564312721913C00EAD662 /* Assets.xcassets */,
+				C12564322721913C00EAD662 /* LaunchScreen.storyboard */,
+				C12564342721913C00EAD662 /* Main.storyboard */,
+				C12564362721913C00EAD662 /* Info.plist */,
+			);
+			name = SwiftResponsiveLabel;
+			path = Sources/SwiftResponsiveLabel;
+			sourceTree = "<group>";
+		};
+		C12564242721913C00EAD662 /* Demo Project */ = {
+			isa = PBXGroup;
+			children = (
+				C12564252721913C00EAD662 /* InteractiveTableViewController.swift */,
+				C12564262721913C00EAD662 /* MainViewController.swift */,
+				C12564272721913C00EAD662 /* AppDelegate.swift */,
+				C12564282721913C00EAD662 /* InteractiveTableViewCell.swift */,
+			);
+			path = "Demo Project";
+			sourceTree = "<group>";
+		};
+		C12564292721913C00EAD662 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C125642A2721913C00EAD662 /* TextKitStack.swift */,
+				C125642B2721913C00EAD662 /* SwiftResponsiveLabel.swift */,
+				C125642C2721913C00EAD662 /* NSAttributedString+Processing.swift */,
+				C125642D2721913C00EAD662 /* PatternDescriptor.swift */,
+				C125642E2721913C00EAD662 /* TouchHandler.swift */,
+				C125642F2721913C00EAD662 /* PatternHighlighter.swift */,
+				C12564302721913C00EAD662 /* SwiftResponsiveLabel+TruncationHandler.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,7 +186,7 @@
 		OBJ_7 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_18 /* SwiftResponsiveLabel */,
+				C12564232721913C00EAD662 /* SwiftResponsiveLabel */,
 			);
 			name = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -192,6 +256,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = OBJ_5 /*  */;
 			productRefGroup = OBJ_13 /* Products */;
@@ -211,6 +276,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				C125643C2721913C00EAD662 /* SwiftResponsiveLabel.swift in Sources */,
+				C12564392721913C00EAD662 /* AppDelegate.swift in Sources */,
+				C125643D2721913C00EAD662 /* NSAttributedString+Processing.swift in Sources */,
+				C125643F2721913C00EAD662 /* TouchHandler.swift in Sources */,
+				C12564372721913C00EAD662 /* InteractiveTableViewController.swift in Sources */,
+				C125643A2721913C00EAD662 /* InteractiveTableViewCell.swift in Sources */,
+				C12564382721913C00EAD662 /* MainViewController.swift in Sources */,
+				C125643B2721913C00EAD662 /* TextKitStack.swift in Sources */,
+				C12564412721913C00EAD662 /* SwiftResponsiveLabel+TruncationHandler.swift in Sources */,
+				C12564402721913C00EAD662 /* PatternHighlighter.swift in Sources */,
+				C125643E2721913C00EAD662 /* PatternDescriptor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +320,25 @@
 			targetProxy = C125642127218BF600EAD662 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C12564322721913C00EAD662 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C12564332721913C00EAD662 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		C12564342721913C00EAD662 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C12564352721913C00EAD662 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		OBJ_25 /* Debug */ = {
@@ -394,6 +489,7 @@
 		OBJ_43 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DRIVERKIT_DEPLOYMENT_TARGET = 19.0;
@@ -421,6 +517,7 @@
 		OBJ_44 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DRIVERKIT_DEPLOYMENT_TARGET = 19.0;
